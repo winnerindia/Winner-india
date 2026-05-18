@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Winner India</title>
+<style>
+body{
+background:black;
+color:white;
+font-family:Arial;
+text-align:center;
+padding-top:100px;
+}
+button{
+padding:15px 30px;
+font-size:20px;
+background:red;
+color:white;
+border:none;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Winner India</h1>
+<p>Welcome To Winner India Official Website</p>
+
+<button>Play Game</button>
+
+</body>
+</html>
