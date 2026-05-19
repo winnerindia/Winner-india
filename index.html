@@ -68,6 +68,7 @@ background:#ff1a1a;
 color:white;
 font-size:20px;
 font-weight:bold;
+cursor:pointer;
 }
 
 .login-box p{
@@ -226,7 +227,9 @@ box-shadow:0 0 25px red;
 
 <input type="password" placeholder="Password">
 
-<button class="login-btn" id="login-btn" onclick="login()">Login</button>
+<button class="login-btn" id="login-btn">
+Login
+</button>
 
 <p>India's Fastest Gaming Platform</p>
 
@@ -315,7 +318,7 @@ RecaptchaVerifier
 
 const firebaseConfig = {
 
-apiKey: "AIzaSyBb-g4otSn7qbnUagPopcgpV1",
+apiKey: "PASTE_YOUR_FULL_FIREBASE_API_KEY_HERE",
 
 authDomain: "winnerindia-b60c1.firebaseapp.com",
 
@@ -335,27 +338,34 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-window.recaptchaVerifier = new RecaptchaVerifier(auth, 'login-btn', {
+window.recaptchaVerifier = new RecaptchaVerifier(
+auth,
+'login-btn',
+{
 size: 'invisible'
-});
+}
+);
 
-window.login = function(){
+document.getElementById("login-btn").addEventListener("click", async function(){
 
 const number = document.getElementById("mobile").value;
 
-signInWithPhoneNumber(
+if(number.length !== 10){
+alert("10 digit mobile number डालो");
+return;
+}
+
+try{
+
+const confirmationResult = await signInWithPhoneNumber(
 auth,
 "+91" + number,
 window.recaptchaVerifier
-)
-
-.then(function(confirmationResult){
+);
 
 const code = prompt("OTP Enter करें");
 
-confirmationResult.confirm(code)
-
-.then(function(){
+await confirmationResult.confirm(code);
 
 document.getElementById("loginPage").style.display="none";
 
@@ -363,17 +373,13 @@ document.getElementById("homePage").style.display="block";
 
 alert("Login Successful");
 
-});
-
-})
-
-.catch(function(error){
+}catch(error){
 
 alert(error.message);
 
-});
-
 }
+
+});
 
 </script>
 
