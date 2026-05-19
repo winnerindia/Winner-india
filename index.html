@@ -223,11 +223,11 @@ box-shadow:0 0 25px red;
 
 <div class="logo">Winner India</div>
 
-<input type="text" placeholder="Mobile Number">
+<input type="text" id="mobile" placeholder="Mobile Number">
 
 <input type="password" placeholder="Password">
 
-<button class="login-btn" onclick="login()">Login</button>
+<button class="login-btn" id="login-btn" onclick="login()">Login</button>
 
 <p>India's Fastest Gaming Platform</p>
 
@@ -304,13 +304,71 @@ box-shadow:0 0 25px red;
 
 </div>
 
-<script>
+<script type="module">
 
-function login(){
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { 
+getAuth,
+signInWithPhoneNumber,
+RecaptchaVerifier
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+
+apiKey: "YOUR_API_KEY",
+
+authDomain: "winnerindia-b60c1.firebaseapp.com",
+
+projectId: "winnerindia-b60c1",
+
+storageBucket: "winnerindia-b60c1.appspot.com",
+
+messagingSenderId: "998173148826",
+
+appId: "1:998173148826:web:2b3b6d6e90b0"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+window.recaptchaVerifier = new RecaptchaVerifier(auth, 'login-btn', {
+size: 'invisible'
+});
+
+window.login = function(){
+
+const number = document.getElementById("mobile").value;
+
+signInWithPhoneNumber(
+auth,
+"+91" + number,
+window.recaptchaVerifier
+)
+
+.then(function(confirmationResult){
+
+const code = prompt("OTP Enter करें");
+
+confirmationResult.confirm(code)
+
+.then(function(){
 
 document.getElementById("loginPage").style.display="none";
 
 document.getElementById("homePage").style.display="block";
+
+});
+
+})
+
+.catch(function(error){
+
+alert(error.message);
+
+});
 
 }
 
