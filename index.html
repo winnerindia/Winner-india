@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Winner India</title>
 
 <style>
@@ -308,7 +307,7 @@ box-shadow:0 0 25px red;
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { 
+import {
 getAuth,
 signInWithPhoneNumber,
 RecaptchaVerifier
@@ -316,7 +315,7 @@ RecaptchaVerifier
 
 const firebaseConfig = {
 
-apiKey: "YOUR_API_KEY",
+apiKey: "AIzaSyBb-g4otSn7qbnUagPopcgpV1",
 
 authDomain: "winnerindia-b60c1.firebaseapp.com",
 
@@ -326,7 +325,9 @@ storageBucket: "winnerindia-b60c1.appspot.com",
 
 messagingSenderId: "998173148826",
 
-appId: "1:998173148826:web:2b3b6d6e90b0"
+appId: "1:998173148826:web:2b3b6d6e90b0",
+
+measurementId: "G-3M2D8RDVXX"
 
 };
 
@@ -359,6 +360,8 @@ confirmationResult.confirm(code)
 document.getElementById("loginPage").style.display="none";
 
 document.getElementById("homePage").style.display="block";
+
+alert("Login Successful");
 
 });
 
