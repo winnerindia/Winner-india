@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Winner India</title>
 
 <style>
@@ -11,15 +10,16 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:Arial,sans-serif;
 }
 
 body{
 background:#0f0f0f;
 color:white;
-padding-bottom:80px;
+padding-bottom:100px;
 }
 
+/* TOP BAR */
 .top{
 background:#1b1b1b;
 padding:15px;
@@ -27,100 +27,135 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 border-bottom:1px solid #333;
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
-font-size:24px;
+font-size:26px;
 font-weight:bold;
 color:#ff2e2e;
 }
 
 .balance{
 background:#262626;
-padding:10px 15px;
-border-radius:10px;
-font-size:14px;
+padding:10px 16px;
+border-radius:12px;
+font-size:15px;
 }
 
+/* BANNER */
 .banner{
 margin:15px;
-background:linear-gradient(45deg,#ff0000,#ff5e00);
-padding:25px;
-border-radius:20px;
+padding:30px 20px;
+border-radius:25px;
 text-align:center;
+background:linear-gradient(45deg,#ff0000,#ff5e00);
 }
 
 .banner h1{
-font-size:28px;
+font-size:42px;
 margin-bottom:10px;
 }
 
 .banner p{
-font-size:14px;
-margin-bottom:15px;
+font-size:16px;
+margin-bottom:20px;
 }
 
 .play-btn{
 background:white;
 color:black;
-padding:12px 30px;
 border:none;
-border-radius:12px;
-font-size:18px;
+padding:14px 35px;
+border-radius:14px;
+font-size:22px;
 font-weight:bold;
 }
 
+/* TITLES */
 .section-title{
-padding:15px;
-font-size:20px;
+font-size:22px;
 font-weight:bold;
+padding:10px 15px;
 }
 
+/* GAME CARDS */
 .games{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:15px;
-padding:0 15px;
+padding:15px;
 }
 
 .card{
 background:#1c1c1c;
-padding:20px;
-border-radius:18px;
+border-radius:22px;
+padding:25px 15px;
 text-align:center;
 border:1px solid #2f2f2f;
+box-shadow:0 0 10px rgba(255,255,255,0.05);
 }
 
 .card img{
-width:60px;
+width:65px;
 margin-bottom:10px;
 }
 
 .card h3{
-margin-bottom:10px;
+font-size:18px;
+margin-bottom:15px;
 }
 
 .card button{
 background:#ff2e2e;
-border:none;
-padding:10px 20px;
 color:white;
-border-radius:10px;
+border:none;
+padding:12px 25px;
+border-radius:12px;
+font-size:16px;
 }
 
+/* VIP */
 .vip{
-margin:20px 15px;
+margin:15px;
+padding:25px;
+border-radius:22px;
 background:#1c1c1c;
-padding:20px;
-border-radius:20px;
 border:1px solid #333;
 }
 
 .vip h2{
 color:gold;
+font-size:24px;
 margin-bottom:10px;
 }
 
+.vip p{
+font-size:16px;
+color:#ddd;
+}
+
+/* FLOAT BUTTON */
+.plus-btn{
+position:fixed;
+right:20px;
+bottom:95px;
+width:70px;
+height:70px;
+border-radius:50%;
+background:#ff1a1a;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:45px;
+color:white;
+box-shadow:0 0 30px red;
+z-index:1000;
+}
+
+/* BOTTOM NAV */
 .bottom{
 position:fixed;
 bottom:0;
@@ -129,61 +164,35 @@ width:100%;
 background:#1b1b1b;
 display:flex;
 justify-content:space-around;
-padding:12px 0;
+padding:14px 0;
 border-top:1px solid #333;
 }
 
 .bottom a{
-color:white;
 text-decoration:none;
-font-size:14px;
+color:white;
+font-size:15px;
 text-align:center;
 }
-
-.recharge{
-position:fixed;
-right:20px;
-bottom:90px;
-background:#ff2e2e;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:30px;
-box-shadow:0 0 15px red;
-}.plus-btn{
-position:fixed;
-bottom:90px;
-right:20px;
-width:65px;
-height:65px;
-border-radius:50%;
-background:#ff1a1a;
-color:white;
-font-size:40px;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 0 25px red;
-  }
 </style>
 </head>
 
 <body>
 
+<!-- TOP -->
 <div class="top">
 <div class="logo">Winner India</div>
 <div class="balance">₹ 10,500</div>
 </div>
 
+<!-- BANNER -->
 <div class="banner">
 <h1>Play & Win</h1>
 <p>India's Fastest Gaming Platform</p>
 <button class="play-btn">Play Now</button>
 </div>
 
+<!-- GAMES -->
 <div class="section-title">Popular Games</div>
 
 <div class="games">
@@ -207,16 +216,19 @@ box-shadow:0 0 25px red;
 <h3>Spin Win</h3>
 <button>Play</button>
 </div>
-<div class="plus-btn">+</div>
+
 </div>
 
+<!-- VIP -->
 <div class="vip">
 <h2>VIP Rewards</h2>
 <p>Recharge more and unlock VIP bonuses daily.</p>
 </div>
 
-<div class="recharge">+</div>
+<!-- FLOAT BUTTON -->
+<div class="plus-btn">+</div>
 
+<!-- BOTTOM NAV -->
 <div class="bottom">
 <a href="#">Home</a>
 <a href="#">Games</a>
@@ -226,19 +238,3 @@ box-shadow:0 0 25px red;
 
 </body>
 </html>
-
-.plus-btn{
-position:fixed;
-bottom:90px;
-right:20px;
-width:65px;
-height:65px;
-border-radius:50%;
-background:#ff1a1a;
-color:white;
-font-size:40px;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 0 25px red;
-}<div class="plus-btn">+</div>
