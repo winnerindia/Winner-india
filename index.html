@@ -1,21 +1,136 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winner India</title>
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+<style>
+
+body{
+background:black;
+font-family:Arial;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.login-box{
+width:320px;
+background:#111;
+padding:30px;
+border-radius:20px;
+text-align:center;
+}
+
+.logo{
+font-size:35px;
+font-weight:bold;
+color:red;
+margin-bottom:30px;
+}
+
+input{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:none;
+border-radius:12px;
+background:#222;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:red;
+color:white;
+font-size:18px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+<div class="logo">Winner India</div>
+
+<input type="text" id="mobile" placeholder="Mobile Number">
+
+<button id="login-btn">Send OTP</button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+signInWithPhoneNumber,
+RecaptchaVerifier
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBb-g4otSn7qbnUagPopcgpV1KHJMPDZdo",
-  authDomain: "winnerindia-b60c1.firebaseapp.com",
-  projectId: "winnerindia-b60c1",
-  storageBucket: "winnerindia-b60c1.firebasestorage.app",
-  messagingSenderId: "998173148826",
-  appId: "1:998173148826:web:2b3b6d6e90b0f121b30123",
-  measurementId: "G-3M2D8RDVXX"
+apiKey: "AIzaSyBb-g4otSn7qbnUagPopcgpV1KHJMPDZdo",
+authDomain: "winnerindia-b60c1.firebaseapp.com",
+projectId: "winnerindia-b60c1",
+storageBucket: "winnerindia-b60c1.firebasestorage.app",
+messagingSenderId: "998173148826",
+appId: "1:998173148826:web:2b3b6d6e90b0f121b30123",
+measurementId: "G-3M2D8RDVXX"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+const auth = getAuth(app);
+
+window.recaptchaVerifier = new RecaptchaVerifier(auth,'login-btn',{
+size:'invisible'
+});
+
+document.getElementById("login-btn").addEventListener("click",function(){
+
+const number=document.getElementById("mobile").value;
+
+signInWithPhoneNumber(
+auth,
+"+91"+number,
+window.recaptchaVerifier
+)
+
+.then(function(confirmationResult){
+
+const code=prompt("OTP Enter करें");
+
+confirmationResult.confirm(code)
+
+.then(function(){
+
+alert("Login Successful");
+
+});
+
+})
+
+.catch(function(error){
+
+alert(error.message);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
