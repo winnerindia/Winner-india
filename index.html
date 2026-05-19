@@ -3,238 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Winner India</title>
+<title>Winner India Login</title>
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Arial;
 }
 
 body{
 background:#0f0f0f;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 color:white;
-padding-bottom:100px;
 }
 
-/* TOP BAR */
-.top{
-background:#1b1b1b;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid #333;
-position:sticky;
-top:0;
-z-index:100;
+.login-box{
+width:90%;
+max-width:350px;
+background:#1c1c1c;
+padding:30px;
+border-radius:20px;
+border:1px solid #333;
+text-align:center;
 }
 
 .logo{
-font-size:26px;
+font-size:35px;
 font-weight:bold;
 color:#ff2e2e;
+margin-bottom:25px;
 }
 
-.balance{
-background:#262626;
-padding:10px 16px;
-border-radius:12px;
-font-size:15px;
-}
-
-/* BANNER */
-.banner{
-margin:15px;
-padding:30px 20px;
-border-radius:25px;
-text-align:center;
-background:linear-gradient(45deg,#ff0000,#ff5e00);
-}
-
-.banner h1{
-font-size:42px;
-margin-bottom:10px;
-}
-
-.banner p{
-font-size:16px;
-margin-bottom:20px;
-}
-
-.play-btn{
-background:white;
-color:black;
-border:none;
-padding:14px 35px;
-border-radius:14px;
-font-size:22px;
-font-weight:bold;
-}
-
-/* TITLES */
-.section-title{
-font-size:22px;
-font-weight:bold;
-padding:10px 15px;
-}
-
-/* GAME CARDS */
-.games{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-padding:15px;
-}
-
-.card{
-background:#1c1c1c;
-border-radius:22px;
-padding:25px 15px;
-text-align:center;
-border:1px solid #2f2f2f;
-box-shadow:0 0 10px rgba(255,255,255,0.05);
-}
-
-.card img{
-width:65px;
-margin-bottom:10px;
-}
-
-.card h3{
-font-size:18px;
-margin-bottom:15px;
-}
-
-.card button{
-background:#ff2e2e;
-color:white;
-border:none;
-padding:12px 25px;
-border-radius:12px;
-font-size:16px;
-}
-
-/* VIP */
-.vip{
-margin:15px;
-padding:25px;
-border-radius:22px;
-background:#1c1c1c;
-border:1px solid #333;
-}
-
-.vip h2{
-color:gold;
-font-size:24px;
-margin-bottom:10px;
-}
-
-.vip p{
-font-size:16px;
-color:#ddd;
-}
-
-/* FLOAT BUTTON */
-.plus-btn{
-position:fixed;
-right:20px;
-bottom:95px;
-width:70px;
-height:70px;
-border-radius:50%;
-background:#ff1a1a;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:45px;
-color:white;
-box-shadow:0 0 30px red;
-z-index:1000;
-}
-
-/* BOTTOM NAV */
-.bottom{
-position:fixed;
-bottom:0;
-left:0;
+input{
 width:100%;
-background:#1b1b1b;
-display:flex;
-justify-content:space-around;
-padding:14px 0;
-border-top:1px solid #333;
+padding:14px;
+margin:10px 0;
+border:none;
+border-radius:12px;
+background:#2a2a2a;
+color:white;
+font-size:16px;
 }
 
-.bottom a{
-text-decoration:none;
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+background:#ff1a1a;
 color:white;
-font-size:15px;
-text-align:center;
+font-size:18px;
+font-weight:bold;
+}
+
+p{
+margin-top:15px;
+color:#aaa;
+font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP -->
-<div class="top">
+<div class="login-box">
+
 <div class="logo">Winner India</div>
-<div class="balance">₹ 10,500</div>
-</div>
 
-<!-- BANNER -->
-<div class="banner">
-<h1>Play & Win</h1>
+<input type="text" placeholder="Mobile Number">
+
+<input type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
 <p>India's Fastest Gaming Platform</p>
-<button class="play-btn">Play Now</button>
-</div>
-
-<!-- GAMES -->
-<div class="section-title">Popular Games</div>
-
-<div class="games">
-
-<div class="card">
-<h3>Color Prediction</h3>
-<button>Play</button>
-</div>
-
-<div class="card">
-<h3>Lottery Game</h3>
-<button>Play</button>
-</div>
-
-<div class="card">
-<h3>Crash Game</h3>
-<button>Play</button>
-</div>
-
-<div class="card">
-<h3>Spin Win</h3>
-<button>Play</button>
-</div>
 
 </div>
 
-<!-- VIP -->
-<div class="vip">
-<h2>VIP Rewards</h2>
-<p>Recharge more and unlock VIP bonuses daily.</p>
-</div>
-
-<!-- FLOAT BUTTON -->
-<div class="plus-btn">+</div>
-
-<!-- BOTTOM NAV -->
-<div class="bottom">
-<a href="#">Home</a>
-<a href="#">Games</a>
-<a href="#">Wallet</a>
-<a href="#">Profile</a>
-</div>
+<script>
+function login(){
+window.location.href="home.html";
+}
+</script>
 
 </body>
 </html>
