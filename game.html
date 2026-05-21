@@ -1,60 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Winner India Game</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winner India Dashboard</title>
 
-  <style>
-    body{
-      margin:0;
-      background:black;
-      color:white;
-      font-family:Arial;
-      text-align:center;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
 
-    h1{
-      margin-top:100px;
-      font-size:40px;
-    }
+body{
+  background:#000;
+  color:white;
+}
 
-    .box{
-      margin:30px auto;
-      width:300px;
-      padding:20px;
-      background:#111;
-      border-radius:15px;
-    }
+.header{
+  width:100%;
+  padding:20px;
+  text-align:center;
+  background:#111;
+  font-size:32px;
+  font-weight:bold;
+  color:red;
+  box-shadow:0 0 10px rgba(255,0,0,0.4);
+}
 
-    button{
-      width:100%;
-      padding:15px;
-      border:none;
-      border-radius:10px;
-      background:red;
-      color:white;
-      font-size:18px;
-    }
-  </style>
+.balance-box{
+  width:90%;
+  margin:20px auto;
+  background:#111;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 0 10px rgba(255,255,255,0.1);
+}
+
+.balance-box h2{
+  margin-bottom:10px;
+}
+
+.balance{
+  font-size:35px;
+  color:#00ff66;
+  margin-top:10px;
+}
+
+.btn-grid{
+  width:90%;
+  margin:20px auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.btn{
+  padding:16px;
+  border:none;
+  border-radius:12px;
+  background:red;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.btn:hover{
+  opacity:0.9;
+}
+
+.section{
+  width:90%;
+  margin:20px auto;
+  background:#111;
+  padding:20px;
+  border-radius:15px;
+}
+
+.section h3{
+  margin-bottom:15px;
+  color:red;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border:none;
+  border-radius:10px;
+  outline:none;
+  font-size:16px;
+}
+
+.support-box{
+  line-height:30px;
+  font-size:17px;
+}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#aaa;
+}
+</style>
 </head>
+
 <body>
 
-  <h1>Winner India</h1>
+<div class="header">
+  Winner India
+</div>
 
-  <div class="box">
-    <h2>Game Dashboard</h2>
+<div class="balance-box">
+  <h2>Available Balance</h2>
+  <div class="balance">₹ 10,500</div>
+</div>
 
-    <button onclick="startGame()">
-      Start Game
-    </button>
+<div class="btn-grid">
+  <button class="btn" onclick="showDeposit()">Deposit</button>
+  <button class="btn" onclick="showWithdraw()">Withdraw</button>
+  <button class="btn" onclick="startGame()">Start Game</button>
+  <button class="btn" onclick="checkHistory()">History</button>
+</div>
+
+<div class="section" id="depositSection" style="display:none;">
+  <h3>Deposit Money</h3>
+  <input type="number" placeholder="Enter Amount">
+  <input type="text" placeholder="UPI ID">
+  <button class="btn">Submit Deposit</button>
+</div>
+
+<div class="section" id="withdrawSection" style="display:none;">
+  <h3>Withdraw Money</h3>
+  <input type="number" placeholder="Enter Amount">
+  <input type="text" placeholder="Bank Account Number">
+  <input type="text" placeholder="IFSC Code">
+  <button class="btn">Submit Withdrawal</button>
+</div>
+
+<div class="section">
+  <h3>Game Options</h3>
+  <div class="btn-grid">
+    <button class="btn">Color Prediction</button>
+    <button class="btn">Lucky Number</button>
+    <button class="btn">Spin Wheel</button>
+    <button class="btn">Jackpot</button>
   </div>
+</div>
 
-  <script>
-    function startGame(){
-      alert("Game Started");
-    }
-  </script>
+<div class="section support-box">
+  <h3>Customer Support</h3>
+  <p>WhatsApp: +91 7983001102</p>
+  <p>Email: support@winnerindia.com</p>
+  <p>Support Time: 24x7</p>
+</div>
+
+<div class="section">
+  <h3>Latest Notifications</h3>
+  <p>✅ Deposit system active</p>
+  <p>✅ Fast withdrawal available</p>
+  <p>🔥 New bonus added today</p>
+</div>
+
+<div class="footer">
+  © 2026 Winner India. All Rights Reserved.
+</div>
+
+<script>
+function showDeposit(){
+  document.getElementById('depositSection').style.display='block';
+  document.getElementById('withdrawSection').style.display='none';
+}
+
+function showWithdraw(){
+  document.getElementById('withdrawSection').style.display='block';
+  document.getElementById('depositSection').style.display='none';
+}
+
+function startGame(){
+  alert('Game Started Successfully');
+}
+
+function checkHistory(){
+  alert('Transaction History Opened');
+}
+</script>
 
 </body>
 </html>
