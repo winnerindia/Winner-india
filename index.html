@@ -11,26 +11,28 @@ body{
 margin:0;
 padding:0;
 background:#000;
-font-family:Arial;
+font-family:Arial,sans-serif;
 color:white;
+padding-bottom:90px;
 }
 
 .header{
+background:#111;
 padding:20px;
 text-align:center;
-font-size:32px;
+font-size:35px;
 font-weight:bold;
-color:gold;
-background:#111;
+color:#ffd700;
 }
 
 .balance{
-margin:20px;
+margin:15px;
 padding:20px;
 background:#1c1c1c;
 border-radius:15px;
 text-align:center;
 font-size:28px;
+font-weight:bold;
 }
 
 .banner{
@@ -41,7 +43,7 @@ padding:15px;
 width:100%;
 height:180px;
 object-fit:cover;
-border-radius:15px;
+border-radius:20px;
 }
 
 .games{
@@ -49,7 +51,8 @@ padding:15px;
 }
 
 .games h2{
-margin-bottom:15px;
+font-size:40px;
+margin-bottom:20px;
 }
 
 .game-grid{
@@ -60,86 +63,154 @@ gap:15px;
 
 .game-card{
 background:#1c1c1c;
-border-radius:15px;
+border-radius:20px;
 overflow:hidden;
 text-decoration:none;
 }
 
 .game-card img{
 width:100%;
-height:140px;
+height:170px;
 object-fit:cover;
 }
 
 .game-card p{
 text-align:center;
-padding:10px;
-font-size:20px;
+padding:15px;
+font-size:25px;
 font-weight:bold;
 color:white;
 }
 
 .game-box{
-margin:20px;
+margin:15px;
+background:#1c1c1c;
 padding:20px;
-background:#111;
 border-radius:20px;
+}
+
+.timer-box{
+background:#f0c96a;
+padding:20px;
+border-radius:15px;
 text-align:center;
+color:#000;
 }
 
 .timer{
-font-size:60px;
+font-size:70px;
+font-weight:bold;
 color:#00ff99;
-font-weight:bold;
 }
 
-.result{
-font-size:40px;
-font-weight:bold;
-margin:20px 0;
-}
-
-.btns{
+.color-buttons{
 display:flex;
-justify-content:center;
 gap:10px;
-flex-wrap:wrap;
+margin-top:20px;
 }
 
-.btn{
-padding:15px 25px;
+.color-buttons button{
+flex:1;
+padding:15px;
 border:none;
 border-radius:12px;
-font-size:20px;
+font-size:22px;
+font-weight:bold;
+color:white;
+}
+
+.green-btn{
+background:#00b050;
+}
+
+.red-btn{
+background:#ff2b2b;
+}
+
+.violet-btn{
+background:#b000ff;
+}
+
+.number-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.num{
+height:60px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
 font-weight:bold;
 color:white;
 }
 
 .green{
-background:green;
+background:#00b050;
 }
 
 .red{
-background:red;
+background:#ff2b2b;
 }
 
 .violet{
-background:purple;
+background:#b000ff;
 }
 
-.big{
-background:orange;
+.big-small{
+display:flex;
+margin-top:20px;
 }
 
-.small{
-background:#0099ff;
+.big-btn,
+.small-btn{
+flex:1;
+padding:18px;
+border:none;
+font-size:28px;
+font-weight:bold;
+color:white;
+}
+
+.big-btn{
+background:#d8902f;
+border-radius:15px 0 0 15px;
+}
+
+.small-btn{
+background:#4f8fe8;
+border-radius:0 15px 15px 0;
 }
 
 .history{
-margin-top:20px;
-background:#1c1c1c;
+margin-top:25px;
+background:#111;
 padding:15px;
 border-radius:15px;
+overflow:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+color:white;
+}
+
+th{
+background:#403d56;
+padding:12px;
+font-size:20px;
+}
+
+td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid #333;
+font-size:18px;
 }
 
 .bottom-nav{
@@ -155,13 +226,14 @@ padding:12px 0;
 .bottom-nav a{
 color:white;
 text-decoration:none;
-font-size:18px;
+font-size:20px;
 text-align:center;
 }
 
 </style>
 
 </head>
+
 <body>
 
 <div class="header">
@@ -169,7 +241,7 @@ Winner India
 </div>
 
 <div class="balance">
-Balance: ₹950
+Balance ₹950
 </div>
 
 <div class="banner">
@@ -182,7 +254,7 @@ Balance: ₹950
 
 <div class="game-grid">
 
-<a href="#" class="game-card">
+<a href="#game-section" class="game-card">
 <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500">
 <p>Lottery</p>
 </a>
@@ -206,40 +278,124 @@ Balance: ₹950
 
 </div>
 
-<div class="game-box">
+<div class="game-box" id="game-section">
 
-<h1>Winner India</h1>
+<h1 style="color:#ffd54f;text-align:center;">
+WinGo 30sec
+</h1>
 
-<p>Next Result In</p>
+<div class="timer-box">
+
+<p>Time Remaining</p>
 
 <div class="timer" id="timer">
 30
 </div>
 
-<div class="result" id="result">
-BIG
+<p id="period">
+20260522100050266
+</p>
+
 </div>
 
-<div class="btns">
-<button class="btn green">GREEN</button>
-<button class="btn red">RED</button>
-<button class="btn violet">VIOLET</button>
-<button class="btn big">BIG</button>
-<button class="btn small">SMALL</button>
+<div class="color-buttons">
+
+<button class="green-btn">
+Green
+</button>
+
+<button class="violet-btn">
+Violet
+</button>
+
+<button class="red-btn">
+Red
+</button>
+
+</div>
+
+<div class="number-grid">
+
+<div class="num violet">0</div>
+<div class="num green">1</div>
+<div class="num red">2</div>
+<div class="num green">3</div>
+<div class="num red">4</div>
+
+<div class="num violet">5</div>
+<div class="num red">6</div>
+<div class="num green">7</div>
+<div class="num red">8</div>
+<div class="num green">9</div>
+
+</div>
+
+<div class="big-small">
+
+<button class="big-btn">
+Big
+</button>
+
+<button class="small-btn">
+Small
+</button>
+
 </div>
 
 <div class="history">
-<h2>History</h2>
-<p id="history">BIG</p>
+
+<h2>Game History</h2>
+
+<table>
+
+<tr>
+<th>Period</th>
+<th>Number</th>
+<th>Result</th>
+</tr>
+
+<tr>
+<td>50265</td>
+<td style="color:#00ff99;">7</td>
+<td>BIG</td>
+</tr>
+
+<tr>
+<td>50264</td>
+<td style="color:red;">2</td>
+<td>SMALL</td>
+</tr>
+
+<tr>
+<td>50263</td>
+<td style="color:#00ff99;">9</td>
+<td>BIG</td>
+</tr>
+
+</table>
+
 </div>
 
 </div>
 
 <div class="bottom-nav">
-<a href="#">🏠<br>Home</a>
-<a href="#">🎁<br>Promotion</a>
-<a href="#">💰<br>Wallet</a>
-<a href="#">📞<br>Support</a>
+
+<a href="#">
+🏠<br>Home
+</a>
+
+<a href="#">
+🎁<br>Promotion
+</a>
+
+<a href="#">
+💰<br>Wallet
+</a>
+
+<a href="#">
+📞<br>Support
+</a>
+
 </div>
 
 <script>
@@ -255,14 +411,6 @@ document.getElementById("timer").innerHTML = time;
 if(time <= 0){
 
 time = 30;
-
-let results = ["BIG","SMALL"];
-
-let random = results[Math.floor(Math.random()*results.length)];
-
-document.getElementById("result").innerHTML = random;
-
-document.getElementById("history").innerHTML = random;
 
 }
 
