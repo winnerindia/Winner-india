@@ -1,245 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Winner India</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
-<!-- LOGIN PAGE -->
-
-<div id="loginPage">
-
-<div class="login-header">
-
-<div class="logo-circle">
-WI
-</div>
-
+<div class="topbar">
+<div class="logoBox">
+<div class="logo">WI</div>
 <div>
-<h1 class="logo-text">
-Winner India
-</h1>
-
-<p class="sub-text">
-India's Gaming Platform
-</p>
+<h1>Winner India</h1>
+<p>India's Gaming Platform</p>
+</div>
+</div>
 </div>
 
-</div>
-
-
-<div class="login-card">
-
+<div class="card">
 <h2>Login / Signup</h2>
 
 <input type="email" id="email" placeholder="Enter Email">
 
 <input type="password" id="password" placeholder="Enter Password">
 
-<button class="main-btn" onclick="signup()">
-Signup
-</button>
+<button class="signupBtn" onclick="signup()">Signup</button>
 
-<button class="main-btn login-btn" onclick="login()">
-Login
-</button>
-
+<button class="loginBtn" onclick="login()">Login</button>
 </div>
 
-</div>
+<script>
 
+function signup(){
 
-<!-- HOME PAGE -->
+let email=document.getElementById('email').value;
+let password=document.getElementById('password').value;
 
-<div id="homePage" style="display:none;">
+if(email=='' || password==''){
+alert('Please Fill All Details');
+return;
+}
 
-<!-- TOP BAR -->
+localStorage.setItem('userEmail',email);
+localStorage.setItem('userPassword',password);
 
-<div class="topbar">
+alert('Signup Successful');
 
-<div class="top-left">
+window.location.href='home.html';
 
-<div class="small-logo">
-WI
-</div>
+}
 
-<div>
+function login(){
 
-<h2>
-Winner India
-</h2>
+let email=document.getElementById('email').value;
+let password=document.getElementById('password').value;
 
-<p id="userEmail">
-user@gmail.com
-</p>
+let savedEmail=localStorage.getItem('userEmail');
+let savedPassword=localStorage.getItem('userPassword');
 
-</div>
+if(email==savedEmail && password==savedPassword){
 
-</div>
+alert('Login Successful');
+window.location.href='home.html';
 
-<button class="logout-btn" onclick="logout()">
-Logout
-</button>
+}else{
 
-</div>
+alert('Wrong Email or Password');
 
+}
 
-<!-- WALLET -->
+}
 
-<div class="wallet-card">
-
-<p>Total Balance</p>
-
-<h1>
-₹<span id="walletBalance">1000</span>
-</h1>
-
-<div class="wallet-buttons">
-
-<button class="deposit-btn">
-Deposit
-</button>
-
-<button class="withdraw-btn">
-Withdraw
-</button>
-
-</div>
-
-</div>
-
-
-<!-- WINGO -->
-
-<div class="wingo-card">
-
-<div class="wingo-header">
-
-<button class="active-time">
-WinGo 30Sec
-</button>
-
-<button>
-WinGo 1Min
-</button>
-
-</div>
-
-
-<div class="timer-box">
-
-<h1 id="timer">
-30
-</h1>
-
-<p>
-Period: 
-<span id="period">
-20260522100050266
-</span>
-</p>
-
-</div>
-
-
-<!-- COLOR -->
-
-<div class="color-row">
-
-<button class="green-btn">
-Green
-</button>
-
-<button class="violet-btn">
-Violet
-</button>
-
-<button class="red-btn">
-Red
-</button>
-
-</div>
-
-
-<!-- NUMBER -->
-
-<div class="number-grid">
-
-<button>0</button>
-<button>1</button>
-<button>2</button>
-<button>3</button>
-<button>4</button>
-
-<button>5</button>
-<button>6</button>
-<button>7</button>
-<button>8</button>
-<button>9</button>
-
-</div>
-
-
-<!-- BIG SMALL -->
-
-<div class="big-small">
-
-<button class="big-btn">
-Big
-</button>
-
-<button class="small-btn">
-Small
-</button>
-
-</div>
-
-</div>
-
-
-<!-- HISTORY -->
-
-<div class="history-card">
-
-<h2>Game History</h2>
-
-<table>
-
-<tr>
-<th>Period</th>
-<th>Number</th>
-<th>Result</th>
-</tr>
-
-<tbody id="historyData">
-
-<tr>
-<td>50265</td>
-<td class="green-text">7</td>
-<td>BIG</td>
-</tr>
-
-<tr>
-<td>50264</td>
-<td class="red-text">2</td>
-<td>SMALL</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<script src="script.js"></script>
+</script>
 
 </body>
 </html>
