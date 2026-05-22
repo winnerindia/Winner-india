@@ -7,52 +7,127 @@
 
 <style>
 
-body{
+*{
 margin:0;
-background:black;
+padding:0;
+box-sizing:border-box;
 font-family:Arial;
+}
+
+body{
+background:#000;
 color:white;
+padding-bottom:100px;
 }
 
-.header{
+.topbar{
 background:#111;
-padding:20px;
-font-size:35px;
-font-weight:bold;
-color:gold;
-text-align:center;
-}
-
-.card{
-background:#111;
-margin:20px;
-padding:20px;
-border-radius:20px;
-}
-
-input,button{
-width:100%;
 padding:15px;
-margin-top:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#ffd700;
+}
+
+.auth-btn{
+padding:10px 20px;
 border:none;
 border-radius:10px;
-font-size:18px;
+font-weight:bold;
+margin-left:5px;
 }
 
-button{
-background:orange;
+.login-btn{
+background:#2196f3;
 color:white;
+}
+
+.logout-btn{
+background:red;
+color:white;
+}
+
+.container{
+padding:15px;
+}
+
+.wallet-box{
+background:#111;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.wallet{
+font-size:45px;
 font-weight:bold;
+color:#00ff99;
+margin:20px 0;
+}
+
+.btn{
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+margin-top:10px;
+width:100%;
+color:white;
+}
+
+.deposit-btn{
+background:#00c853;
+}
+
+.withdraw-btn{
+background:#ff1744;
+}
+
+.game-box{
+background:#111;
+padding:20px;
+border-radius:20px;
+text-align:center;
+margin-top:20px;
 }
 
 .timer{
 font-size:80px;
-text-align:center;
-color:#00ff99;
 font-weight:bold;
+color:#00ff99;
+margin:20px 0;
 }
 
-.grid{
+.color-buttons button{
+width:30%;
+padding:15px;
+border:none;
+border-radius:15px;
+margin:5px;
+font-size:20px;
+font-weight:bold;
+color:white;
+}
+
+.green-btn{
+background:green;
+}
+
+.red-btn{
+background:red;
+}
+
+.violet-btn{
+background:purple;
+}
+
+.number-grid{
 display:grid;
 grid-template-columns:repeat(5,1fr);
 gap:10px;
@@ -61,42 +136,59 @@ margin-top:20px;
 
 .num{
 height:60px;
+width:60px;
 border-radius:50%;
 display:flex;
-align-items:center;
 justify-content:center;
-font-size:25px;
+align-items:center;
+font-size:30px;
 font-weight:bold;
+margin:auto;
+color:white;
 }
 
 .green{
-background:green;
+background:#00c853;
 }
 
 .red{
-background:red;
+background:#ff1744;
 }
 
 .violet{
 background:purple;
 }
 
-.big{
+.big-small{
+margin-top:20px;
+display:flex;
+gap:10px;
+}
+
+.big-btn{
 background:orange;
 }
 
-.small{
+.small-btn{
 background:#2196f3;
 }
 
-.bottom{
-position:fixed;
-bottom:0;
-width:100%;
-background:#111;
-display:flex;
-justify-content:space-around;
+.big-small button{
+flex:1;
 padding:15px;
+border:none;
+border-radius:12px;
+font-size:22px;
+font-weight:bold;
+color:white;
+}
+
+.history{
+background:#111;
+padding:20px;
+border-radius:20px;
+margin-top:20px;
+overflow:auto;
 }
 
 table{
@@ -105,58 +197,406 @@ border-collapse:collapse;
 }
 
 th,td{
-padding:10px;
+padding:15px;
 border-bottom:1px solid #333;
 text-align:center;
 }
 
-</style>
-</head>
+.notice{
+background:#111;
+padding:20px;
+border-radius:20px;
+margin-top:20px;
+line-height:45px;
+font-size:22px;
+}
 
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#111;
+display:flex;
+justify-content:space-around;
+padding:15px 0;
+}
+
+.bottom-nav div{
+text-align:center;
+font-size:18px;
+}
+
+input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+font-size:18px;
+}
+
+.support-btn{
+background:#ffd700;
+color:black;
+}
+
+.hidden{
+display:none;
+}
+
+</style>
+
+</head>
 <body>
 
-<div id="loginPage" class="card">
+<div id="loginPage">
 
-<h1>Login / Signup</h1>
+<div class="topbar">
+<div class="logo">Winner India</div>
+</div>
+
+<div class="container">
+
+<div class="wallet-box">
+<h2>Email Login</h2>
 
 <input type="email" id="email" placeholder="Enter Email">
 
 <input type="password" id="password" placeholder="Enter Password">
 
-<button onclick="signup()">Signup</button>
+<button class="btn login-btn" onclick="login()">Login</button>
 
-<button onclick="login()">Login</button>
-
-</div>
-
-
-<div id="mainPage" style="display:none;">
-
-<div class="header">
-
-Winner India
-
-<button onclick="logout()" style="width:auto;background:red;padding:10px;">Logout</button>
+<button class="btn deposit-btn" onclick="signup()">Signup</button>
 
 </div>
 
-
-<div class="card">
-
-<h2>My Profile</h2>
-
-<p>ID Number: <span id="profileId"></span></p>
-
-<p>Email: <span id="profileEmail"></span></p>
+</div>
 
 </div>
 
+<div id="mainPage" class="hidden">
 
-<div class="card">
+<div class="topbar">
 
-<h2>Wallet Balance</h2>
+<div class="logo">Winner India</div>
 
-<h1 id="wallet">1000</h1>
+<div>
+<button class="auth-btn logout-btn" onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="wallet-box">
+
+<h2>ID: <span id="userId">1000</span></h2>
+
+<h3>Email: <span id="userEmail"></span></h3>
+
+<div class="wallet">₹<span id="balance">1000</span></div>
+
+<button class="btn deposit-btn" onclick="saveDeposit()">Deposit</button>
+
+<button class="btn withdraw-btn" onclick="saveWithdraw()">Withdraw</button>
+
+<button class="btn support-btn" onclick="openSupport()">Telegram Support</button>
+
+</div>
+
+<div class="game-box">
+
+<h1 style="color:#ffd700;">WinGo 30sec</h1>
+
+<h3>Time Remaining</h3>
+
+<div class="timer" id="timer">30</div>
+
+<h2 id="period">20260522100050266</h2>
+
+<div class="color-buttons">
+
+<button class="green-btn" onclick="betColor('GREEN')">Green</button>
+
+<button class="violet-btn" onclick="betColor('VIOLET')">Violet</button>
+
+<button class="red-btn" onclick="betColor('RED')">Red</button>
+
+</div>
+
+<div class="number-grid">
+
+<div class="num violet" onclick="betNumber(0)">0</div>
+<div class="num green" onclick="betNumber(1)">1</div>
+<div class="num red" onclick="betNumber(2)">2</div>
+<div class="num green" onclick="betNumber(3)">3</div>
+<div class="num red" onclick="betNumber(4)">4</div>
+
+<div class="num violet" onclick="betNumber(5)">5</div>
+<div class="num red" onclick="betNumber(6)">6</div>
+<div class="num green" onclick="betNumber(7)">7</div>
+<div class="num red" onclick="betNumber(8)">8</div>
+<div class="num green" onclick="betNumber(9)">9</div>
+
+</div>
+
+<div class="big-small">
+
+<button class="big-btn" onclick="betBigSmall('BIG')">BIG</button>
+
+<button class="small-btn" onclick="betBigSmall('SMALL')">SMALL</button>
+
+</div>
+
+</div>
+
+<div class="history">
+
+<h1>Game History</h1>
+
+<table>
+
+<tr>
+<th>Period</th>
+<th>Number</th>
+<th>Result</th>
+</tr>
+
+<tbody id="historyData"></tbody>
+
+</table>
+
+</div>
+
+<div class="history">
+
+<h1>Deposit History</h1>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Date</th>
+</tr>
+
+<tbody id="depositData"></tbody>
+
+</table>
+
+</div>
+
+<div class="history">
+
+<h1>Withdrawal History</h1>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Date</th>
+</tr>
+
+<tbody id="withdrawData"></tbody>
+
+</table>
+
+</div>
+
+<div class="notice">
+
+<h1 style="color:#ffd700;">महत्वपूर्ण नियम</h1>
+
+1. Minimum Deposit ₹100 है।<br>
+2. Minimum Withdrawal ₹110 है।<br>
+3. Withdrawal दिन में केवल 3 बार होगा।<br>
+4. Gaming लाइन में सरकार 30% Tax लेती है।<br>
+5. सही UTR Number डालें।<br>
+6. Deposit Approval के बाद ही Balance Add होगा।<br>
+
+</div>
+
+</div>
+
+<div class="bottom-nav">
+
+<div>🏠<br>Home</div>
+<div>🎁<br>Promotion</div>
+<div>💰<br>Wallet</div>
+<div>👤<br>Profile</div>
+
+</div>
+
+</div>
+
+<script>
+
+let time = 30;
+let period = 20260522100050266;
+
+setInterval(()=>{
+
+document.getElementById("timer").innerHTML = time;
+
+document.getElementById("period").innerHTML = period;
+
+time--;
+
+if(time <= 0){
+
+time = 30;
+
+period++;
+
+let num = Math.floor(Math.random()*10);
+
+let result = num >= 5 ? "BIG" : "SMALL";
+
+let color = num % 2 == 0 ? "red" : "#00ff99";
+
+document.getElementById("historyData").innerHTML += `
+
+<tr>
+<td>${period}</td>
+<td style="color:${color}">${num}</td>
+<td>${result}</td>
+</tr>
+
+`;
+
+}
+
+},1000);
+
+function signup(){
+
+let email = document.getElementById("email").value;
+
+let pass = document.getElementById("password").value;
+
+if(email == "" || pass == ""){
+alert("Fill All Fields");
+return;
+}
+
+localStorage.setItem("email",email);
+
+localStorage.setItem("password",pass);
+
+let id = localStorage.getItem("userId");
+
+if(!id){
+
+id = 1000 + Math.floor(Math.random()*9000);
+
+localStorage.setItem("userId",id);
+
+}
+
+alert("Signup Success");
+
+login();
+
+}
+
+function login(){
+
+let email = document.getElementById("email").value;
+
+let pass = document.getElementById("password").value;
+
+if(email == localStorage.getItem("email") && pass == localStorage.getItem("password")){
+
+document.getElementById("loginPage").classList.add("hidden");
+
+document.getElementById("mainPage").classList.remove("hidden");
+
+document.getElementById("userEmail").innerHTML = email;
+
+document.getElementById("userId").innerHTML = localStorage.getItem("userId");
+
+loadHistory();
+
+}else{
+
+alert("Wrong Login");
+
+}
+
+}
+
+function logout(){
+
+document.getElementById("mainPage").classList.add("hidden");
+
+document.getElementById("loginPage").classList.remove("hidden");
+
+}
+
+function betColor(color){
+
+let amount = prompt("Enter Bet Amount");
+
+if(amount == null) return;
+
+alert("Bet Placed On "+color);
+
+checkWin(amount);
+
+}
+
+function betNumber(num){
+
+let amount = prompt("Enter Bet Amount");
+
+if(amount == null) return;
+
+alert("Bet Placed On Number "+num);
+
+checkWin(amount);
+
+}
+
+function betBigSmall(type){
+
+let amount = prompt("Enter Bet Amount");
+
+if(amount == null) return;
+
+alert("Bet Placed On "+type);
+
+checkWin(amount);
+
+}
+
+function checkWin(amount){
+
+let random = Math.floor(Math.random()*2);
+
+let balance = parseInt(document.getElementById("balance").innerHTML);
+
+if(random == 1){
+
+balance += parseInt(amount);
+
+alert("Congratulations You Win ₹"+amount);
+
+}else{
+
+balance -= parseInt(amount);
+
+alert("You Lost ₹"+amount);
+
+}
+
+document.getElementById("balance").innerHTML = balance;
+
+}
+
 function saveDeposit(){
 
 let amount = prompt("Enter Deposit Amount");
@@ -181,15 +621,11 @@ deposits.push({
 
 id:Math.floor(Math.random()*99999),
 
-email:localStorage.getItem("email"),
-
-utr:utr,
-
 amount:amount,
 
-date:new Date().toLocaleString(),
+status:"Processing",
 
-status:"Processing"
+date:new Date().toLocaleString()
 
 });
 
@@ -200,9 +636,10 @@ alert("Deposit Submitted");
 loadHistory();
 
 }
+
 function saveWithdraw(){
 
-let amount = prompt("Withdraw Amount");
+let amount = prompt("Enter Withdraw Amount");
 
 if(amount < 110){
 
@@ -218,13 +655,11 @@ withdraws.push({
 
 id:Math.floor(Math.random()*99999),
 
-email:localStorage.getItem("email"),
-
 amount:amount,
 
-date:new Date().toLocaleString(),
+status:"Pending",
 
-status:"Pending"
+date:new Date().toLocaleString()
 
 });
 
@@ -236,314 +671,11 @@ loadHistory();
 
 }
 
-</div>
-
-
-<div class="card">
-
-<h1 style="color:gold;text-align:center;">WinGo 30sec</h1>
-
-<div class="timer" id="timer">30</div>
-
-<h3 id="period">20260522100050266</h3>
-
-<div style="display:flex;gap:10px;margin-top:20px;">
-
-<button class="green" onclick="bet('GREEN')">GREEN</button>
-
-<button class="violet" onclick="bet('VIOLET')">VIOLET</button>
-
-<button class="red" onclick="bet('RED')">RED</button>
-
-</div>
-
-<div class="grid">
-
-<div class="num violet" onclick="bet(0)">0</div>
-<div class="num green" onclick="bet(1)">1</div>
-<div class="num red" onclick="bet(2)">2</div>
-<div class="num green" onclick="bet(3)">3</div>
-<div class="num red" onclick="bet(4)">4</div>
-<div class="num violet" onclick="bet(5)">5</div>
-<div class="num red" onclick="bet(6)">6</div>
-<div class="num green" onclick="bet(7)">7</div>
-<div class="num red" onclick="bet(8)">8</div>
-<div class="num green" onclick="bet(9)">9</div>
-
-</div>
-
-<div style="display:flex;gap:10px;margin-top:20px;">
-
-<button class="big" onclick="bet('BIG')">BIG</button>
-
-<button class="small" onclick="bet('SMALL')">SMALL</button>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>Deposit History</h2>
-
-<table>
-
-<tr>
-<th>Amount</th>
-<th>Date</th>
-<th>Status</th>
-</tr>
-
-<tbody id="depositTable"></tbody>
-
-</table>
-
-</div>
-
-
-<div class="card">
-
-<h2>Withdraw History</h2>
-
-<table>
-
-<tr>
-<th>Amount</th>
-<th>Date</th>
-<th>Status</th>
-</tr>
-
-<tbody id="withdrawTable"></tbody>
-
-</table>
-
-</div>
-
-
-<div class="card">
-
-<h2>Rules</h2>
-
-<p>1. Withdrawal दिन में केवल 3 बार।</p>
-<p>2. Deposit Unlimited है।</p>
-<p>3. 30% Government Tax लागू।</p>
-
-</div>
-
-<div class="bottom">
-
-<div>🏠 Home</div>
-
-<div>🎁 Promotion</div>
-
-<div>💰 Wallet</div>
-
-<div>👤 Profile</div>
-
-</div>
-
-</div>
-
-
-<script>
-
-let wallet = 1000;
-
-let timer = 30;
-
-let currentBet = null;
-
-
-// SIGNUP
-
-function signup(){
-
-let email = document.getElementById("email").value;
-
-let password = document.getElementById("password").value;
-
-localStorage.setItem("email",email);
-
-localStorage.setItem("password",password);
-
-alert("Signup Successful");
-
-}
-
-
-// LOGIN
-
-function login(){
-
-let email = document.getElementById("email").value;
-
-let password = document.getElementById("password").value;
-
-if(email===localStorage.getItem("email") && password===localStorage.getItem("password")){
-
-localStorage.setItem("login","yes");
-
-showMain();
-
-}else{
-
-alert("Wrong Email Password");
-
-}
-
-}
-
-
-// LOGOUT
-
-function logout(){
-
-localStorage.removeItem("login");
-
-location.reload();
-
-}
-
-
-// SHOW PAGE
-
-function showMain(){
-
-document.getElementById("loginPage").style.display="none";
-
-document.getElementById("mainPage").style.display="block";
-
-document.getElementById("profileEmail").innerHTML=localStorage.getItem("email");
-
-
-// USER ID
-
-let userId = localStorage.getItem("userId");
-
-if(!userId){
-
-let lastId = localStorage.getItem("lastUserId") || 1005;
-
-lastId++;
-
-localStorage.setItem("lastUserId",lastId);
-
-localStorage.setItem("userId",lastId);
-
-userId = lastId;
-
-}
-
-document.getElementById("profileId").innerHTML=userId;
-
-loadHistory();
-
-}
-
-
-// AUTO LOGIN
-
-if(localStorage.getItem("login")==="yes"){
-
-showMain();
-
-}
-
-
-// TIMER
-
-setInterval(()=>{
-
-timer--;
-
-document.getElementById("timer").innerHTML=timer;
-
-if(timer<=0){
-
-timer=30;
-
-}
-
-},1000);
-
-
-// BET
-
-function bet(type){
-
-currentBet=type;
-
-alert("Bet Placed: "+type);
-
-}
-
-
-// DEPOSIT
-
-function saveDeposit(){
-
-let amount = prompt("Enter Deposit Amount");
-
-let utr = prompt("Enter UTR Number");
-
-let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
-
-deposits.push({
-
-amount:amount,
-
-utr:utr,
-
-date:new Date().toLocaleString(),
-
-status:"Processing"
-
-});
-
-localStorage.setItem("deposits",JSON.stringify(deposits));
-
-loadHistory();
-
-alert("Deposit Submitted");
-
-}
-
-
-// WITHDRAW
-
-function saveWithdraw(){
-
-let amount = prompt("Withdraw Amount");
-
-let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
-
-withdraws.push({
-
-amount:amount,
-
-date:new Date().toLocaleString(),
-
-status:"Pending"
-
-});
-
-localStorage.setItem("withdraws",JSON.stringify(withdraws));
-
-loadHistory();
-
-alert("Withdraw Submitted");
-
-}
-
-
-// LOAD HISTORY
-
 function loadHistory(){
 
 let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
 
-let depositHTML="";
+let depositHTML = "";
 
 deposits.forEach(d=>{
 
@@ -551,11 +683,13 @@ depositHTML += `
 
 <tr>
 
+<td>${d.id}</td>
+
 <td>₹${d.amount}</td>
 
-<td>${d.date}</td>
-
 <td>${d.status}</td>
+
+<td>${d.date}</td>
 
 </tr>
 
@@ -563,13 +697,11 @@ depositHTML += `
 
 });
 
-document.getElementById("depositTable").innerHTML=depositHTML;
-
-
+document.getElementById("depositData").innerHTML = depositHTML;
 
 let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
 
-let withdrawHTML="";
+let withdrawHTML = "";
 
 withdraws.forEach(w=>{
 
@@ -577,11 +709,13 @@ withdrawHTML += `
 
 <tr>
 
+<td>${w.id}</td>
+
 <td>₹${w.amount}</td>
 
-<td>${w.date}</td>
-
 <td>${w.status}</td>
+
+<td>${w.date}</td>
 
 </tr>
 
@@ -589,7 +723,15 @@ withdrawHTML += `
 
 });
 
-document.getElementById("withdrawTable").innerHTML=withdrawHTML;
+document.getElementById("withdrawData").innerHTML = withdrawHTML;
+
+}
+
+function openSupport(){
+
+let link = localStorage.getItem("telegramSupport") || "https://t.me/";
+
+window.open(link);
 
 }
 
