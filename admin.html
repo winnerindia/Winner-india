@@ -1,59 +1,184 @@
-<!-- admin.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Admin Panel</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+margin:0;
+padding:0;
+background:#000;
+font-family:Arial;
+color:white;
+}
+
+.header{
+background:#111;
+padding:20px;
+font-size:45px;
+font-weight:bold;
+color:gold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:#111;
+padding:25px;
+border-radius:25px;
+margin-bottom:20px;
+}
+
+h2{
+font-size:32px;
+margin-bottom:20px;
+}
+
+.history{
+background:#1d1d1d;
+padding:18px;
+border-radius:15px;
+margin-top:15px;
+font-size:22px;
+word-break:break-word;
+}
+
+button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:15px;
+font-size:25px;
+font-weight:bold;
+margin-top:20px;
+background:#ff2d55;
+color:white;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div class="topbar">
-<div class="logo">Admin Panel</div>
+<div class="header">
+Admin Panel
 </div>
 
 <div class="container">
 
-<div class="box">
-<h2>Change UPI ID</h2>
+<div class="card">
 
-<input type="text" id="upiInput" placeholder="Enter UPI ID">
+<h2>Deposit History</h2>
 
-<button onclick="saveUpi()">Save UPI</button>
-</div>
-
-<div class="box">
-<h2>Set Result</h2>
-
-<select id="gameResult">
-<option>0</option>
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
-<option>6</option>
-<option>7</option>
-<option>8</option>
-<option>9</option>
-</select>
-
-<button onclick="saveResult()">Save Result</button>
-</div>
-
-<div class="box">
-<h2>Deposit Requests</h2>
-<div id="adminDeposit"></div>
-</div>
-
-<div class="box">
-<h2>Withdraw Requests</h2>
-<div id="adminWithdraw"></div>
-</div>
+<div id="depositBox"></div>
 
 </div>
 
-<script src="app.js"></script>
+<div class="card">
+
+<h2>Withdraw History</h2>
+
+<div id="withdrawBox"></div>
+
+</div>
+
+<div class="card">
+
+<h2>User Bank Details</h2>
+
+<div id="bankBox"></div>
+
+</div>
+
+<button onclick="clearAll()">
+Clear All Data
+</button>
+
+</div>
+
+<script>
+
+function loadData(){
+
+let deposits =
+localStorage.getItem("depositHistory");
+
+if(deposits){
+
+document.getElementById("depositBox")
+.innerHTML =
+'<div class=\"history\">'+
+deposits +
+'</div>';
+
+}
+
+let withdraws =
+localStorage.getItem("withdrawHistory");
+
+if(withdraws){
+
+document.getElementById("withdrawBox")
+.innerHTML =
+'<div class=\"history\">'+
+withdraws +
+'</div>';
+
+}
+
+let bank =
+localStorage.getItem("bankName");
+
+let holder =
+localStorage.getItem("holderName");
+
+let account =
+localStorage.getItem("accountNumber");
+
+let ifsc =
+localStorage.getItem("ifscCode");
+
+if(bank){
+
+document.getElementById("bankBox")
+.innerHTML =
+
+'<div class=\"history\">'+
+
+'Bank: ' + bank + '<br><br>' +
+
+'Holder: ' + holder + '<br><br>' +
+
+'Account: ' + account + '<br><br>' +
+
+'IFSC: ' + ifsc +
+
+'</div>';
+
+}
+
+}
+
+function clearAll(){
+
+localStorage.clear();
+
+alert("All Data Cleared");
+
+location.reload();
+
+}
+
+loadData();
+
+</script>
+
 </body>
 </html>
