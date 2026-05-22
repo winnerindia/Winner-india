@@ -1,169 +1,245 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Winner India</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-<div class="topbar">
-<h1>Winner India</h1>
+<!-- LOGIN PAGE -->
+
+<div id="loginPage">
+
+<div class="login-header">
+
+<div class="logo-circle">
+WI
 </div>
 
-<div class="container">
+<div>
+<h1 class="logo-text">
+Winner India
+</h1>
 
-<div class="card">
+<p class="sub-text">
+India's Gaming Platform
+</p>
+</div>
+
+</div>
+
+
+<div class="login-card">
+
 <h2>Login / Signup</h2>
+
 <input type="email" id="email" placeholder="Enter Email">
+
 <input type="password" id="password" placeholder="Enter Password">
-<button onclick="signup()">Signup</button>
-<button onclick="login()">Login</button>
-</div>
 
-<div class="card">
-<h2>Wallet</h2>
-<h1>₹<span id="balance">1000</span></h1>
-<button onclick="deposit()">Deposit</button>
-<button onclick="withdraw()">Withdraw</button>
-<button class="logout" onclick="logout()">Logout</button>
-</div>
+<button class="main-btn" onclick="signup()">
+Signup
+</button>
 
-<div class="card">
-<h2>WinGo Game</h2>
+<button class="main-btn login-btn" onclick="login()">
+Login
+</button>
 
-<div class="tabs">
-<button onclick="setTime(30)">30 Sec</button>
-<button onclick="setTime(60)">1 Min</button>
-</div>
-
-<h1 id="timer">30</h1>
-<h2>Result: <span id="result">0</span></h2>
-
-<div class="numbers">
-<button onclick="betNumber(0)">0</button>
-<button onclick="betNumber(1)">1</button>
-<button onclick="betNumber(2)">2</button>
-<button onclick="betNumber(3)">3</button>
-<button onclick="betNumber(4)">4</button>
-<button onclick="betNumber(5)">5</button>
-<button onclick="betNumber(6)">6</button>
-<button onclick="betNumber(7)">7</button>
-<button onclick="betNumber(8)">8</button>
-<button onclick="betNumber(9)">9</button>
-</div>
-
-<div class="colors">
-<button class="green" onclick="betColor('Green')">Green</button>
-<button class="violet" onclick="betColor('Violet')">Violet</button>
-<button class="red" onclick="betColor('Red')">Red</button>
-</div>
-
-<div class="bigsmall">
-<button class="big" onclick="betType('Big')">Big</button>
-<button class="small" onclick="betType('Small')">Small</button>
 </div>
 
 </div>
 
-<div class="card">
-<h2>Deposit History</h2>
-<div id="depositHistory"></div>
+
+<!-- HOME PAGE -->
+
+<div id="homePage" style="display:none;">
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+
+<div class="top-left">
+
+<div class="small-logo">
+WI
 </div>
 
-<div class="card">
-<h2>Withdraw History</h2>
-<div id="withdrawHistory"></div>
+<div>
+
+<h2>
+Winner India
+</h2>
+
+<p id="userEmail">
+user@gmail.com
+</p>
+
+</div>
+
+</div>
+
+<button class="logout-btn" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+
+<!-- WALLET -->
+
+<div class="wallet-card">
+
+<p>Total Balance</p>
+
+<h1>
+₹<span id="walletBalance">1000</span>
+</h1>
+
+<div class="wallet-buttons">
+
+<button class="deposit-btn">
+Deposit
+</button>
+
+<button class="withdraw-btn">
+Withdraw
+</button>
+
 </div>
 
 </div>
 
-<script>
 
-let gameTime = 30;
-let timer = gameTime;
+<!-- WINGO -->
 
-function setTime(t){
-  gameTime = t;
-  timer = t;
-}
+<div class="wingo-card">
 
-setInterval(()=>{
-  timer--;
-  if(timer <= 0){
-    timer = gameTime;
-    let random = Math.floor(Math.random()*10);
-    document.getElementById('result').innerText = random;
-  }
-  document.getElementById('timer').innerText = timer;
-},1000);
+<div class="wingo-header">
 
-function signup(){
-  let email = document.getElementById('email').value;
-  let pass = document.getElementById('password').value;
+<button class="active-time">
+WinGo 30Sec
+</button>
 
-  localStorage.setItem('email',email);
-  localStorage.setItem('password',pass);
+<button>
+WinGo 1Min
+</button>
 
-  alert('Signup Success');
-}
+</div>
 
-function login(){
-  let email = document.getElementById('email').value;
-  let pass = document.getElementById('password').value;
 
-  if(email == localStorage.getItem('email') && pass == localStorage.getItem('password')){
-    alert('Login Success');
-  }else{
-    alert('Wrong Details');
-  }
-}
+<div class="timer-box">
 
-function logout(){
-  location.reload();
-}
+<h1 id="timer">
+30
+</h1>
 
-function deposit(){
-  let amount = prompt('Enter Deposit Amount');
+<p>
+Period: 
+<span id="period">
+20260522100050266
+</span>
+</p>
 
-  let data = localStorage.getItem('depositHistory') || '';
-  data += '<p>₹'+amount+' | Processing | '+new Date().toLocaleString()+'</p>';
+</div>
 
-  localStorage.setItem('depositHistory',data);
-  loadHistory();
-}
 
-function withdraw(){
-  let amount = prompt('Enter Withdraw Amount');
+<!-- COLOR -->
 
-  let data = localStorage.getItem('withdrawHistory') || '';
-  data += '<p>₹'+amount+' | Pending | '+new Date().toLocaleString()+'</p>';
+<div class="color-row">
 
-  localStorage.setItem('withdrawHistory',data);
-  loadHistory();
-}
+<button class="green-btn">
+Green
+</button>
 
-function loadHistory(){
-  document.getElementById('depositHistory').innerHTML = localStorage.getItem('depositHistory') || '';
-  document.getElementById('withdrawHistory').innerHTML = localStorage.getItem('withdrawHistory') || '';
-}
+<button class="violet-btn">
+Violet
+</button>
 
-loadHistory();
+<button class="red-btn">
+Red
+</button>
 
-function betNumber(n){
-  alert('Bet on Number '+n);
-}
+</div>
 
-function betColor(c){
-  alert('Bet on '+c);
-}
 
-function betType(t){
-  alert('Bet on '+t);
-}
+<!-- NUMBER -->
 
-</script>
+<div class="number-grid">
+
+<button>0</button>
+<button>1</button>
+<button>2</button>
+<button>3</button>
+<button>4</button>
+
+<button>5</button>
+<button>6</button>
+<button>7</button>
+<button>8</button>
+<button>9</button>
+
+</div>
+
+
+<!-- BIG SMALL -->
+
+<div class="big-small">
+
+<button class="big-btn">
+Big
+</button>
+
+<button class="small-btn">
+Small
+</button>
+
+</div>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<div class="history-card">
+
+<h2>Game History</h2>
+
+<table>
+
+<tr>
+<th>Period</th>
+<th>Number</th>
+<th>Result</th>
+</tr>
+
+<tbody id="historyData">
+
+<tr>
+<td>50265</td>
+<td class="green-text">7</td>
+<td>BIG</td>
+</tr>
+
+<tr>
+<td>50264</td>
+<td class="red-text">2</td>
+<td>SMALL</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
