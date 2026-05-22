@@ -1,385 +1,84 @@
-/* style.css */
-
-*{
+body{
 margin:0;
 padding:0;
-box-sizing:border-box;
+background:#000;
 font-family:Arial;
-}
-
-body{
-background:#0f0f0f;
 color:white;
 }
 
-/* LOGIN PAGE */
-
-#loginPage{
+.topbar{
 padding:20px;
+background:#0a0a0a;
 }
 
-.login-header{
+.logoBox{
 display:flex;
 align-items:center;
 gap:15px;
-margin-top:20px;
-margin-bottom:25px;
 }
 
-.logo-circle{
-width:65px;
-height:65px;
+.logo{
+width:90px;
+height:90px;
 border-radius:50%;
-background:linear-gradient(45deg,#ffd700,#ff9800);
+background:#ffcc00;
+color:#000;
+font-size:40px;
+font-weight:bold;
 display:flex;
 align-items:center;
 justify-content:center;
+}
+
+.topbar h1{
+margin:0;
 font-size:28px;
-font-weight:bold;
-color:black;
+color:#ffcc00;
 }
 
-.logo-text{
-font-size:34px;
-color:#ffd700;
-}
-
-.sub-text{
-color:#aaa;
+.topbar p{
 margin-top:5px;
+color:#999;
 }
 
-.login-card{
-background:#1a1a1a;
-padding:20px;
-border-radius:22px;
-box-shadow:0 0 15px rgba(255,215,0,0.08);
+.card{
+background:#111;
+margin:20px;
+padding:25px;
+border-radius:25px;
+box-shadow:0 0 20px rgba(255,255,0,0.1);
 }
 
-.login-card h2{
-margin-bottom:20px;
+.card h2{
+font-size:28px;
+margin-bottom:25px;
 }
 
 input{
 width:100%;
-padding:16px;
+padding:20px;
 border:none;
-border-radius:15px;
-margin-top:12px;
-font-size:17px;
-background:#2a2a2a;
-color:white;
-}
-
-.main-btn{
-width:100%;
-padding:16px;
-border:none;
-border-radius:15px;
-font-size:20px;
-font-weight:bold;
-margin-top:15px;
-background:linear-gradient(45deg,#00c853,#00e676);
-color:white;
-}
-
-.login-btn{
-background:linear-gradient(45deg,#2196f3,#00b0ff);
-}
-
-/* HOME PAGE */
-
-#homePage{
-padding:15px;
-}
-
-/* TOPBAR */
-
-.topbar{
-background:#1a1a1a;
-padding:15px;
 border-radius:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
 margin-bottom:20px;
+font-size:20px;
+box-sizing:border-box;
 }
 
-.top-left{
-display:flex;
-align-items:center;
-gap:12px;
-}
-
-.small-logo{
-width:50px;
-height:50px;
-border-radius:50%;
-background:linear-gradient(45deg,#ffd700,#ff9800);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-font-weight:bold;
-color:black;
-}
-
-.logout-btn{
-border:none;
-padding:12px 18px;
-border-radius:14px;
-background:linear-gradient(45deg,#ff1744,#ff5252);
-color:white;
-font-weight:bold;
-font-size:16px;
-}
-
-/* WALLET */
-
-.wallet-card{
-background:linear-gradient(45deg,#1f1f1f,#292929);
-padding:22px;
-border-radius:24px;
-margin-bottom:20px;
-box-shadow:0 0 18px rgba(255,215,0,0.08);
-}
-
-.wallet-card p{
-color:#aaa;
-font-size:18px;
-}
-
-.wallet-card h1{
-font-size:48px;
-margin-top:10px;
-}
-
-.wallet-buttons{
-display:flex;
-gap:10px;
-margin-top:20px;
-}
-
-.deposit-btn,
-.withdraw-btn{
-flex:1;
-padding:15px;
-border:none;
-border-radius:16px;
-font-size:18px;
-font-weight:bold;
-color:white;
-}
-
-.deposit-btn{
-background:linear-gradient(45deg,#00c853,#00e676);
-}
-
-.withdraw-btn{
-background:linear-gradient(45deg,#ff9800,#ff5722);
-}
-
-/* WINGO */
-
-.wingo-card{
-background:#1a1a1a;
-padding:20px;
-border-radius:24px;
-box-shadow:0 0 15px rgba(255,255,255,0.05);
-}
-
-.wingo-header{
-display:flex;
-gap:10px;
-}
-
-.wingo-header button{
-flex:1;
-padding:14px;
-border:none;
-border-radius:15px;
-background:#2a2a2a;
-color:white;
-font-size:16px;
-font-weight:bold;
-}
-
-.active-time{
-background:linear-gradient(45deg,#ffd700,#ff9800)!important;
-color:black!important;
-}
-
-.timer-box{
-background:#242424;
-padding:18px;
-border-radius:18px;
-text-align:center;
-margin-top:18px;
-}
-
-#timer{
-font-size:65px;
-color:#ffd700;
-}
-
-.timer-box p{
-margin-top:10px;
-color:#aaa;
-font-size:16px;
-}
-
-/* COLOR ROW */
-
-.color-row{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:18px;
-}
-
-.green-btn,
-.red-btn,
-.violet-btn{
-padding:16px;
-border:none;
-border-radius:16px;
-font-size:18px;
-font-weight:bold;
-color:white;
-}
-
-.green-btn{
-background:linear-gradient(45deg,#00c853,#64dd17);
-}
-
-.red-btn{
-background:linear-gradient(45deg,#ff1744,#ff5252);
-}
-
-.violet-btn{
-background:linear-gradient(45deg,#aa00ff,#d500f9);
-}
-
-/* NUMBERS */
-
-.number-grid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:10px;
-margin-top:18px;
-}
-
-.number-grid button{
-height:60px;
-border:none;
-border-radius:16px;
-font-size:24px;
-font-weight:bold;
-background:linear-gradient(145deg,#2c2c2c,#1d1d1d);
-color:white;
-}
-
-/* BIG SMALL */
-
-.big-small{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:18px;
-}
-
-.big-btn,
-.small-btn{
-padding:18px;
-border:none;
-border-radius:16px;
-font-size:22px;
-font-weight:bold;
-color:white;
-}
-
-.big-btn{
-background:linear-gradient(45deg,#00e676,#00c853);
-}
-
-.small-btn{
-background:linear-gradient(45deg,#ff9100,#ff5722);
-}
-
-/* HISTORY */
-
-.history-card{
-background:#1a1a1a;
-padding:20px;
-border-radius:24px;
-margin-top:20px;
-overflow:auto;
-}
-
-.history-card table{
+button{
 width:100%;
-border-collapse:collapse;
+padding:20px;
+border:none;
+border-radius:20px;
+font-size:22px;
+font-weight:bold;
+color:white;
 margin-top:15px;
 }
 
-.history-card th{
-padding:14px;
-background:#222;
+.signupBtn{
+background:#00d95f;
 }
 
-.history-card td{
-padding:14px;
-border-bottom:1px solid #333;
-text-align:center;
-}
-
-.green-text{
-color:#00ff99;
-font-weight:bold;
-}
-
-.red-text{
-color:#ff5252;
-font-weight:bold;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-.logo-text{
-font-size:28px;
-}
-
-.wallet-card h1{
-font-size:40px;
-}
-
-#timer{
-font-size:55px;
-}
-
-.number-grid button{
-height:55px;
-font-size:20px;
-}
-
-}
-.bottom-nav{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#111;
-display:flex;
-justify-content:space-around;
-padding:15px 0;
-z-index:999;
-}
-
-.bottom-nav a{
-color:white;
-text-decoration:none;
-font-size:16px;
-font-weight:bold;
+.loginBtn{
+background:#1ea7ff;
 }
