@@ -1,277 +1,279 @@
-// app.js
+let timer = 30;
 
-let balance = 1000;
-let withdrawCount = 0;
-let time = 30;
-let currentUser = localStorage.getItem("user");
+setInterval(()=>{
 
-function updateBalance(){
+let t = document.getElementById("timer");
 
-const balanceBox = document.getElementById("balance");
+if(t){
 
-if(balanceBox){
+t.innerHTML = timer;
 
-balanceBox.innerHTML = "₹" + balance;
+timer--;
 
-}
+if(timer < 0){
 
-}
-
-window.onload = function(){
-
-updateBalance();
-
-const loginBtn = document.querySelector(".login-btn");
-const logoutBtn = document.querySelector(".logout-btn");
-
-if(currentUser){
-
-if(loginBtn) loginBtn.style.display = "none";
-if(logoutBtn) logoutBtn.style.display = "inline-block";
-
-}else{
-
-if(loginBtn) loginBtn.style.display = "inline-block";
-if(logoutBtn) logoutBtn.style.display = "none";
+timer = 30;
 
 }
 
 }
+
+},1000);
+
+
+function signup(){
+
+let email = document.getElementById("email").value;
+
+let password = document.getElementById("password").value;
+
+localStorage.setItem("email",email);
+
+localStorage.setItem("password",password);
+
+let id = Math.floor(Math.random()*99999);
+
+localStorage.setItem("userId",id);
+
+alert("Signup Success");
+
+}
+
 
 function login(){
 
-let email = prompt("Enter Email");
+let email = document.getElementById("email").value;
 
-if(email){
+let password = document.getElementById("password").value;
 
-localStorage.setItem("user", email);
+if(
+email == localStorage.getItem("email")
+&&
+password == localStorage.getItem("password")
+){
 
-alert("Login Successful");
+document.getElementById("loginBox").style.display="none";
 
-window.location.reload();
+document.getElementById("mainPanel").style.display="block";
+
+document.getElementById("userEmail").innerHTML=email;
+
+document.getElementById("userId").innerHTML=localStorage.getItem("userId");
+
+loadHistory();
+
+}else{
+
+alert("Wrong Login");
 
 }
 
 }
+
 
 function logout(){
 
-localStorage.removeItem("user");
-
-alert("Logout Successful");
-
-window.location.reload();
+location.reload();
 
 }
+
 
 function deposit(){
 
 let amount = prompt("Enter Deposit Amount");
 
-if(amount){
+if(amount < 100){
 
-alert(
-"UPI ID: winnerindia@upi\n\n" +
-"QR Scan करके payment करें"
-);
+alert("Minimum Deposit ₹100");
+
+return;
+
+}
+
+let upi = localStorage.getItem("upi") || "winnerindia@upi";
+
+alert("Pay on UPI:\n"+upi);
 
 let utr = prompt("Enter UTR Number");
 
-if(utr){
+let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
 
-alert(
-"Deposit Request Submitted\n\n" +
-"Status: Processing"
-);
+deposits.push({
 
-}
+amount:amount,
 
-}
+utr:utr,
 
-}
+status:"Processing",
 
-function withdrawMoney(){
+date:new Date().toLocaleString()
 
-if(withdrawCount >= 3){
-
-alert("आज का Withdrawal Limit पूरा हो गया");
-
-return;
-
-}
-
-let bank = prompt("Enter Bank Name");
-
-if(!bank) return;
-
-let account = prompt("Enter Account Number");
-
-if(!account) return;
-
-let ifsc = prompt("Enter IFSC Code");
-
-if(!ifsc) return;
-
-let amount = Number(prompt("Enter Withdrawal Amount"));
-
-if(amount > balance){
-
-alert("Insufficient Balance");
-
-return;
-
-}
-
-let tax = amount * 0.30;
-
-let finalAmount = amount - tax;
-
-balance -= amount;
-
-withdrawCount++;
-
-updateBalance();
-
-alert(
-
-"Withdrawal Successful ✅\n\n" +
-
-"Bank: " + bank + "\n" +
-
-"Account: " + account + "\n" +
-
-"IFSC: " + ifsc + "\n\n" +
-
-"30% Government Tax: ₹" + tax + "\n\n" +
-
-"Final Amount: ₹" + finalAmount + "\n\n" +
-
-"Today's Withdrawal: " + withdrawCount + "/3"
-
-);
-
-}
-
-function placeBet(type){
-
-let amount = Number(
-document.getElementById("betAmount").value
-);
-
-if(amount <= 0){
-
-alert("Enter Bet Amount");
-
-return;
-
-}
-
-if(amount > balance){
-
-alert("Insufficient Balance");
-
-return;
-
-}
-
-balance -= amount;
-
-updateBalance();
-
-let result = Math.floor(Math.random() * 10);
-
-let win = Math.random() > 0.5;
-
-if(win){
-
-let winAmount = amount * 2;
-
-balance += winAmount;
-
-updateBalance();
-
-alert(
-"🎉 YOU WIN ₹" + winAmount +
-"\n\nResult Number: " + result
-);
-
-}else{
-
-alert(
-"❌ YOU LOSS ₹" + amount +
-"\n\nResult Number: " + result
-);
-
-}
-
-}
-
-function support(){
-
-let link = localStorage.getItem("telegramSupport");
-
-if(link){
-
-window.location.href = link;
-
-}else{
-
-alert("Support Not Available");
-
-}
-
-}
-
-function home(){
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
 });
 
-}
+localStorage.setItem("deposits",JSON.stringify(deposits));
 
-function promotion(){
+loadHistory();
 
-alert(
-"🎁 Invite Friends & Earn Bonus"
-);
+alert("Deposit Submitted");
 
 }
 
-function wallet(){
 
-alert(
-"💰 Wallet Balance: ₹" + balance
-);
+function withdraw(){
 
-}
+let amount = prompt("Enter Withdraw Amount");
 
-function profile(){
+if(amount < 110){
 
-alert(
-"👤 Winner India Profile\n\n" +
-"Gaming लाइन में सरकार 30% टैक्स लेती है।"
-);
+alert("Minimum Withdraw ₹110");
+
+return;
 
 }
 
-setInterval(() => {
+let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
 
-const timerBox = document.getElementById("timer");
+withdraws.push({
 
-if(timerBox){
+amount:amount,
 
-time--;
+status:"Pending",
 
-timerBox.innerHTML = time;
+date:new Date().toLocaleString()
 
-if(time <= 0){
+});
 
-time = 30;
+localStorage.setItem("withdraws",JSON.stringify(withdraws));
+
+loadHistory();
+
+alert("Withdraw Submitted");
+
+}
+
+
+function loadHistory(){
+
+let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
+
+let depositHTML = "";
+
+deposits.forEach(d=>{
+
+depositHTML += `
+<p>
+₹${d.amount}
+|
+${d.status}
+|
+${d.date}
+</p>
+`;
+
+});
+
+let dh = document.getElementById("depositHistory");
+
+if(dh){
+
+dh.innerHTML = depositHTML;
+
+}
+
+
+let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
+
+let withdrawHTML = "";
+
+withdraws.forEach(w=>{
+
+withdrawHTML += `
+<p>
+₹${w.amount}
+|
+${w.status}
+|
+${w.date}
+</p>
+`;
+
+});
+
+let wh = document.getElementById("withdrawHistory");
+
+if(wh){
+
+wh.innerHTML = withdrawHTML;
+
+}
+
+let ad = document.getElementById("adminDeposits");
+
+if(ad){
+
+ad.innerHTML = depositHTML;
+
+}
+
+let aw = document.getElementById("adminWithdraws");
+
+if(aw){
+
+aw.innerHTML = withdrawHTML;
 
 }
 
 }
 
-}, 1000);
+
+function saveUpi(){
+
+let upi = document.getElementById("upiInput").value;
+
+localStorage.setItem("upi",upi);
+
+alert("UPI Saved");
+
+}
+
+
+function setResult(){
+
+let result = document.getElementById("resultInput").value;
+
+localStorage.setItem("gameResult",result);
+
+alert("Result Set: "+result);
+
+}
+
+
+function bet(type){
+
+let amount = prompt("Enter Bet Amount");
+
+if(!amount) return;
+
+let result = localStorage.getItem("gameResult") || "0";
+
+let balance = parseInt(document.getElementById("balance").innerHTML);
+
+if(result % 2 == 0){
+
+balance += parseInt(amount);
+
+alert("You Win");
+
+}else{
+
+balance -= parseInt(amount);
+
+alert("You Lose");
+
+}
+
+document.getElementById("balance").innerHTML = balance;
+
+}
+
+loadHistory();
