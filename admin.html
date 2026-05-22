@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin Panel</title>
+<title>Winner India Admin</title>
 
 <style>
 
@@ -19,8 +19,27 @@ color:white;
 .header{
 background:#111;
 padding:20px;
-font-size:45px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo{
+width:80px;
+height:80px;
+border-radius:50%;
+background:gold;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
 font-weight:bold;
+color:black;
+}
+
+.header h1{
+margin:0;
+font-size:40px;
 color:gold;
 }
 
@@ -33,19 +52,20 @@ background:#111;
 padding:25px;
 border-radius:25px;
 margin-bottom:20px;
+box-shadow:0 0 15px rgba(255,215,0,0.15);
 }
 
 h2{
-font-size:32px;
+font-size:30px;
 margin-bottom:20px;
 }
 
-.history{
+.box{
 background:#1d1d1d;
 padding:18px;
-border-radius:15px;
-margin-top:15px;
+border-radius:18px;
 font-size:22px;
+margin-top:15px;
 word-break:break-word;
 }
 
@@ -53,31 +73,88 @@ button{
 width:100%;
 padding:18px;
 border:none;
-border-radius:15px;
+border-radius:18px;
 font-size:25px;
 font-weight:bold;
-margin-top:20px;
-background:#ff2d55;
+margin-top:18px;
 color:white;
+cursor:pointer;
+}
+
+.green{
+background:linear-gradient(45deg,#00c853,#00e676);
+}
+
+.blue{
+background:linear-gradient(45deg,#2196f3,#03a9f4);
+}
+
+.orange{
+background:linear-gradient(45deg,#ff9800,#ffb74d);
+}
+
+.red{
+background:linear-gradient(45deg,#ff1744,#ff5252);
+}
+
+input{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:#1d1d1d;
+color:white;
+font-size:22px;
+margin-top:15px;
+box-sizing:border-box;
 }
 
 </style>
 
 </head>
-
 <body>
 
 <div class="header">
-Admin Panel
+
+<div class="logo">
+WI
+</div>
+
+<div>
+<h1>Admin Panel</h1>
+<p>Winner India Dashboard</p>
+</div>
+
 </div>
 
 <div class="container">
 
 <div class="card">
 
+<h2>Change UPI ID</h2>
+
+<input type="text"
+id="upiInput"
+placeholder="Enter New UPI ID">
+
+<button class="green"
+onclick="saveUpi()">
+Save UPI ID
+</button>
+
+</div>
+
+<div class="card">
+
 <h2>Deposit History</h2>
 
-<div id="depositBox"></div>
+<div id="depositBox">
+
+<div class="box">
+No Deposit History
+</div>
+
+</div>
 
 </div>
 
@@ -85,7 +162,13 @@ Admin Panel
 
 <h2>Withdraw History</h2>
 
-<div id="withdrawBox"></div>
+<div id="withdrawBox">
+
+<div class="box">
+No Withdraw History
+</div>
+
+</div>
 
 </div>
 
@@ -93,17 +176,62 @@ Admin Panel
 
 <h2>User Bank Details</h2>
 
-<div id="bankBox"></div>
+<div id="bankBox">
+
+<div class="box">
+No Bank Details
+</div>
 
 </div>
 
-<button onclick="clearAll()">
+</div>
+
+<div class="card">
+
+<h2>Game Result History</h2>
+
+<div id="resultBox">
+
+<div class="box">
+No Game Result
+</div>
+
+</div>
+
+</div>
+
+<button class="orange"
+onclick="window.location.href='index.html'">
+Open User Panel
+</button>
+
+<button class="red"
+onclick="clearAll()">
 Clear All Data
 </button>
 
 </div>
 
 <script>
+
+function saveUpi(){
+
+let upi =
+document.getElementById("upiInput").value;
+
+if(upi==""){
+
+alert("Enter UPI ID");
+
+return;
+
+}
+
+localStorage.setItem("adminUpi",upi);
+
+alert("UPI ID Updated ✅");
+
+}
 
 function loadData(){
 
@@ -114,7 +242,7 @@ if(deposits){
 
 document.getElementById("depositBox")
 .innerHTML =
-'<div class=\"history\">'+
+'<div class="box">'+
 deposits +
 '</div>';
 
@@ -127,9 +255,20 @@ if(withdraws){
 
 document.getElementById("withdrawBox")
 .innerHTML =
-'<div class=\"history\">'+
+'<div class="box">'+
 withdraws +
 '</div>';
+
+}
+
+let results =
+localStorage.getItem("gameResults");
+
+if(results){
+
+document.getElementById("resultBox")
+.innerHTML =
+results;
 
 }
 
@@ -150,7 +289,7 @@ if(bank){
 document.getElementById("bankBox")
 .innerHTML =
 
-'<div class=\"history\">'+
+'<div class="box">' +
 
 'Bank: ' + bank + '<br><br>' +
 
@@ -168,11 +307,15 @@ document.getElementById("bankBox")
 
 function clearAll(){
 
+if(confirm("Clear All Data?")){
+
 localStorage.clear();
 
 alert("All Data Cleared");
 
 location.reload();
+
+}
 
 }
 
