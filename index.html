@@ -6,171 +6,46 @@
 <title>Winner India</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
-}
 
 body{
-background:#111;
+margin:0;
+padding:0;
+background:#000;
+font-family:Arial;
 color:white;
-padding-bottom:90px;
 }
 
 .header{
-background:linear-gradient(90deg,#f5d36a,#c79b2c);
 padding:20px;
-border-bottom-left-radius:20px;
-border-bottom-right-radius:20px;
+text-align:center;
+font-size:32px;
+font-weight:bold;
+color:gold;
+background:#111;
 }
 
-.profile{
-display:flex;
-align-items:center;
-gap:15px;
-}
-
-.profile img{
-width:70px;
-height:70px;
-border-radius:50%;
-border:3px solid white;
-}
-
-.profile-info h2{
-font-size:22px;
-}
-
-.profile-info p{
-font-size:14px;
-margin-top:5px;
-}
-
-.balance-card{
-background:#222;
+.balance{
 margin:20px;
 padding:20px;
-border-radius:20px;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
-}
-
-.balance-title{
-font-size:18px;
-color:#aaa;
-}
-
-.balance-amount{
-font-size:36px;
-color:#00ff66;
-margin-top:10px;
-font-weight:bold;
-}
-
-.wallet-btn{
-margin-top:15px;
-background:#f5d36a;
-color:black;
-border:none;
-padding:12px;
-width:100%;
-border-radius:10px;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.menu-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-padding:20px;
-}
-
-.menu-item{
-background:#222;
-padding:20px;
+background:#1c1c1c;
 border-radius:15px;
 text-align:center;
-transition:0.3s;
-text-decoration:none;
-color:white;
-}
-
-.menu-item:hover{
-transform:scale(1.03);
-background:#333;
-}
-
-.menu-item h3{
-margin-top:10px;
-font-size:18px;
+font-size:28px;
 }
 
 .banner{
-margin:20px;
-border-radius:20px;
-overflow:hidden;
+padding:15px;
 }
 
 .banner img{
 width:100%;
-display:block;
-}
-
-.notice{
-background:#222;
-margin:20px;
-padding:15px;
+height:180px;
+object-fit:cover;
 border-radius:15px;
-font-size:14px;
-line-height:1.6;
-color:#ccc;
-}
-
-.bottom-nav{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#1a1a1a;
-display:flex;
-justify-content:space-around;
-padding:12px 0;
-border-top:1px solid #333;
-}
-
-.bottom-nav a{
-color:white;
-text-decoration:none;
-font-size:14px;
-text-align:center;
-}
-
-.bottom-nav a:hover{
-color:#f5d36a;
-}
-
-.support-btn{
-position:fixed;
-right:15px;
-bottom:90px;
-background:#f5d36a;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-color:black;
-text-decoration:none;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 
 .games{
-padding:20px;
+padding:15px;
 }
 
 .games h2{
@@ -179,14 +54,15 @@ margin-bottom:15px;
 
 .game-grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:1fr 1fr;
 gap:15px;
 }
 
 .game-card{
-background:#222;
+background:#1c1c1c;
 border-radius:15px;
 overflow:hidden;
+text-decoration:none;
 }
 
 .game-card img{
@@ -196,181 +72,96 @@ object-fit:cover;
 }
 
 .game-card p{
-padding:10px;
 text-align:center;
+padding:10px;
+font-size:20px;
 font-weight:bold;
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-
-<div class="profile">
-<img src="https://i.imgur.com/8Km9tLL.png">
-
-<div class="profile-info">
-<h2>Winner India</h2>
-<p>UID: 12943769</p>
-<p>VIP 3 Member</p>
-</div>
-</div>
-
-</div>
-
-<div class="balance-card">
-<p class="balance-title">Total Balance</p>
-<h1 class="balance-amount">₹10,500</h1>
-
-<button class="wallet-btn" onclick="window.location.href='wallet.html'">
-Enter Wallet
-</button>
-</div>
-
-<div class="menu-grid">
-
-<a href="deposit.html" class="menu-item">
-<h3>Deposit</h3>
-</a>
-
-<a href="withdraw.html" class="menu-item">
-<h3>Withdraw</h3>
-</a>
-
-<a href="promotion.html" class="menu-item">
-<h3>Promotion</h3>
-</a>
-
-<a href="history.html" class="menu-item">
-<h3>History</h3>
-</a>
-
-</div>
-
-<div class="banner">
-<img src="https://i.imgur.com/tV8QKQp.jpeg">
-</div>
-
-<div class="games">
-
-<h2>Popular Games</h2>
-
-<div 
-<!-- game.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Winner India Game</title>
-
-<style>
-body{
-    margin:0;
-    padding:0;
-    background:#0f0f0f;
-    font-family:Arial;
-    color:white;
+color:white;
 }
 
-.header{
-    background:#1c1c1c;
-    padding:15px;
-    text-align:center;
-    font-size:28px;
-    font-weight:bold;
-    color:#ffd700;
-}
-
-.balance{
-    margin:20px;
-    background:#1e1e1e;
-    padding:15px;
-    border-radius:15px;
-    text-align:center;
-    font-size:22px;
-}
-
-.timer-box{
-    text-align:center;
-    margin-top:20px;
+.game-box{
+margin:20px;
+padding:20px;
+background:#111;
+border-radius:20px;
+text-align:center;
 }
 
 .timer{
-    font-size:45px;
-    color:#00ff99;
-    font-weight:bold;
+font-size:60px;
+color:#00ff99;
+font-weight:bold;
 }
 
 .result{
-    text-align:center;
-    margin-top:15px;
-    font-size:25px;
-    font-weight:bold;
+font-size:40px;
+font-weight:bold;
+margin:20px 0;
 }
 
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:30px;
-    flex-wrap:wrap;
+.btns{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
 }
 
 .btn{
-    width:110px;
-    height:50px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    font-weight:bold;
-    color:white;
+padding:15px 25px;
+border:none;
+border-radius:12px;
+font-size:20px;
+font-weight:bold;
+color:white;
 }
 
 .green{
-    background:green;
+background:green;
 }
 
 .red{
-    background:red;
+background:red;
 }
 
 .violet{
-    background:purple;
+background:purple;
 }
 
 .big{
-    background:orange;
+background:orange;
 }
 
 .small{
-    background:#0099ff;
+background:#0099ff;
 }
 
 .history{
-    margin:20px;
-    background:#1c1c1c;
-    border-radius:15px;
-    padding:15px;
+margin-top:20px;
+background:#1c1c1c;
+padding:15px;
+border-radius:15px;
 }
 
-.history h2{
-    text-align:center;
+.bottom-nav{
+position:fixed;
+bottom:0;
+width:100%;
+background:#111;
+display:flex;
+justify-content:space-around;
+padding:12px 0;
 }
 
-.history-item{
-    display:flex;
-    justify-content:space-between;
-    background:#2a2a2a;
-    margin-top:10px;
-    padding:10px;
-    border-radius:10px;
+.bottom-nav a{
+color:white;
+text-decoration:none;
+font-size:18px;
+text-align:center;
 }
+
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="header">
@@ -378,191 +169,106 @@ Winner India
 </div>
 
 <div class="balance">
-Balance: ₹ <span id="balance">1000</span>
+Balance: ₹950
 </div>
 
-<div class="timer-box">
-<div>Next Result In</div>
-<div class="timer" id="timer">30</div>
+<div class="banner">
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200">
+</div>
+
+<div class="games">
+
+<h2>Popular Games</h2>
+
+<div class="game-grid">
+
+<a href="#" class="game-card">
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500">
+<p>Lottery</p>
+</a>
+
+<a href="#" class="game-card">
+<img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=500">
+<p>Casino</p>
+</a>
+
+<a href="#" class="game-card">
+<img src="https://images.unsplash.com/photo-1541278107931-e006523892df?w=500">
+<p>Slots</p>
+</a>
+
+<a href="#" class="game-card">
+<img src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=500">
+<p>Spin Wheel</p>
+</a>
+
+</div>
+
+</div>
+
+<div class="game-box">
+
+<h1>Winner India</h1>
+
+<p>Next Result In</p>
+
+<div class="timer" id="timer">
+30
 </div>
 
 <div class="result" id="result">
-Waiting...
+BIG
 </div>
 
-<div class="buttons">
-
-<button class="btn green" onclick="bet('GREEN')">
-GREEN
-</button>
-
-<button class="btn red" onclick="bet('RED')">
-RED
-</button>
-
-<button class="btn violet" onclick="bet('VIOLET')">
-VIOLET
-</button>
-
-<button class="btn big" onclick="bet('BIG')">
-BIG
-</button>
-
-<button class="btn small" onclick="bet('SMALL')">
-SMALL
-</button>
-
+<div class="btns">
+<button class="btn green">GREEN</button>
+<button class="btn red">RED</button>
+<button class="btn violet">VIOLET</button>
+<button class="btn big">BIG</button>
+<button class="btn small">SMALL</button>
 </div>
 
 <div class="history">
 <h2>History</h2>
+<p id="history">BIG</p>
+</div>
 
-<div id="history-list"></div>
+</div>
 
+<div class="bottom-nav">
+<a href="#">🏠<br>Home</a>
+<a href="#">🎁<br>Promotion</a>
+<a href="#">💰<br>Wallet</a>
+<a href="#">📞<br>Support</a>
 </div>
 
 <script>
 
-let timer = 30;
-let currentBet = "";
-let balance = 1000;
+let time = 30;
 
-function updateTimer(){
+setInterval(() => {
 
-document.getElementById("timer").innerHTML = timer;
+time--;
 
-timer--;
+document.getElementById("timer").innerHTML = time;
 
-if(timer < 0){
+if(time <= 0){
 
-generateResult();
+time = 30;
 
-timer = 30;
-}
+let results = ["BIG","SMALL"];
 
-}
+let random = results[Math.floor(Math.random()*results.length)];
 
-setInterval(updateTimer,1000);
+document.getElementById("result").innerHTML = random;
 
-function bet(type){
-
-currentBet = type;
-
-alert("Bet Placed On " + type);
+document.getElementById("history").innerHTML = random;
 
 }
 
-function generateResult(){
-
-const results = ["GREEN","RED","VIOLET","BIG","SMALL"];
-
-const randomResult =
-results[Math.floor(Math.random()*results.length)];
-
-document.getElementById("result").innerHTML =
-"Result : " + randomResult;
-
-if(currentBet == randomResult){
-
-balance += 100;
-
-alert("You Win ₹100");
-
-}else{
-
-balance -= 50;
-
-alert("You Lose ₹50");
-
-}
-
-document.getElementById("balance").innerHTML = balance;
-
-addHistory(randomResult);
-
-}
-
-function addHistory(result){
-
-const history =
-document.getElementById("history-list");
-
-const item =
-document.createElement("div");
-
-item.className = "history-item";
-
-item.innerHTML = `
-<span>${result}</span>
-<span>${new Date().toLocaleTimeString()}</span>
-`;
-
-history.prepend(item);
-
-}
+},1000);
 
 </script>
 
 </body>
 </html>
-<div class="game-card">
-<img src="https://i.imgur.com/UPrs1EW.jpeg">
-<p>Casino</p>
-</div>
-
-<div class="game-card">
-<img src="https://i.imgur.com/Ol1rLkP.jpeg">
-<p>Slots</p>
-</div>
-
-<div class="game-card">
-<img src="https://i.imgur.com/QU6K6G8.jpeg">
-<p>Spin Wheel</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="notice">
-Welcome to Winner India Gaming Platform.<br><br>
-
-✔ Fast Deposit & Withdrawal<br>
-✔ 24x7 Customer Support<br>
-✔ Secure Wallet System<br>
-✔ VIP Rewards & Bonus
-</div>
-
-<a href="support.html" class="support-btn">
-💬
-</a>
-
-<div class="bottom-nav">
-
-<a href="index.html">
-🏠<br>Home
-</a>
-
-<a href="promotion.html">
-🎁<br>Promotion
-</a>
-
-<a href="wallet.html">
-💰<br>Wallet
-</a>
-
-<a href="support.html">
-📞<br>Support
-</a>
-
-</div>
-
-</body>
-</html>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<script src="firebase/firebase-config.js"></script>
