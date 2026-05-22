@@ -63,3 +63,26 @@ gap:10px;
 h1,h2,h3{
 margin:10px 0;
 }
+.number-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.number-grid button{
+background:#222;
+color:white;
+font-size:20px;
+font-weight:bold;
+}
+
+.time-btns{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.time-btns button{
+background:#222;
+}
