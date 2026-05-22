@@ -1,75 +1,74 @@
+<div class="card">
+
+<h2>WinGo Game</h2>
+
+<h1 id="timer">30</h1>
+
+<h2>Result: <span id="result">0</span></h2>
+
+<div class="numberGrid">
+
+<button onclick="playGame('0')" class="numberBtn violet">0</button>
+<button onclick="playGame('1')" class="numberBtn green">1</button>
+<button onclick="playGame('2')" class="numberBtn red">2</button>
+<button onclick="playGame('3')" class="numberBtn green">3</button>
+<button onclick="playGame('4')" class="numberBtn red">4</button>
+<button onclick="playGame('5')" class="numberBtn violet">5</button>
+<button onclick="playGame('6')" class="numberBtn red">6</button>
+<button onclick="playGame('7')" class="numberBtn green">7</button>
+<button onclick="playGame('8')" class="numberBtn red">8</button>
+<button onclick="playGame('9')" class="numberBtn green">9</button>
+
+</div>
+
+<div class="colorGrid">
+
+<button onclick="playGame('Green')" class="greenBtn">Green</button>
+
+<button onclick="playGame('Violet')" class="violetBtn">Violet</button>
+
+<button onclick="playGame('Red')" class="redBtn">Red</button>
+
+<button onclick="playGame('Big')" class="bigBtn">Big</button>
+
+<button onclick="playGame('Small')" class="smallBtn">Small</button>
+
+</div>
+
+</div>
+
 <script>
-
-function logout(){
-window.location.href="index.html";
-}
-
-function openDeposit(){
-window.location.href="deposit.html";
-}
-
-function openWithdraw(){
-window.location.href="withdraw.html";
-}
 
 function playGame(type){
 
 let amount = prompt("Enter Bet Amount");
 
-if(amount=="" || amount==null){
+if(amount==null || amount==""){
 return;
 }
 
-alert("Bet Placed On: " + type + " ₹" + amount);
+alert("Bet Successful On " + type);
 
 }
 
-let time=30;
+let time = 30;
 
-setInterval(()=>{
+setInterval(function(){
+
+document.getElementById("timer").innerHTML = time;
 
 time--;
 
-document.getElementById("timer").innerHTML=time;
+if(time < 0){
 
-if(time<=0){
+time = 30;
 
-time=30;
+let result = Math.floor(Math.random()*10);
 
-let result=Math.floor(Math.random()*10);
-
-document.getElementById("result").innerHTML=result;
+document.getElementById("result").innerHTML = result;
 
 }
 
 },1000);
 
 </script>
-<button class="numberBtn violet" onclick="playGame('0')">0</button>
-
-<button class="numberBtn green" onclick="playGame('1')">1</button>
-
-<button class="numberBtn red" onclick="playGame('2')">2</button>
-
-<button class="numberBtn green" onclick="playGame('3')">3</button>
-
-<button class="numberBtn red" onclick="playGame('4')">4</button>
-
-<button class="numberBtn violet" onclick="playGame('5')">5</button>
-
-<button class="numberBtn red" onclick="playGame('6')">6</button>
-
-<button class="numberBtn green" onclick="playGame('7')">7</button>
-
-<button class="numberBtn red" onclick="playGame('8')">8</button>
-
-<button class="numberBtn green" onclick="playGame('9')">9</button>
-<button class="greenBtn" onclick="playGame('Green')">Green</button>
-
-<button class="violetBtn" onclick="playGame('Violet')">Violet</button>
-
-<button class="redBtn" onclick="playGame('Red')">Red</button>
-
-<button class="bigBtn" onclick="playGame('Big')">Big</button>
-
-<button class="smallBtn" onclick="playGame('Small')">Small</button>
