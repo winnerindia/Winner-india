@@ -1,6 +1,5 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,118 +9,161 @@
 <body>
 
 <div class="topbar">
-<div class="logo">Winner India</div>
+<h1>Winner India</h1>
 </div>
 
 <div class="container">
 
-<div id="authBox" class="box">
+<div class="card">
 <h2>Login / Signup</h2>
-
 <input type="email" id="email" placeholder="Enter Email">
-
 <input type="password" id="password" placeholder="Enter Password">
-
 <button onclick="signup()">Signup</button>
-
 <button onclick="login()">Login</button>
 </div>
 
-<div id="userPanel" style="display:none;">
-
-<div class="box">
-<h2>ID: <span id="userId"></span></h2>
-<p id="userEmail"></p>
-
-<h1>₹<span id="wallet">1000</span></h1>
-
-<button onclick="openDeposit()">Deposit</button>
-
-<button onclick="openWithdraw()">Withdraw</button>
-
-<button class="red" onclick="logout()">Logout</button>
+<div class="card">
+<h2>Wallet</h2>
+<h1>₹<span id="balance">1000</span></h1>
+<button onclick="deposit()">Deposit</button>
+<button onclick="withdraw()">Withdraw</button>
+<button class="logout" onclick="logout()">Logout</button>
 </div>
 
-<div class="box">
-<h2>WinGo 30Sec</h2>
+<div class="card">
+<h2>WinGo Game</h2>
+
+<div class="tabs">
+<button onclick="setTime(30)">30 Sec</button>
+<button onclick="setTime(60)">1 Min</button>
+</div>
 
 <h1 id="timer">30</h1>
-
 <h2>Result: <span id="result">0</span></h2>
 
-<div class="bet-grid">
-
-<button class="green" onclick="bet('GREEN')">GREEN</button>
-
-<button class="red" onclick="bet('RED')">RED</button>
-
-<button class="violet" onclick="bet('VIOLET')">VIOLET</button>
-
-<button onclick="bet('BIG')">BIG</button>
-
-<button onclick="bet('SMALL')">SMALL</button>
-
-</div>
+<div class="numbers">
+<button onclick="betNumber(0)">0</button>
+<button onclick="betNumber(1)">1</button>
+<button onclick="betNumber(2)">2</button>
+<button onclick="betNumber(3)">3</button>
+<button onclick="betNumber(4)">4</button>
+<button onclick="betNumber(5)">5</button>
+<button onclick="betNumber(6)">6</button>
+<button onclick="betNumber(7)">7</button>
+<button onclick="betNumber(8)">8</button>
+<button onclick="betNumber(9)">9</button>
 </div>
 
-<div class="box">
+<div class="colors">
+<button class="green" onclick="betColor('Green')">Green</button>
+<button class="violet" onclick="betColor('Violet')">Violet</button>
+<button class="red" onclick="betColor('Red')">Red</button>
+</div>
+
+<div class="bigsmall">
+<button class="big" onclick="betType('Big')">Big</button>
+<button class="small" onclick="betType('Small')">Small</button>
+</div>
+
+</div>
+
+<div class="card">
 <h2>Deposit History</h2>
 <div id="depositHistory"></div>
 </div>
 
-<div class="box">
+<div class="card">
 <h2>Withdraw History</h2>
 <div id="withdrawHistory"></div>
 </div>
 
 </div>
 
-</div>
+<script>
 
-<script src="app.js"></script>
+let gameTime = 30;
+let timer = gameTime;
+
+function setTime(t){
+  gameTime = t;
+  timer = t;
+}
+
+setInterval(()=>{
+  timer--;
+  if(timer <= 0){
+    timer = gameTime;
+    let random = Math.floor(Math.random()*10);
+    document.getElementById('result').innerText = random;
+  }
+  document.getElementById('timer').innerText = timer;
+},1000);
+
+function signup(){
+  let email = document.getElementById('email').value;
+  let pass = document.getElementById('password').value;
+
+  localStorage.setItem('email',email);
+  localStorage.setItem('password',pass);
+
+  alert('Signup Success');
+}
+
+function login(){
+  let email = document.getElementById('email').value;
+  let pass = document.getElementById('password').value;
+
+  if(email == localStorage.getItem('email') && pass == localStorage.getItem('password')){
+    alert('Login Success');
+  }else{
+    alert('Wrong Details');
+  }
+}
+
+function logout(){
+  location.reload();
+}
+
+function deposit(){
+  let amount = prompt('Enter Deposit Amount');
+
+  let data = localStorage.getItem('depositHistory') || '';
+  data += '<p>₹'+amount+' | Processing | '+new Date().toLocaleString()+'</p>';
+
+  localStorage.setItem('depositHistory',data);
+  loadHistory();
+}
+
+function withdraw(){
+  let amount = prompt('Enter Withdraw Amount');
+
+  let data = localStorage.getItem('withdrawHistory') || '';
+  data += '<p>₹'+amount+' | Pending | '+new Date().toLocaleString()+'</p>';
+
+  localStorage.setItem('withdrawHistory',data);
+  loadHistory();
+}
+
+function loadHistory(){
+  document.getElementById('depositHistory').innerHTML = localStorage.getItem('depositHistory') || '';
+  document.getElementById('withdrawHistory').innerHTML = localStorage.getItem('withdrawHistory') || '';
+}
+
+loadHistory();
+
+function betNumber(n){
+  alert('Bet on Number '+n);
+}
+
+function betColor(c){
+  alert('Bet on '+c);
+}
+
+function betType(t){
+  alert('Bet on '+t);
+}
+
+</script>
+
 </body>
 </html>
-<div class="box">
-
-<h2>WinGo Game</h2>
-
-<div class="time-btns">
-<button onclick="changeGameTime(30)">30 Sec</button>
-<button onclick="changeGameTime(60)">1 Min</button>
-</div>
-
-<h1 id="timer">30</h1>
-
-<h2>Result: <span id="result">0</span></h2>
-
-<div class="number-grid">
-
-<button onclick="betNumber(0)">0</button>
-<button onclick="betNumber(1)">1</button>
-<button onclick="betNumber(2)">2</button>
-<button onclick="betNumber(3)">3</button>
-<button onclick="betNumber(4)">4</button>
-
-<button onclick="betNumber(5)">5</button>
-<button onclick="betNumber(6)">6</button>
-<button onclick="betNumber(7)">7</button>
-<button onclick="betNumber(8)">8</button>
-<button onclick="betNumber(9)">9</button>
-
-</div>
-
-<div class="bet-grid">
-
-<button class="green" onclick="bet('GREEN')">GREEN</button>
-
-<button class="red" onclick="bet('RED')">RED</button>
-
-<button class="violet" onclick="bet('VIOLET')">VIOLET</button>
-
-<button onclick="bet('BIG')">BIG</button>
-
-<button onclick="bet('SMALL')">SMALL</button>
-
-</div>
-
-</div>
