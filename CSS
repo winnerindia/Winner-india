@@ -423,3 +423,12 @@ alert("VIOLET Bet Successfully");
 
 </body>
 </html>
+button{
+cursor:pointer;
+pointer-events:auto;
+}
+
+.num{
+cursor:pointer;
+pointer-events:auto;
+}
