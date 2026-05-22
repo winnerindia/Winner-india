@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Winner India</title>
 
 <style>
@@ -10,40 +11,41 @@
 body{
 margin:0;
 padding:0;
-background:black;
+background:#000;
 font-family:Arial;
 color:white;
 }
 
-.top{
+.topbar{
+background:#111;
 padding:20px;
 display:flex;
 align-items:center;
 gap:15px;
-background:#111;
 }
 
 .logo{
-width:90px;
-height:90px;
+width:80px;
+height:80px;
 border-radius:50%;
 background:gold;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:42px;
+font-size:38px;
 font-weight:bold;
 color:black;
 }
 
-.top h1{
+.topbar h1{
 margin:0;
-font-size:42px;
+font-size:40px;
 color:gold;
 }
 
-.top p{
-margin-top:5px;
+.topbar p{
+margin:0;
+font-size:20px;
 color:#aaa;
 }
 
@@ -52,65 +54,94 @@ background:#111;
 margin:20px;
 padding:20px;
 border-radius:25px;
+box-shadow:0 0 15px rgba(255,215,0,0.2);
 }
 
-button{
-border:none;
-padding:16px;
-border-radius:18px;
-font-size:22px;
+h2{
+font-size:28px;
+margin-bottom:15px;
+}
+
+.balance{
+font-size:50px;
 font-weight:bold;
-color:white;
-margin-top:12px;
-cursor:pointer;
+color:#00ff99;
+margin-bottom:20px;
 }
 
 .btn-row{
 display:flex;
-gap:10px;
+gap:15px;
+margin-top:15px;
+}
+
+button{
+flex:1;
+padding:18px;
+border:none;
+border-radius:18px;
+font-size:24px;
+font-weight:bold;
+color:white;
+cursor:pointer;
 }
 
 .green-btn{
-flex:1;
 background:linear-gradient(45deg,#00c853,#00e676);
 }
 
 .blue-btn{
-flex:1;
 background:linear-gradient(45deg,#2196f3,#03a9f4);
 }
 
 .red-btn{
-flex:1;
 background:linear-gradient(45deg,#ff1744,#ff5252);
 }
 
 .orange-btn{
-flex:1;
 background:linear-gradient(45deg,#ff9800,#ffb74d);
 }
 
-.violet-btn{
-flex:1;
+.purple-btn{
 background:linear-gradient(45deg,#9c27b0,#e040fb);
 }
 
-.dark-btn{
-flex:1;
-background:#222;
+input{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+font-size:24px;
+margin-top:15px;
+background:#1e1e1e;
+color:white;
+box-sizing:border-box;
 }
 
-.number-grid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:12px;
+.timer{
+font-size:70px;
+font-weight:bold;
 margin-top:20px;
 }
 
-.number-grid button{
-height:70px;
-font-size:34px;
+.result{
+font-size:40px;
+margin-top:20px;
+font-weight:bold;
+}
+
+.numbers{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+margin-top:20px;
+}
+
+.number-btn{
+height:90px;
 border-radius:20px;
+font-size:38px;
+font-weight:bold;
 }
 
 .green{
@@ -125,8 +156,17 @@ background:linear-gradient(45deg,#ff1744,#ff5252);
 background:linear-gradient(45deg,#9c27b0,#e040fb);
 }
 
+.history-box{
+background:#1b1b1b;
+padding:15px;
+border-radius:15px;
+margin-top:10px;
+font-size:20px;
+}
+
 .full{
 width:100%;
+margin-top:15px;
 }
 
 </style>
@@ -134,314 +174,36 @@ width:100%;
 </head>
 <body>
 
-<div class="top">
-<div class="logo">WI</div>
+<div class="topbar">
+
+<div class="logo">
+WI
+</div>
 
 <div>
 <h1>Winner India</h1>
 <p>India's Gaming Platform</p>
 </div>
+
 </div>
 
 <div class="card">
 
 <h2>Wallet</h2>
 
-<h1 id="wallet">₹1000</h1>
-
-<div class="btn-row">
-<button class="green-btn" onclick="depositMoney()">Deposit</button>
-
-<button class="blue-btn" onclick="withdrawMoney()">Withdraw</button>
-</div>
-
-<button class="red-btn full" onclick="logout()">Logout</button>
-
-</div>
-
-<div class="card">
-
-<h2>WinGo Game</h2>
-
-<div class="btn-row">
-
-<button class="dark-btn" onclick="setGame(30)">
-30 Sec
-</button>
-
-<button class="dark-btn" onclick="setGame(60)">
-1 Min
-</button>
-
-</div>
-<input type="number"
-id="betAmount"
-placeholder="Enter Bet Amount"
-style="
-width:100%;
-padding:16px;
-border:none;
-border-radius:18px;
-background:#222;
-color:white;
-font-size:22px;
-margin-top:15px;
-box-sizing:border-box;
-">
-<h1 id="timer">30</h1>
-
-<h2>
-Result:
-<span id="result">0</span>
-</h2>
-
-<div class="number-grid">
-
-<button class="violet" onclick="playNumber(0)">0</button>
-
-<button class="green" onclick="playNumber(1)">1</button>
-
-<button class="red" onclick="playNumber(2)">2</button>
-
-<button class="green" onclick="playNumber(3)">3</button>
-
-<button class="red" onclick="playNumber(4)">4</button>
-
-<button class="violet" onclick="playNumber(5)">5</button>
-
-<button class="red" onclick="playNumber(6)">6</button>
-
-<button class="green" onclick="playNumber(7)">7</button>
-
-<button class="red" onclick="playNumber(8)">8</button>
-
-<button class="green" onclick="playNumber(9)">9</button>
-
+<div class="balance" id="walletBalance">
+₹1000
 </div>
 
 <div class="btn-row">
 
 <button class="green-btn"
-onclick="playColor('green')">
-Green
-</button>
-
-<button class="violet-btn"
-onclick="playColor('violet')">
-Violet
-</button>
-
-</div>
-
-<div class="btn-row">
-
-<button class="red-btn"
-onclick="playColor('red')">
-Red
-</button>
-
-<button class="orange-btn"
-onclick="playBigSmall('big')">
-Big
-</button>
-
-</div>
-
-<button class="green-btn full"
-onclick="playBigSmall('small')">
-Small
-</button>
-
-</div>
-
-<script>
-
-let wallet = 1000;
-let currentTime = 30;
-
-function updateWallet(){
-document.getElementById("wallet").innerText =
-"₹" + wallet;
-}
-
-function depositMoney(){
-window.location.href = "deposit.html";
-}
-
-function withdrawMoney(){
-window.location.href = "withdraw.html";
-}
-
-function logout(){
-window.location.href = "index.html";
-}
-
-function setGame(sec){
-currentTime = sec;
-document.getElementById("timer").innerText =
-currentTime;
-}
-
-setInterval(()=>{
-
-currentTime--;
-
-if(currentTime <= 0){
-
-currentTime = 30;
-
-}
-
-document.getElementById("timer").innerText =
-currentTime;
-
-},1000);
-
-function randomResult(){
-
-return Math.floor(Math.random()*10);
-
-}
-
-function playNumber(num){
-
-if(wallet < 10){
-
-alert("Low Balance");
-
-return;
-
-}
-
-wallet -= 10;
-
-let result = randomResult();
-
-document.getElementById("result").innerText =
-result;
-
-if(result == num){
-
-wallet += 90;
-
-alert("Number Win ₹90");
-
-}else{
-
-alert("Lose");
-
-}
-
-updateWallet();
-
-}
-
-function playColor(color){
-
-if(wallet < 10){
-
-alert("Low Balance");
-
-return;
-
-}
-
-wallet -= 10;
-
-let result = randomResult();
-
-document.getElementById("result").innerText =
-result;
-
-let finalColor = "";
-
-if(result==1 || result==3 || result==7 || result==9){
-
-finalColor = "green";
-
-}
-else if(result==2 || result==4 || result==6 || result==8){
-
-finalColor = "red";
-
-}
-else{
-
-finalColor = "violet";
-
-}
-
-if(finalColor == color){
-
-wallet += 20;
-
-alert("Color Win ₹20");
-
-}
-else{
-
-alert("Lose");
-
-}
-
-updateWallet();
-
-}
-
-function playBigSmall(type){
-
-if(wallet < 10){
-
-alert("Low Balance");
-
-return;
-
-}
-
-wallet -= 10;
-
-let result = randomResult();
-
-document.getElementById("result").innerText =
-result;
-
-if(type=="big" && result>=5){
-
-wallet += 20;
-
-alert("Big Win ₹20");
-
-}
-else if(type=="small" && result<5){
-
-wallet += 20;
-
-alert("Small Win ₹20");
-
-}
-else{
-
-alert("Lose");
-
-}
-
-updateWallet();
-
-}
-
-</script>
-
-</body>
-</html>
-<div class="btn-row">
-
-<button class="green-btn"
-onclick="depositMoney()">
+onclick="window.location.href='deposit.html'">
 Deposit
 </button>
 
 <button class="blue-btn"
-onclick="withdrawMoney()">
+onclick="window.location.href='withdraw.html'">
 Withdraw
 </button>
 
@@ -456,3 +218,274 @@ Profile
 onclick="logout()">
 Logout
 </button>
+
+</div>
+
+<div class="card">
+
+<h2>WinGo Game</h2>
+
+<div class="btn-row">
+
+<button class="green-btn">
+30 Sec
+</button>
+
+<button class="blue-btn">
+1 Min
+</button>
+
+</div>
+
+<input type="number"
+id="betAmount"
+placeholder="Enter Bet Amount">
+
+<div class="timer"
+id="timer">
+30
+</div>
+
+<div class="result">
+Result:
+<span id="result">
+0
+</span>
+</div>
+
+<div class="numbers">
+
+<button class="number-btn violet"
+onclick="placeBet('0')">
+0
+</button>
+
+<button class="number-btn green"
+onclick="placeBet('1')">
+1
+</button>
+
+<button class="number-btn red"
+onclick="placeBet('2')">
+2
+</button>
+
+<button class="number-btn green"
+onclick="placeBet('3')">
+3
+</button>
+
+<button class="number-btn red"
+onclick="placeBet('4')">
+4
+</button>
+
+<button class="number-btn violet"
+onclick="placeBet('5')">
+5
+</button>
+
+<button class="number-btn red"
+onclick="placeBet('6')">
+6
+</button>
+
+<button class="number-btn green"
+onclick="placeBet('7')">
+7
+</button>
+
+<button class="number-btn red"
+onclick="placeBet('8')">
+8
+</button>
+
+<button class="number-btn green"
+onclick="placeBet('9')">
+9
+</button>
+
+</div>
+
+<div class="btn-row">
+
+<button class="green-btn"
+onclick="placeBet('green')">
+Green
+</button>
+
+<button class="purple-btn"
+onclick="placeBet('violet')">
+Violet
+</button>
+
+</div>
+
+<div class="btn-row">
+
+<button class="red-btn"
+onclick="placeBet('red')">
+Red
+</button>
+
+<button class="orange-btn"
+onclick="placeBet('big')">
+Big
+</button>
+
+</div>
+
+<button class="green-btn full"
+onclick="placeBet('small')">
+Small
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Latest Game History</h2>
+
+<div id="gameHistory">
+
+<div class="history-box">
+No History
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let balance = 1000;
+
+let timer = 30;
+
+function updateBalance(){
+
+document.getElementById("walletBalance")
+.innerHTML = "₹" + balance;
+
+}
+
+setInterval(()=>{
+
+timer--;
+
+if(timer <= 0){
+
+timer = 30;
+
+let random =
+Math.floor(Math.random()*10);
+
+document.getElementById("result")
+.innerHTML = random;
+
+}
+
+document.getElementById("timer")
+.innerHTML = timer;
+
+},1000);
+
+function placeBet(type){
+
+let amount =
+parseInt(document.getElementById("betAmount").value);
+
+if(!amount || amount <= 0){
+
+alert("Enter Bet Amount");
+
+return;
+
+}
+
+if(amount > balance){
+
+alert("Low Balance");
+
+return;
+
+}
+
+balance -= amount;
+
+updateBalance();
+
+let result =
+parseInt(document.getElementById("result").innerHTML);
+
+let win = false;
+
+if(type=="green" && [1,3,7,9].includes(result))
+win = true;
+
+if(type=="red" && [2,4,6,8].includes(result))
+win = true;
+
+if(type=="violet" && [0,5].includes(result))
+win = true;
+
+if(type=="big" && result>=5)
+win = true;
+
+if(type=="small" && result<5)
+win = true;
+
+if(type==result.toString())
+win = true;
+
+if(win){
+
+let prize = amount * 2;
+
+balance += prize;
+
+updateBalance();
+
+alert("Win ₹"+prize);
+
+addHistory(type,amount,"WIN");
+
+}else{
+
+alert("Lose");
+
+addHistory(type,amount,"LOSE");
+
+}
+
+}
+
+function addHistory(type,amount,status){
+
+let history =
+document.getElementById("gameHistory");
+
+history.innerHTML =
+
+`
+<div class="history-box">
+Bet: ${type} <br>
+Amount: ₹${amount} <br>
+Status: ${status}
+</div>
+` + history.innerHTML;
+
+}
+
+function logout(){
+
+window.location.href="index.html";
+
+}
+
+updateBalance();
+
+</script>
+
+</body>
+</html>
