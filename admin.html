@@ -32,7 +32,85 @@
 <button onclick="approveWithdraw()">Approve Withdraw</button>
 </div>
 
-<script>
+function approveWithdraw(){
+alert("Withdraw Approved");
+}
+
+
+
+function saveUpi(){
+
+let upi = document.getElementById("upiInput").value;
+
+localStorage.setItem("adminUpi",upi);
+
+alert("UPI Updated");
+
+}
+
+
+// LOAD DEPOSIT HISTORY
+
+let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
+
+let depositHTML = "";
+
+deposits.forEach(d=>{
+
+depositHTML += `
+
+<tr>
+
+<td>${d.id}</td>
+
+<td>${d.email}</td>
+
+<td>${d.utr}</td>
+
+<td>₹${d.amount}</td>
+
+<td>${d.date}</td>
+
+<td>${d.status}</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("depositHistory").innerHTML = depositHTML;
+
+
+// LOAD WITHDRAW HISTORY
+
+let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
+
+let withdrawHTML = "";
+
+withdraws.forEach(w=>{
+
+withdrawHTML += `
+
+<tr>
+
+<td>${w.id}</td>
+
+<td>${w.email}</td>
+
+<td>₹${w.amount}</td>
+
+<td>${w.date}</td>
+
+<td>${w.status}</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("withdrawHistory").innerHTML = withdrawHTML;
 
 function adminLogin(){
 
@@ -66,5 +144,8 @@ alert("Withdrawal Approved");
 
 </script>
 
+</body>
+</html>
+</script>
 </body>
 </html>
