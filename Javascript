@@ -1,0 +1,233 @@
+// script.js
+
+let timer = 30;
+let period = 20260522100050266;
+
+setInterval(()=>{
+
+document.getElementById("timer").innerHTML = timer;
+
+document.getElementById("period").innerHTML = period;
+
+timer--;
+
+if(timer < 0){
+
+timer = 30;
+
+period++;
+
+let num = Math.floor(Math.random()*10);
+
+let result = "";
+
+if(num >= 5){
+
+result = "BIG";
+
+}else{
+
+result = "SMALL";
+
+}
+
+let colorClass = "";
+
+if(num % 2 == 0){
+
+colorClass = "red-text";
+
+}else{
+
+colorClass = "green-text";
+
+}
+
+const row = `
+
+<tr>
+
+<td>${period}</td>
+
+<td class="${colorClass}">
+${num}
+</td>
+
+<td>${result}</td>
+
+</tr>
+
+`;
+
+document.getElementById("historyData").innerHTML =
+row +
+document.getElementById("historyData").innerHTML;
+
+}
+
+},1000);
+
+
+/* SIGNUP */
+
+function signup(){
+
+let email =
+document.getElementById("email").value;
+
+let password =
+document.getElementById("password").value;
+
+if(email=="" || password==""){
+
+alert("Fill All Details");
+
+return;
+
+}
+
+localStorage.setItem("wi_email",email);
+
+localStorage.setItem("wi_password",password);
+
+alert("Signup Successful");
+
+}
+
+
+/* LOGIN */
+
+function login(){
+
+let email =
+document.getElementById("email").value;
+
+let password =
+document.getElementById("password").value;
+
+if(
+
+email ==
+localStorage.getItem("wi_email")
+
+&&
+
+password ==
+localStorage.getItem("wi_password")
+
+){
+
+localStorage.setItem("wi_login","yes");
+
+document.getElementById("loginPage").style.display="none";
+
+document.getElementById("homePage").style.display="block";
+
+document.getElementById("userEmail").innerHTML = email;
+
+}else{
+
+alert("Wrong Email or Password");
+
+}
+
+}
+
+
+/* AUTO LOGIN */
+
+window.onload = function(){
+
+if(localStorage.getItem("wi_login")=="yes"){
+
+document.getElementById("loginPage").style.display="none";
+
+document.getElementById("homePage").style.display="block";
+
+document.getElementById("userEmail").innerHTML =
+localStorage.getItem("wi_email");
+
+}
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+localStorage.removeItem("wi_login");
+
+location.reload();
+
+}
+
+
+/* DEMO BUTTON ACTIONS */
+
+document.querySelector(".deposit-btn")
+.onclick = function(){
+
+alert("Deposit Page Opening");
+
+};
+
+document.querySelector(".withdraw-btn")
+.onclick = function(){
+
+alert("Withdraw Page Opening");
+
+};
+
+
+/* BET BUTTONS */
+
+document.querySelectorAll(".number-grid button")
+.forEach(btn=>{
+
+btn.onclick = function(){
+
+alert(
+"Bet Placed On Number " +
+this.innerHTML
+);
+
+};
+
+});
+
+
+document.querySelector(".green-btn")
+.onclick = function(){
+
+alert("Bet Placed On GREEN");
+
+};
+
+document.querySelector(".red-btn")
+.onclick = function(){
+
+alert("Bet Placed On RED");
+
+};
+
+document.querySelector(".violet-btn")
+.onclick = function(){
+
+alert("Bet Placed On VIOLET");
+
+};
+
+document.querySelector(".big-btn")
+.onclick = function(){
+
+alert("Bet Placed On BIG");
+
+};
+
+document.querySelector(".small-btn")
+.onclick = function(){
+
+alert("Bet Placed On SMALL");
+
+};
