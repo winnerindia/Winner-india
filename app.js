@@ -1,5 +1,3 @@
-// app.js
-
 let currentUser = localStorage.getItem("currentUser");
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -7,11 +5,10 @@ let users = JSON.parse(localStorage.getItem("users")) || [];
 function signup(){
 
 let email = document.getElementById("email").value;
-
 let password = document.getElementById("password").value;
 
 if(email=="" || password==""){
-alert("Fill all details");
+alert("Fill Details");
 return;
 }
 
@@ -35,7 +32,6 @@ alert("Signup Success");
 function login(){
 
 let email = document.getElementById("email").value;
-
 let password = document.getElementById("password").value;
 
 let found = users.find(u=>u.email==email && u.password==password);
@@ -62,7 +58,15 @@ location.reload();
 
 function loadUser(){
 
-if(!currentUser)return;
+if(!currentUser){
+
+document.getElementById("authBox").style.display="block";
+
+document.getElementById("userPanel").style.display="none";
+
+return;
+
+}
 
 document.getElementById("authBox").style.display="none";
 
@@ -116,7 +120,7 @@ loadHistory();
 
 function openWithdraw(){
 
-let amount = prompt("Withdraw Amount");
+let amount = prompt("Enter Withdraw Amount");
 
 if(amount < 110){
 alert("Minimum Withdrawal ₹110");
@@ -124,9 +128,7 @@ return;
 }
 
 let bank = prompt("Bank Name");
-
-let acc = prompt("Account Number");
-
+let account = prompt("Account Number");
 let ifsc = prompt("IFSC Code");
 
 let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
@@ -134,17 +136,17 @@ let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
 withdraws.push({
 id:Math.floor(Math.random()*99999),
 email:currentUser,
-amount:amount,
 bank:bank,
-account:acc,
+account:account,
 ifsc:ifsc,
+amount:amount,
 date:new Date().toLocaleString(),
 status:"Pending"
 });
 
 localStorage.setItem("withdraws",JSON.stringify(withdraws));
 
-alert("Withdrawal Submitted");
+alert("Withdraw Submitted");
 
 loadHistory();
 
@@ -154,17 +156,15 @@ function loadHistory(){
 
 let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
 
-let html="";
+let dhtml = "";
 
 deposits.forEach(d=>{
 
 if(d.email==currentUser){
 
-html += `
+dhtml += `
 <p>
-₹${d.amount} |
-${d.status} |
-${d.date}
+₹${d.amount} | ${d.status} | ${d.date}
 </p>
 `;
 
@@ -172,11 +172,15 @@ ${d.date}
 
 });
 
-document.getElementById("depositHistory").innerHTML=html;
+let dh = document.getElementById("depositHistory");
+
+if(dh){
+dh.innerHTML=dhtml;
+}
 
 let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
 
-let whtml="";
+let whtml = "";
 
 withdraws.forEach(w=>{
 
@@ -184,9 +188,7 @@ if(w.email==currentUser){
 
 whtml += `
 <p>
-₹${w.amount} |
-${w.status} |
-${w.date}
+₹${w.amount} | ${w.status} | ${w.date}
 </p>
 `;
 
@@ -194,7 +196,11 @@ ${w.date}
 
 });
 
-document.getElementById("withdrawHistory").innerHTML=whtml;
+let wh = document.getElementById("withdrawHistory");
+
+if(wh){
+wh.innerHTML=whtml;
+}
 
 }
 
@@ -208,7 +214,27 @@ alert(type+" Bet Success");
 
 }
 
-let sec = 30;
+function betNumber(num){
+
+let amount = prompt("Enter Bet Amount");
+
+if(amount==null)return;
+
+alert("Bet Placed On "+num);
+
+}
+
+let gameTime = 30;
+
+let sec = gameTime;
+
+function changeGameTime(time){
+
+gameTime = time;
+
+sec = time;
+
+}
 
 setInterval(()=>{
 
@@ -222,7 +248,7 @@ timer.innerHTML=sec;
 
 if(sec<=0){
 
-sec=30;
+sec = gameTime;
 
 let result = localStorage.getItem("gameResult") || 0;
 
@@ -240,7 +266,7 @@ let upi = document.getElementById("upiInput").value;
 
 localStorage.setItem("adminUpi",upi);
 
-alert("UPI Updated");
+alert("UPI Saved");
 
 }
 
@@ -250,7 +276,7 @@ let result = document.getElementById("gameResult").value;
 
 localStorage.setItem("gameResult",result);
 
-alert("Result Updated");
+alert("Result Saved");
 
 }
 
@@ -313,46 +339,3 @@ wd.innerHTML=whtml;
 loadUser();
 
 loadAdmin();
-let gameTime = 30;
-let sec = gameTime;
-
-function changeGameTime(time){
-
-gameTime = time;
-sec = time;
-
-}
-
-function betNumber(num){
-
-let amount = prompt("Enter Bet Amount");
-
-if(amount==null)return;
-
-alert("Bet Placed On Number "+num);
-
-}
-
-setInterval(()=>{
-
-let timer = document.getElementById("timer");
-
-if(timer){
-
-sec--;
-
-timer.innerHTML=sec;
-
-if(sec<=0){
-
-sec=gameTime;
-
-let result = localStorage.getItem("gameResult") || 0;
-
-document.getElementById("result").innerHTML=result;
-
-}
-
-}
-
-},1000);
