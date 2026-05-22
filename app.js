@@ -1,25 +1,8 @@
-let timer = 30;
+// app.js
 
-setInterval(()=>{
+let currentUser = localStorage.getItem("currentUser");
 
-let t = document.getElementById("timer");
-
-if(t){
-
-t.innerHTML = timer;
-
-timer--;
-
-if(timer < 0){
-
-timer = 30;
-
-}
-
-}
-
-},1000);
-
+let users = JSON.parse(localStorage.getItem("users")) || [];
 
 function signup(){
 
@@ -27,18 +10,27 @@ let email = document.getElementById("email").value;
 
 let password = document.getElementById("password").value;
 
-localStorage.setItem("email",email);
+if(email=="" || password==""){
+alert("Fill all details");
+return;
+}
 
-localStorage.setItem("password",password);
+let id = 1000 + users.length + 1;
 
-let id = Math.floor(Math.random()*99999);
+let user = {
+id:id,
+email:email,
+password:password,
+wallet:1000
+};
 
-localStorage.setItem("userId",id);
+users.push(user);
+
+localStorage.setItem("users",JSON.stringify(users));
 
 alert("Signup Success");
 
 }
-
 
 function login(){
 
@@ -46,234 +38,278 @@ let email = document.getElementById("email").value;
 
 let password = document.getElementById("password").value;
 
-if(
-email == localStorage.getItem("email")
-&&
-password == localStorage.getItem("password")
-){
+let found = users.find(u=>u.email==email && u.password==password);
 
-document.getElementById("loginBox").style.display="none";
+if(found){
 
-document.getElementById("mainPanel").style.display="block";
+localStorage.setItem("currentUser",email);
 
-document.getElementById("userEmail").innerHTML=email;
-
-document.getElementById("userId").innerHTML=localStorage.getItem("userId");
-
-loadHistory();
+location.reload();
 
 }else{
-
 alert("Wrong Login");
-
 }
 
 }
-
 
 function logout(){
+
+localStorage.removeItem("currentUser");
 
 location.reload();
 
 }
 
+function loadUser(){
 
-function deposit(){
+if(!currentUser)return;
+
+document.getElementById("authBox").style.display="none";
+
+document.getElementById("userPanel").style.display="block";
+
+let user = users.find(u=>u.email==currentUser);
+
+document.getElementById("userId").innerHTML=user.id;
+
+document.getElementById("userEmail").innerHTML=user.email;
+
+document.getElementById("wallet").innerHTML=user.wallet;
+
+loadHistory();
+
+}
+
+function openDeposit(){
 
 let amount = prompt("Enter Deposit Amount");
 
 if(amount < 100){
-
 alert("Minimum Deposit ₹100");
-
 return;
-
 }
 
-let upi = localStorage.getItem("upi") || "winnerindia@upi";
-
-alert("Pay on UPI:\n"+upi);
-
 let utr = prompt("Enter UTR Number");
+
+let upi = localStorage.getItem("adminUpi") || "winnerindia@upi";
+
+alert("Pay On UPI:\n"+upi);
 
 let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
 
 deposits.push({
-
-amount:amount,
-
+id:Math.floor(Math.random()*99999),
+email:currentUser,
 utr:utr,
-
-status:"Processing",
-
-date:new Date().toLocaleString()
-
+amount:amount,
+date:new Date().toLocaleString(),
+status:"Processing"
 });
 
 localStorage.setItem("deposits",JSON.stringify(deposits));
 
-loadHistory();
-
 alert("Deposit Submitted");
 
+loadHistory();
+
 }
 
+function openWithdraw(){
 
-function withdraw(){
-
-let amount = prompt("Enter Withdraw Amount");
+let amount = prompt("Withdraw Amount");
 
 if(amount < 110){
-
-alert("Minimum Withdraw ₹110");
-
+alert("Minimum Withdrawal ₹110");
 return;
-
 }
+
+let bank = prompt("Bank Name");
+
+let acc = prompt("Account Number");
+
+let ifsc = prompt("IFSC Code");
 
 let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
 
 withdraws.push({
-
+id:Math.floor(Math.random()*99999),
+email:currentUser,
 amount:amount,
-
-status:"Pending",
-
-date:new Date().toLocaleString()
-
+bank:bank,
+account:acc,
+ifsc:ifsc,
+date:new Date().toLocaleString(),
+status:"Pending"
 });
 
 localStorage.setItem("withdraws",JSON.stringify(withdraws));
 
+alert("Withdrawal Submitted");
+
 loadHistory();
 
-alert("Withdraw Submitted");
-
 }
-
 
 function loadHistory(){
 
 let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
 
-let depositHTML = "";
+let html="";
 
 deposits.forEach(d=>{
 
-depositHTML += `
+if(d.email==currentUser){
+
+html += `
 <p>
-₹${d.amount}
-|
-${d.status}
-|
+₹${d.amount} |
+${d.status} |
 ${d.date}
 </p>
 `;
 
-});
-
-let dh = document.getElementById("depositHistory");
-
-if(dh){
-
-dh.innerHTML = depositHTML;
-
 }
 
+});
+
+document.getElementById("depositHistory").innerHTML=html;
 
 let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
 
-let withdrawHTML = "";
+let whtml="";
 
 withdraws.forEach(w=>{
 
-withdrawHTML += `
+if(w.email==currentUser){
+
+whtml += `
 <p>
-₹${w.amount}
-|
-${w.status}
-|
+₹${w.amount} |
+${w.status} |
 ${w.date}
 </p>
 `;
 
+}
+
 });
 
-let wh = document.getElementById("withdrawHistory");
-
-if(wh){
-
-wh.innerHTML = withdrawHTML;
+document.getElementById("withdrawHistory").innerHTML=whtml;
 
 }
-
-let ad = document.getElementById("adminDeposits");
-
-if(ad){
-
-ad.innerHTML = depositHTML;
-
-}
-
-let aw = document.getElementById("adminWithdraws");
-
-if(aw){
-
-aw.innerHTML = withdrawHTML;
-
-}
-
-}
-
-
-function saveUpi(){
-
-let upi = document.getElementById("upiInput").value;
-
-localStorage.setItem("upi",upi);
-
-alert("UPI Saved");
-
-}
-
-
-function setResult(){
-
-let result = document.getElementById("resultInput").value;
-
-localStorage.setItem("gameResult",result);
-
-alert("Result Set: "+result);
-
-}
-
 
 function bet(type){
 
 let amount = prompt("Enter Bet Amount");
 
-if(!amount) return;
+if(amount==null)return;
 
-let result = localStorage.getItem("gameResult") || "0";
-
-let balance = parseInt(document.getElementById("balance").innerHTML);
-
-if(result % 2 == 0){
-
-balance += parseInt(amount);
-
-alert("You Win");
-
-}else{
-
-balance -= parseInt(amount);
-
-alert("You Lose");
+alert(type+" Bet Success");
 
 }
 
-document.getElementById("balance").innerHTML = balance;
+let sec = 30;
+
+setInterval(()=>{
+
+let timer = document.getElementById("timer");
+
+if(timer){
+
+sec--;
+
+timer.innerHTML=sec;
+
+if(sec<=0){
+
+sec=30;
+
+let result = localStorage.getItem("gameResult") || 0;
+
+document.getElementById("result").innerHTML=result;
 
 }
 
-loadHistory();
+}
+
+},1000);
+
+function saveUpi(){
+
+let upi = document.getElementById("upiInput").value;
+
+localStorage.setItem("adminUpi",upi);
+
+alert("UPI Updated");
+
+}
+
+function saveResult(){
+
+let result = document.getElementById("gameResult").value;
+
+localStorage.setItem("gameResult",result);
+
+alert("Result Updated");
+
+}
+
+function loadAdmin(){
+
+let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
+
+let dhtml="";
+
+deposits.forEach(d=>{
+
+dhtml += `
+<div class="box">
+<p>ID: ${d.id}</p>
+<p>Email: ${d.email}</p>
+<p>UTR: ${d.utr}</p>
+<p>₹${d.amount}</p>
+<p>${d.date}</p>
+<p>${d.status}</p>
+</div>
+`;
+
+});
+
+let depo = document.getElementById("adminDeposit");
+
+if(depo){
+depo.innerHTML=dhtml;
+}
+
+let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
+
+let whtml="";
+
+withdraws.forEach(w=>{
+
+whtml += `
+<div class="box">
+<p>ID: ${w.id}</p>
+<p>Email: ${w.email}</p>
+<p>Bank: ${w.bank}</p>
+<p>Account: ${w.account}</p>
+<p>IFSC: ${w.ifsc}</p>
+<p>₹${w.amount}</p>
+<p>${w.date}</p>
+<p>${w.status}</p>
+</div>
+`;
+
+});
+
+let wd = document.getElementById("adminWithdraw");
+
+if(wd){
+wd.innerHTML=whtml;
+}
+
+}
+
+loadUser();
+
+loadAdmin();
