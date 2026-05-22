@@ -1,23 +1,21 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Winner India</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="topbar">
 <div class="logo">Winner India</div>
-<a href="admin.html">
-<button class="admin-btn">Admin</button>
-</a>
 </div>
 
 <div class="container">
 
-<div id="loginBox" class="card">
-
+<div id="authBox" class="box">
 <h2>Login / Signup</h2>
 
 <input type="email" id="email" placeholder="Enter Email">
@@ -27,55 +25,53 @@
 <button onclick="signup()">Signup</button>
 
 <button onclick="login()">Login</button>
-
 </div>
 
-<div id="mainPanel" style="display:none;">
+<div id="userPanel" style="display:none;">
 
-<div class="card">
-
+<div class="box">
 <h2>ID: <span id="userId"></span></h2>
+<p id="userEmail"></p>
 
-<h3 id="userEmail"></h3>
+<h1>₹<span id="wallet">1000</span></h1>
 
-<h1>₹<span id="balance">1000</span></h1>
+<button onclick="openDeposit()">Deposit</button>
 
-<button onclick="deposit()">Deposit</button>
+<button onclick="openWithdraw()">Withdraw</button>
 
-<button onclick="withdraw()">Withdraw</button>
-
-<button onclick="logout()">Logout</button>
-
+<button class="red" onclick="logout()">Logout</button>
 </div>
 
-<div class="card">
+<div class="box">
+<h2>WinGo 30Sec</h2>
 
-<h1>WinGo 30Sec</h1>
+<h1 id="timer">30</h1>
 
-<h2 id="timer">30</h2>
+<h2>Result: <span id="result">0</span></h2>
 
-<button onclick="bet('GREEN')">Green</button>
+<div class="bet-grid">
 
-<button onclick="bet('RED')">Red</button>
+<button class="green" onclick="bet('GREEN')">GREEN</button>
 
-<button onclick="bet('VIOLET')">Violet</button>
+<button class="red" onclick="bet('RED')">RED</button>
+
+<button class="violet" onclick="bet('VIOLET')">VIOLET</button>
+
+<button onclick="bet('BIG')">BIG</button>
+
+<button onclick="bet('SMALL')">SMALL</button>
 
 </div>
+</div>
 
-<div class="card">
-
+<div class="box">
 <h2>Deposit History</h2>
-
 <div id="depositHistory"></div>
-
 </div>
 
-<div class="card">
-
+<div class="box">
 <h2>Withdraw History</h2>
-
 <div id="withdrawHistory"></div>
-
 </div>
 
 </div>
@@ -83,6 +79,5 @@
 </div>
 
 <script src="app.js"></script>
-
 </body>
 </html>
