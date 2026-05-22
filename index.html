@@ -157,10 +157,84 @@ Winner India
 <h2>Wallet Balance</h2>
 
 <h1 id="wallet">1000</h1>
+function saveDeposit(){
 
-<button onclick="saveDeposit()">Deposit</button>
+let amount = prompt("Enter Deposit Amount");
 
-<button onclick="saveWithdraw()">Withdraw</button>
+if(amount < 100){
+
+alert("Minimum Deposit ₹100");
+
+return;
+
+}
+
+let utr = prompt("Enter UTR Number");
+
+let upi = localStorage.getItem("adminUpi") || "winnerindia@upi";
+
+alert("Pay On UPI ID:\n"+upi);
+
+let deposits = JSON.parse(localStorage.getItem("deposits")) || [];
+
+deposits.push({
+
+id:Math.floor(Math.random()*99999),
+
+email:localStorage.getItem("email"),
+
+utr:utr,
+
+amount:amount,
+
+date:new Date().toLocaleString(),
+
+status:"Processing"
+
+});
+
+localStorage.setItem("deposits",JSON.stringify(deposits));
+
+alert("Deposit Submitted");
+
+loadHistory();
+
+}
+function saveWithdraw(){
+
+let amount = prompt("Withdraw Amount");
+
+if(amount < 110){
+
+alert("Minimum Withdrawal ₹110");
+
+return;
+
+}
+
+let withdraws = JSON.parse(localStorage.getItem("withdraws")) || [];
+
+withdraws.push({
+
+id:Math.floor(Math.random()*99999),
+
+email:localStorage.getItem("email"),
+
+amount:amount,
+
+date:new Date().toLocaleString(),
+
+status:"Pending"
+
+});
+
+localStorage.setItem("withdraws",JSON.stringify(withdraws));
+
+alert("Withdrawal Submitted");
+
+loadHistory();
+
+}
 
 </div>
 
