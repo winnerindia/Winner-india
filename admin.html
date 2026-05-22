@@ -1,40 +1,32 @@
+<!-- admin.html -->
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
 <div class="topbar">
-
 <div class="logo">Admin Panel</div>
-
 </div>
 
 <div class="container">
 
-<div class="card">
+<div class="box">
+<h2>Change UPI ID</h2>
 
-<h2>Change UPI</h2>
-
-<input type="text" id="upiInput" placeholder="Enter UPI">
+<input type="text" id="upiInput" placeholder="Enter UPI ID">
 
 <button onclick="saveUpi()">Save UPI</button>
-
 </div>
 
-<div class="card">
+<div class="box">
+<h2>Set Result</h2>
 
-<h2>Set Game Result</h2>
-
-<select id="resultInput">
-
+<select id="gameResult">
 <option>0</option>
 <option>1</option>
 <option>2</option>
@@ -45,32 +37,23 @@
 <option>7</option>
 <option>8</option>
 <option>9</option>
-
 </select>
 
-<button onclick="setResult()">Save Result</button>
-
+<button onclick="saveResult()">Save Result</button>
 </div>
 
-<div class="card">
-
+<div class="box">
 <h2>Deposit Requests</h2>
-
-<div id="adminDeposits"></div>
-
+<div id="adminDeposit"></div>
 </div>
 
-<div class="card">
-
+<div class="box">
 <h2>Withdraw Requests</h2>
-
-<div id="adminWithdraws"></div>
-
+<div id="adminWithdraw"></div>
 </div>
 
 </div>
 
 <script src="app.js"></script>
-
 </body>
 </html>
