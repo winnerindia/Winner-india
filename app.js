@@ -313,3 +313,46 @@ wd.innerHTML=whtml;
 loadUser();
 
 loadAdmin();
+let gameTime = 30;
+let sec = gameTime;
+
+function changeGameTime(time){
+
+gameTime = time;
+sec = time;
+
+}
+
+function betNumber(num){
+
+let amount = prompt("Enter Bet Amount");
+
+if(amount==null)return;
+
+alert("Bet Placed On Number "+num);
+
+}
+
+setInterval(()=>{
+
+let timer = document.getElementById("timer");
+
+if(timer){
+
+sec--;
+
+timer.innerHTML=sec;
+
+if(sec<=0){
+
+sec=gameTime;
+
+let result = localStorage.getItem("gameResult") || 0;
+
+document.getElementById("result").innerHTML=result;
+
+}
+
+}
+
+},1000);
