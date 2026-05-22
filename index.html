@@ -478,3 +478,81 @@ alert("VIOLET Bet Successfully");
 }
 
 </script>
+<script>
+
+let time = 30;
+let period = 20260522100050266;
+
+function updateTimer(){
+
+document.getElementById("timer").innerHTML = time;
+document.getElementById("period").innerHTML = period;
+
+time--;
+
+if(time < 0){
+
+time = 30;
+period++;
+
+let num = Math.floor(Math.random()*10);
+
+let result = num >= 5 ? "BIG" : "SMALL";
+
+const table = document.querySelector(".history table");
+
+const row = `
+<tr>
+<td>${period}</td>
+<td style="color:${num%2==0?'red':'#00ff99'}">${num}</td>
+<td>${result}</td>
+</tr>
+`;
+
+table.innerHTML += row;
+
+}
+
+}
+
+setInterval(updateTimer,1000);
+
+function showBet(msg){
+alert(msg);
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+document.querySelector(".big-btn").addEventListener("click",()=>{
+showBet("BIG Bet Successfully");
+});
+
+document.querySelector(".small-btn").addEventListener("click",()=>{
+showBet("SMALL Bet Successfully");
+});
+
+document.querySelector(".green-btn").addEventListener("click",()=>{
+showBet("GREEN Bet Successfully");
+});
+
+document.querySelector(".red-btn").addEventListener("click",()=>{
+showBet("RED Bet Successfully");
+});
+
+document.querySelector(".violet-btn").addEventListener("click",()=>{
+showBet("VIOLET Bet Successfully");
+});
+
+document.querySelectorAll(".num").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+showBet("Number Bet: " + btn.innerText);
+
+});
+
+});
+
+});
+
+  </script>
