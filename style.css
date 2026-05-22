@@ -7,8 +7,8 @@ color:white;
 }
 
 .topbar{
+background:#111;
 padding:20px;
-background:#0a0a0a;
 }
 
 .logoBox{
@@ -18,26 +18,27 @@ gap:15px;
 }
 
 .logo{
-width:90px;
-height:90px;
+width:80px;
+height:80px;
 border-radius:50%;
 background:#ffcc00;
-color:#000;
-font-size:40px;
-font-weight:bold;
 display:flex;
 align-items:center;
 justify-content:center;
+font-size:40px;
+font-weight:bold;
+color:#000;
 }
 
 .topbar h1{
 margin:0;
-font-size:28px;
+font-size:45px;
 color:#ffcc00;
 }
 
 .topbar p{
-margin-top:5px;
+margin:0;
+font-size:20px;
 color:#999;
 }
 
@@ -45,13 +46,108 @@ color:#999;
 background:#111;
 margin:20px;
 padding:25px;
-border-radius:25px;
-box-shadow:0 0 20px rgba(255,255,0,0.1);
+border-radius:30px;
 }
 
 .card h2{
-font-size:28px;
-margin-bottom:25px;
+font-size:30px;
+margin-bottom:20px;
+}
+
+.card h1{
+font-size:60px;
+}
+
+.walletBtns{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+button{
+border:none;
+border-radius:20px;
+padding:20px;
+font-size:25px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+}
+
+.depositBtn{
+background:#00d95f;
+}
+
+.withdrawBtn{
+background:#1ea7ff;
+}
+
+.logoutBtn{
+background:#ff2d55;
+width:100%;
+margin-top:20px;
+}
+
+.timerBox{
+display:flex;
+gap:15px;
+margin-bottom:20px;
+}
+
+.timeBtn{
+flex:1;
+background:#222;
+}
+
+.numberGrid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+margin-top:25px;
+}
+
+.numberBtn{
+height:70px;
+font-size:30px;
+}
+
+.green{
+background:#00b140;
+}
+
+.red{
+background:#ff2b2b;
+}
+
+.violet{
+background:#b000b5;
+}
+
+.colorGrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:25px;
+}
+
+.greenBtn{
+background:#00b140;
+}
+
+.redBtn{
+background:#ff2b2b;
+}
+
+.violetBtn{
+background:#b000b5;
+}
+
+.bigBtn{
+background:#00d95f;
+}
+
+.smallBtn{
+background:#ff9500;
 }
 
 input{
@@ -60,25 +156,20 @@ padding:20px;
 border:none;
 border-radius:20px;
 margin-bottom:20px;
-font-size:20px;
-box-sizing:border-box;
-}
-
-button{
-width:100%;
-padding:20px;
-border:none;
-border-radius:20px;
 font-size:22px;
-font-weight:bold;
+box-sizing:border-box;
+background:#222;
 color:white;
-margin-top:15px;
 }
 
 .signupBtn{
 background:#00d95f;
+width:100%;
+margin-top:10px;
 }
 
 .loginBtn{
 background:#1ea7ff;
+width:100%;
+margin-top:10px;
 }
