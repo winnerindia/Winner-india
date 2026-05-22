@@ -25,14 +25,14 @@ gap:15px;
 }
 
 .logo{
-width:85px;
-height:85px;
+width:80px;
+height:80px;
 border-radius:50%;
 background:gold;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:40px;
+font-size:38px;
 font-weight:bold;
 color:black;
 }
@@ -46,7 +46,6 @@ color:gold;
 .title p{
 margin:0;
 color:#aaa;
-font-size:18px;
 }
 
 .container{
@@ -58,13 +57,12 @@ background:#111;
 padding:25px;
 border-radius:25px;
 margin-bottom:25px;
-box-shadow:0 0 15px rgba(255,215,0,0.12);
+box-shadow:0 0 15px rgba(255,215,0,0.15);
 }
 
 h2{
 margin-top:0;
 font-size:32px;
-margin-bottom:20px;
 }
 
 input{
@@ -108,7 +106,7 @@ background:linear-gradient(45deg,#ff1744,#ff5252);
 }
 
 .purple{
-background:linear-gradient(45deg,#b100ff,#ea80fc);
+background:linear-gradient(45deg,#9c27b0,#e040fb);
 }
 
 .box{
@@ -120,31 +118,31 @@ font-size:22px;
 word-break:break-word;
 }
 
-.qrbox{
-width:220px;
-height:220px;
+.qr-box{
+width:250px;
+height:250px;
 background:white;
-border-radius:20px;
 margin:auto;
+border-radius:20px;
+margin-top:20px;
 display:flex;
 align-items:center;
 justify-content:center;
-color:black;
-font-size:24px;
-font-weight:bold;
 overflow:hidden;
 }
 
-.qrbox img{
+.qr-box img{
 width:100%;
 height:100%;
 object-fit:cover;
 }
 
-.stats{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
+.stat{
+background:#1d1d1d;
+padding:15px;
+border-radius:15px;
+margin-top:10px;
+font-size:22px;
 }
 
 </style>
@@ -185,23 +183,31 @@ Update Result
 
 <div class="card">
 
-<h2>Payment Gateway Settings</h2>
+<h2>UPI Settings</h2>
 
 <input type="text"
 id="upiInput"
 placeholder="Enter UPI ID">
 
-<input type="text"
-id="qrInput"
-placeholder="Paste QR Image Link">
+<button class="blue"
+onclick="saveUpi()">
+Save UPI ID
+</button>
 
-<div class="qrbox" id="qrBox">
-QR
+<div class="qr-box">
+
+<img id="qrImage"
+src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Alipay_QR_code.png">
+
 </div>
 
-<button class="blue"
-onclick="savePaymentSettings()">
-Save Payment Settings
+<input type="text"
+id="qrLink"
+placeholder="Paste QR Image Link">
+
+<button class="purple"
+onclick="changeQr()">
+Update QR Image
 </button>
 
 </div>
@@ -210,33 +216,29 @@ Save Payment Settings
 
 <h2>Bet Statistics</h2>
 
-<div class="stats">
-
-<div class="box">
-Green Bet : 
+<div class="stat">
+Green Bet :
 <span id="greenCount">0</span>
 </div>
 
-<div class="box">
-Red Bet : 
+<div class="stat">
+Red Bet :
 <span id="redCount">0</span>
 </div>
 
-<div class="box">
-Violet Bet : 
+<div class="stat">
+Violet Bet :
 <span id="violetCount">0</span>
 </div>
 
-<div class="box">
-Big Bet : 
+<div class="stat">
+Big Bet :
 <span id="bigCount">0</span>
 </div>
 
-<div class="box">
-Small Bet : 
+<div class="stat">
+Small Bet :
 <span id="smallCount">0</span>
-</div>
-
 </div>
 
 </div>
@@ -302,11 +304,6 @@ onclick="window.location.href='index.html'">
 Open User Panel
 </button>
 
-<button class="purple"
-onclick="refreshData()">
-Refresh Data
-</button>
-
 <button class="red"
 onclick="clearAll()">
 Clear All Data
@@ -323,7 +320,7 @@ document.getElementById("adminResult").value;
 
 if(number==""){
 
-alert("Enter Result");
+alert("Enter Result Number");
 
 return;
 
@@ -334,60 +331,66 @@ localStorage.setItem(
 number
 );
 
-alert("Game Result Updated ✅");
+alert("Result Updated ✅");
 
 }
 
-function savePaymentSettings(){
+function saveUpi(){
 
 let upi =
 document.getElementById("upiInput").value;
 
-let qr =
-document.getElementById("qrInput").value;
+if(upi==""){
 
-if(upi!=""){
+alert("Enter UPI ID");
+
+return;
+
+}
 
 localStorage.setItem(
 "adminUpi",
 upi
 );
 
+alert("UPI Updated ✅");
+
 }
 
-if(qr!=""){
+function changeQr(){
+
+let link =
+document.getElementById("qrLink").value;
+
+if(link==""){
+
+alert("Paste QR Image Link");
+
+return;
+
+}
 
 localStorage.setItem(
-"adminQr",
-qr
+"qrImage",
+link
 );
 
-document.getElementById("qrBox")
-.innerHTML =
-'<img src="'+qr+'">';
+document.getElementById("qrImage").src =
+link;
 
-}
-
-alert("Payment Settings Saved ✅");
-
-}
-
-function refreshData(){
-
-location.reload();
+alert("QR Updated ✅");
 
 }
 
 function loadData(){
 
 let qr =
-localStorage.getItem("adminQr");
+localStorage.getItem("qrImage");
 
 if(qr){
 
-document.getElementById("qrBox")
-.innerHTML =
-'<img src="'+qr+'">';
+document.getElementById("qrImage").src =
+qr;
 
 }
 
