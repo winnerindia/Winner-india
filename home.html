@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Winner India</title>
 
 <style>
@@ -16,7 +15,7 @@ font-family:Arial;
 color:white;
 }
 
-.topbar{
+.header{
 background:#111;
 padding:20px;
 display:flex;
@@ -32,47 +31,46 @@ background:gold;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:38px;
+font-size:40px;
 font-weight:bold;
 color:black;
 }
 
-.topbar h1{
+.title h1{
 margin:0;
-font-size:40px;
+font-size:38px;
 color:gold;
 }
 
-.topbar p{
+.title p{
 margin:0;
-font-size:20px;
 color:#aaa;
+font-size:20px;
+}
+
+.container{
+padding:20px;
 }
 
 .card{
 background:#111;
-margin:20px;
-padding:20px;
+padding:25px;
 border-radius:25px;
-box-shadow:0 0 15px rgba(255,215,0,0.2);
-}
-
-h2{
-font-size:28px;
-margin-bottom:15px;
+margin-bottom:25px;
+box-shadow:0 0 15px rgba(255,215,0,0.15);
 }
 
 .balance{
-font-size:50px;
+font-size:60px;
 font-weight:bold;
-color:#00ff99;
-margin-bottom:20px;
+color:#00ff88;
+margin-top:15px;
 }
 
 .btn-row{
 display:flex;
 gap:15px;
-margin-top:15px;
+margin-top:20px;
 }
 
 button{
@@ -86,24 +84,50 @@ color:white;
 cursor:pointer;
 }
 
-.green-btn{
+.green{
 background:linear-gradient(45deg,#00c853,#00e676);
 }
 
-.blue-btn{
+.blue{
 background:linear-gradient(45deg,#2196f3,#03a9f4);
 }
 
-.red-btn{
+.red{
 background:linear-gradient(45deg,#ff1744,#ff5252);
 }
 
-.orange-btn{
+.orange{
 background:linear-gradient(45deg,#ff9800,#ffb74d);
 }
 
-.purple-btn{
-background:linear-gradient(45deg,#9c27b0,#e040fb);
+.purple{
+background:linear-gradient(45deg,#c218ff,#ea80fc);
+}
+
+.game-btn{
+width:100%;
+margin-top:15px;
+}
+
+.number-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+margin-top:20px;
+}
+
+.number{
+padding:20px;
+border-radius:18px;
+text-align:center;
+font-size:35px;
+font-weight:bold;
+}
+
+.result{
+font-size:55px;
+font-weight:bold;
+margin-top:20px;
 }
 
 input{
@@ -111,113 +135,76 @@ width:100%;
 padding:18px;
 border:none;
 border-radius:18px;
-font-size:24px;
-margin-top:15px;
-background:#1e1e1e;
+background:#1d1d1d;
 color:white;
+font-size:24px;
+margin-top:20px;
 box-sizing:border-box;
 }
 
-.timer{
-font-size:70px;
-font-weight:bold;
-margin-top:20px;
-}
-
-.result{
-font-size:40px;
-margin-top:20px;
-font-weight:bold;
-}
-
-.numbers{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:15px;
-margin-top:20px;
-}
-
-.number-btn{
-height:90px;
-border-radius:20px;
-font-size:38px;
-font-weight:bold;
-}
-
-.green{
-background:linear-gradient(45deg,#00c853,#00e676);
-}
-
-.red{
-background:linear-gradient(45deg,#ff1744,#ff5252);
-}
-
-.violet{
-background:linear-gradient(45deg,#9c27b0,#e040fb);
-}
-
-.history-box{
-background:#1b1b1b;
-padding:15px;
-border-radius:15px;
-margin-top:10px;
-font-size:20px;
-}
-
-.full{
-width:100%;
+.history{
+background:#1d1d1d;
+padding:18px;
+border-radius:18px;
 margin-top:15px;
+font-size:22px;
 }
 
 </style>
-
 </head>
+
 <body>
 
-<div class="topbar">
+<div class="header">
 
 <div class="logo">
 WI
 </div>
 
-<div>
+<div class="title">
 <h1>Winner India</h1>
 <p>India's Gaming Platform</p>
 </div>
 
 </div>
 
+<div class="container">
+
 <div class="card">
 
-<h2>Wallet</h2>
+<h2>Wallet Balance</h2>
 
-<div class="balance" id="walletBalance">
+<div class="balance" id="balance">
 ₹1000
 </div>
 
 <div class="btn-row">
 
-<button class="green-btn"
+<button class="green"
 onclick="window.location.href='deposit.html'">
 Deposit
 </button>
 
-<button class="blue-btn"
+<button class="blue"
 onclick="window.location.href='withdraw.html'">
 Withdraw
 </button>
 
 </div>
 
-<button class="orange-btn full"
+<div class="btn-row">
+
+<button class="orange"
 onclick="window.location.href='profile.html'">
 Profile
 </button>
 
-<button class="red-btn full"
-onclick="logout()">
-Logout
+<button class="purple"
+onclick="window.location.href='result-history.html'">
+History
 </button>
+
+</div>
 
 </div>
 
@@ -227,11 +214,11 @@ Logout
 
 <div class="btn-row">
 
-<button class="green-btn">
+<button class="green">
 30 Sec
 </button>
 
-<button class="blue-btn">
+<button class="blue">
 1 Min
 </button>
 
@@ -241,81 +228,58 @@ Logout
 id="betAmount"
 placeholder="Enter Bet Amount">
 
-<div class="timer"
-id="timer">
-30
-</div>
-
 <div class="result">
-Result:
-<span id="result">
-0
-</span>
+<span id="timer">30</span>
 </div>
 
-<div class="numbers">
+<h1>
+Result:
+<span id="result">0</span>
+</h1>
 
-<button class="number-btn violet"
-onclick="placeBet('0')">
-0
-</button>
+<div class="number-grid">
 
-<button class="number-btn green"
-onclick="placeBet('1')">
-1
-</button>
+<div class="number purple"
+onclick="checkWin('violet')">0</div>
 
-<button class="number-btn red"
-onclick="placeBet('2')">
-2
-</button>
+<div class="number green"
+onclick="checkWin('green')">1</div>
 
-<button class="number-btn green"
-onclick="placeBet('3')">
-3
-</button>
+<div class="number red"
+onclick="checkWin('red')">2</div>
 
-<button class="number-btn red"
-onclick="placeBet('4')">
-4
-</button>
+<div class="number green"
+onclick="checkWin('green')">3</div>
 
-<button class="number-btn violet"
-onclick="placeBet('5')">
-5
-</button>
+<div class="number red"
+onclick="checkWin('red')">4</div>
 
-<button class="number-btn red"
-onclick="placeBet('6')">
-6
-</button>
+<div class="number purple"
+onclick="checkWin('violet')">5</div>
 
-<button class="number-btn green"
-onclick="placeBet('7')">
-7
-</button>
+<div class="number red"
+onclick="checkWin('red')">6</div>
 
-<button class="number-btn red"
-onclick="placeBet('8')">
-8
-</button>
+<div class="number green"
+onclick="checkWin('green')">7</div>
 
-<button class="number-btn green"
-onclick="placeBet('9')">
-9
-</button>
+<div class="number red"
+onclick="checkWin('red')">8</div>
+
+<div class="number green"
+onclick="checkWin('green')">9</div>
 
 </div>
 
 <div class="btn-row">
 
-<button class="green-btn"
-onclick="placeBet('green')">
+<button class="green game-btn"
+onclick="checkWin('green')">
 Green
 </button>
 
-<button class="purple-btn"
-onclick="placeBet('violet')">
+<button class="purple game-btn"
+onclick="checkWin('violet')">
 Violet
 </button>
 
@@ -323,20 +287,20 @@ Violet
 
 <div class="btn-row">
 
-<button class="red-btn"
-onclick="placeBet('red')">
+<button class="red game-btn"
+onclick="checkWin('red')">
 Red
 </button>
 
-<button class="orange-btn"
-onclick="placeBet('big')">
+<button class="orange game-btn"
+onclick="checkWin('big')">
 Big
 </button>
 
 </div>
 
-<button class="green-btn full"
-onclick="placeBet('small')">
+<button class="green game-btn"
+onclick="checkWin('small')">
 Small
 </button>
 
@@ -346,11 +310,7 @@ Small
 
 <h2>Latest Game History</h2>
 
-<div id="gameHistory">
-
-<div class="history-box">
-No History
-</div>
+<div id="historyBox"></div>
 
 </div>
 
@@ -360,40 +320,28 @@ No History
 
 let balance = 1000;
 
-let timer = 30;
+let savedBalance =
+localStorage.getItem("balance");
+
+if(savedBalance){
+balance = parseInt(savedBalance);
+}
+
+updateBalance();
 
 function updateBalance(){
 
-document.getElementById("walletBalance")
-.innerHTML = "₹" + balance;
+document.getElementById("balance")
+.innerText = "₹" + balance;
 
 }
 
-setInterval(()=>{
-
-timer--;
-
-if(timer <= 0){
-
-timer = 30;
-
-let random =
-Math.floor(Math.random()*10);
-
-document.getElementById("result")
-.innerHTML = random;
-
-}
-
-document.getElementById("timer")
-.innerHTML = timer;
-
-},1000);
-
-function placeBet(type){
+function checkWin(type){
 
 let amount =
-parseInt(document.getElementById("betAmount").value);
+parseInt(
+document.getElementById("betAmount").value
+);
 
 if(!amount || amount <= 0){
 
@@ -405,85 +353,119 @@ return;
 
 if(amount > balance){
 
-alert("Low Balance");
+alert("Insufficient Balance");
 
 return;
 
 }
 
-balance -= amount;
-
-updateBalance();
-
 let result =
-parseInt(document.getElementById("result").innerHTML);
+Math.floor(Math.random() * 10);
+
+document.getElementById("result")
+.innerText = result;
 
 let win = false;
 
-if(type=="green" && [1,3,7,9].includes(result))
+if(type=="small" && result <= 4){
 win = true;
+}
 
-if(type=="red" && [2,4,6,8].includes(result))
+if(type=="big" && result >= 5){
 win = true;
+}
 
-if(type=="violet" && [0,5].includes(result))
+if(type=="red" && [2,4,6,8].includes(result)){
 win = true;
+}
 
-if(type=="big" && result>=5)
+if(type=="green" && [1,3,7,9].includes(result)){
 win = true;
+}
 
-if(type=="small" && result<5)
+if(type=="violet" && [0,5].includes(result)){
 win = true;
-
-if(type==result.toString())
-win = true;
+}
 
 if(win){
 
-let prize = amount * 2;
+balance += amount;
 
-balance += prize;
-
-updateBalance();
-
-alert("Win ₹"+prize);
-
-addHistory(type,amount,"WIN");
+alert("Win ₹" + amount + " ✅");
 
 }else{
 
-alert("Lose");
+balance -= amount;
 
-addHistory(type,amount,"LOSE");
-
-}
+alert("Lose ₹" + amount);
 
 }
 
-function addHistory(type,amount,status){
-
-let history =
-document.getElementById("gameHistory");
-
-history.innerHTML =
-
-`
-<div class="history-box">
-Bet: ${type} <br>
-Amount: ₹${amount} <br>
-Status: ${status}
-</div>
-` + history.innerHTML;
-
-}
-
-function logout(){
-
-window.location.href="index.html";
-
-}
+localStorage.setItem("balance", balance);
 
 updateBalance();
+
+saveHistory(type,result,amount,win);
+
+}
+
+function saveHistory(type,result,amount,win){
+
+let text =
+(win ? "WIN ✅" : "LOSE ❌") +
+"<br>Bet: " + type +
+"<br>Result: " + result +
+"<br>Amount: ₹" + amount +
+"<hr>";
+
+let old =
+localStorage.getItem("gameHistory");
+
+if(old == null){
+old = "";
+}
+
+localStorage.setItem(
+"gameHistory",
+text + old
+);
+
+loadHistory();
+
+}
+
+function loadHistory(){
+
+let data =
+localStorage.getItem("gameHistory");
+
+if(data){
+
+document.getElementById("historyBox")
+.innerHTML = data;
+
+}
+
+}
+
+loadHistory();
+
+let time = 30;
+
+setInterval(function(){
+
+time--;
+
+document.getElementById("timer")
+.innerText = time;
+
+if(time <= 0){
+
+time = 30;
+
+}
+
+},1000);
 
 </script>
 
