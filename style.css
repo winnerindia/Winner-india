@@ -1,117 +1,205 @@
 body{
-background:black;
-color:white;
+background:#000;
 font-family:Arial;
 margin:0;
 padding:0;
+color:white;
 }
 
 .topbar{
 background:#111;
-padding:20px;
-color:gold;
-font-size:20px;
+padding:18px;
+font-size:26px;
 font-weight:bold;
+color:#ffd700;
+box-shadow:0 0 10px #000;
 }
 
 .container{
-padding:15px;
+padding:12px;
 }
 
 .card{
 background:#111;
-padding:20px;
+padding:18px;
 border-radius:20px;
-margin-bottom:20px;
+margin-bottom:18px;
+box-shadow:0 0 15px rgba(255,215,0,0.1);
+}
+
+h1,h2,h3{
+margin:0 0 15px;
 }
 
 input{
 width:100%;
-padding:15px;
-margin-top:10px;
+padding:14px;
 border:none;
-border-radius:10px;
-font-size:18px;
+border-radius:12px;
+margin-top:10px;
+font-size:16px;
 box-sizing:border-box;
+background:#f2f2f2;
 }
 
 button{
-width:100%;
-padding:15px;
-margin-top:10px;
 border:none;
-border-radius:12px;
-font-size:20px;
+border-radius:14px;
 font-weight:bold;
-background:#00c853;
+font-size:18px;
+padding:14px;
+margin-top:10px;
 color:white;
+cursor:pointer;
+}
+
+button:active{
+transform:scale(0.97);
+}
+
+/* LOGIN */
+
+.login-btn{
+background:linear-gradient(45deg,#00c853,#00e676);
+width:100%;
 }
 
 .logout{
-background:red;
+background:linear-gradient(45deg,#ff1744,#ff5252);
+width:100%;
 }
+
+/* WALLET */
+
+.wallet-balance{
+font-size:42px;
+font-weight:bold;
+color:#fff;
+margin:10px 0;
+}
+
+/* GAME */
 
 .tabs{
 display:flex;
 gap:10px;
+margin-top:10px;
 }
 
 .tabs button{
-background:#222;
+flex:1;
+background:#1e1e1e;
+color:#fff;
+padding:12px;
+font-size:16px;
+}
+
+.timer-box{
+text-align:center;
+background:#1b1b1b;
+padding:15px;
+border-radius:18px;
+margin-top:15px;
 }
 
 #timer{
-font-size:70px;
-color:gold;
-text-align:center;
+font-size:55px;
+color:#ffd700;
+margin:0;
 }
 
 #result{
-color:#00ff99;
+font-size:40px;
+color:#00ff90;
 }
+
+/* NUMBER GRID */
 
 .numbers{
 display:grid;
 grid-template-columns:repeat(5,1fr);
-gap:10px;
-margin-top:20px;
+gap:8px;
+margin-top:15px;
 }
 
 .numbers button{
-background:#222;
-height:70px;
+height:58px;
+font-size:22px;
+background:linear-gradient(145deg,#2d2d2d,#1a1a1a);
+border:2px solid #333;
 }
+
+/* COLOR BUTTONS */
 
 .colors{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:20px;
+gap:8px;
+margin-top:15px;
 }
 
 .green{
-background:green;
+background:linear-gradient(45deg,#00c853,#64dd17);
 }
 
 .red{
-background:red;
+background:linear-gradient(45deg,#ff1744,#ff5252);
 }
 
 .violet{
-background:purple;
+background:linear-gradient(45deg,#aa00ff,#d500f9);
 }
+
+/* BIG SMALL */
 
 .bigsmall{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:20px;
+gap:8px;
+margin-top:15px;
 }
 
 .big{
-background:#00c853;
+background:linear-gradient(45deg,#00e676,#00c853);
 }
 
 .small{
-background:#ff9800;
+background:linear-gradient(45deg,#ff9100,#ff3d00);
+}
+
+/* HISTORY */
+
+.history-box{
+background:#1a1a1a;
+padding:12px;
+border-radius:14px;
+margin-top:10px;
+font-size:14px;
+line-height:24px;
+color:#ddd;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.topbar{
+font-size:22px;
+padding:15px;
+}
+
+.wallet-balance{
+font-size:36px;
+}
+
+button{
+font-size:16px;
+padding:12px;
+}
+
+.numbers button{
+height:52px;
+font-size:20px;
+}
+
 }
