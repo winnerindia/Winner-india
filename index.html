@@ -8,70 +8,53 @@
 </head>
 <body>
 
-<div class="topbar">
-<div class="logoBox">
+<div class="top">
 <div class="logo">WI</div>
 <div>
 <h1>Winner India</h1>
 <p>India's Gaming Platform</p>
 </div>
 </div>
-</div>
 
-<div class="card">
+<div class="card login-card">
 <h2>Login / Signup</h2>
-
 <input type="email" id="email" placeholder="Enter Email">
-
 <input type="password" id="password" placeholder="Enter Password">
 
-<button class="signupBtn" onclick="signup()">Signup</button>
-
-<button class="loginBtn" onclick="login()">Login</button>
+<button class="signup" onclick="signup()">Signup</button>
+<button class="login" onclick="login()">Login</button>
 </div>
 
 <script>
-
 function signup(){
-
 let email=document.getElementById('email').value;
 let password=document.getElementById('password').value;
 
-if(email=='' || password==''){
-alert('Please Fill All Details');
+if(email===''||password===''){
+alert('Fill all fields');
 return;
 }
 
 localStorage.setItem('userEmail',email);
 localStorage.setItem('userPassword',password);
-
 alert('Signup Successful');
-
 window.location.href='home.html';
-
 }
 
 function login(){
-
 let email=document.getElementById('email').value;
 let password=document.getElementById('password').value;
 
 let savedEmail=localStorage.getItem('userEmail');
 let savedPassword=localStorage.getItem('userPassword');
 
-if(email==savedEmail && password==savedPassword){
-
+if(email===savedEmail && password===savedPassword){
 alert('Login Successful');
 window.location.href='home.html';
-
 }else{
-
 alert('Wrong Email or Password');
-
 }
-
 }
-
 </script>
 
 </body>
