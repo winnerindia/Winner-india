@@ -8,31 +8,25 @@
 </head>
 <body>
 
-<div class="topbar">
+<div class="top">
 <h1>Withdraw</h1>
 </div>
 
-<div class="container">
-
-<div class="wallet-card">
-
+<div class="card">
 <input type="text" placeholder="Account Holder Name">
-
 <input type="text" placeholder="Bank Name">
-
-<input type="text" placeholder="Account Number">
-
+<input type="number" placeholder="Account Number">
 <input type="text" placeholder="IFSC Code">
-
 <input type="number" placeholder="Withdraw Amount">
 
-<button class="withdraw-btn">
-Submit Withdraw
-</button>
-
+<button class="blue-btn full" onclick="submitWithdraw()">Submit Withdraw</button>
 </div>
 
-</div>
+<script>
+function submitWithdraw(){
+alert('Withdraw Request Submitted');
+}
+</script>
 
 </body>
 </html>
