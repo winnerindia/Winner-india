@@ -1,204 +1,366 @@
-body{
-background:#000;
-font-family:Arial;
+/* style.css */
+
+*{
 margin:0;
 padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#0f0f0f;
 color:white;
 }
 
-.topbar{
-background:#111;
-padding:18px;
-font-size:26px;
+/* LOGIN PAGE */
+
+#loginPage{
+padding:20px;
+}
+
+.login-header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-top:20px;
+margin-bottom:25px;
+}
+
+.logo-circle{
+width:65px;
+height:65px;
+border-radius:50%;
+background:linear-gradient(45deg,#ffd700,#ff9800);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
 font-weight:bold;
+color:black;
+}
+
+.logo-text{
+font-size:34px;
 color:#ffd700;
-box-shadow:0 0 10px #000;
 }
 
-.container{
-padding:12px;
+.sub-text{
+color:#aaa;
+margin-top:5px;
 }
 
-.card{
-background:#111;
-padding:18px;
-border-radius:20px;
-margin-bottom:18px;
-box-shadow:0 0 15px rgba(255,215,0,0.1);
+.login-card{
+background:#1a1a1a;
+padding:20px;
+border-radius:22px;
+box-shadow:0 0 15px rgba(255,215,0,0.08);
 }
 
-h1,h2,h3{
-margin:0 0 15px;
+.login-card h2{
+margin-bottom:20px;
 }
 
 input{
 width:100%;
-padding:14px;
+padding:16px;
 border:none;
-border-radius:12px;
-margin-top:10px;
-font-size:16px;
-box-sizing:border-box;
-background:#f2f2f2;
-}
-
-button{
-border:none;
-border-radius:14px;
-font-weight:bold;
-font-size:18px;
-padding:14px;
-margin-top:10px;
+border-radius:15px;
+margin-top:12px;
+font-size:17px;
+background:#2a2a2a;
 color:white;
-cursor:pointer;
 }
 
-button:active{
-transform:scale(0.97);
+.main-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:15px;
+font-size:20px;
+font-weight:bold;
+margin-top:15px;
+background:linear-gradient(45deg,#00c853,#00e676);
+color:white;
 }
-
-/* LOGIN */
 
 .login-btn{
-background:linear-gradient(45deg,#00c853,#00e676);
-width:100%;
+background:linear-gradient(45deg,#2196f3,#00b0ff);
 }
 
-.logout{
+/* HOME PAGE */
+
+#homePage{
+padding:15px;
+}
+
+/* TOPBAR */
+
+.topbar{
+background:#1a1a1a;
+padding:15px;
+border-radius:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.top-left{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.small-logo{
+width:50px;
+height:50px;
+border-radius:50%;
+background:linear-gradient(45deg,#ffd700,#ff9800);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+font-weight:bold;
+color:black;
+}
+
+.logout-btn{
+border:none;
+padding:12px 18px;
+border-radius:14px;
 background:linear-gradient(45deg,#ff1744,#ff5252);
-width:100%;
+color:white;
+font-weight:bold;
+font-size:16px;
 }
 
 /* WALLET */
 
-.wallet-balance{
-font-size:42px;
-font-weight:bold;
-color:#fff;
-margin:10px 0;
+.wallet-card{
+background:linear-gradient(45deg,#1f1f1f,#292929);
+padding:22px;
+border-radius:24px;
+margin-bottom:20px;
+box-shadow:0 0 18px rgba(255,215,0,0.08);
 }
 
-/* GAME */
+.wallet-card p{
+color:#aaa;
+font-size:18px;
+}
 
-.tabs{
-display:flex;
-gap:10px;
+.wallet-card h1{
+font-size:48px;
 margin-top:10px;
 }
 
-.tabs button{
+.wallet-buttons{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.deposit-btn,
+.withdraw-btn{
 flex:1;
-background:#1e1e1e;
-color:#fff;
-padding:12px;
+padding:15px;
+border:none;
+border-radius:16px;
+font-size:18px;
+font-weight:bold;
+color:white;
+}
+
+.deposit-btn{
+background:linear-gradient(45deg,#00c853,#00e676);
+}
+
+.withdraw-btn{
+background:linear-gradient(45deg,#ff9800,#ff5722);
+}
+
+/* WINGO */
+
+.wingo-card{
+background:#1a1a1a;
+padding:20px;
+border-radius:24px;
+box-shadow:0 0 15px rgba(255,255,255,0.05);
+}
+
+.wingo-header{
+display:flex;
+gap:10px;
+}
+
+.wingo-header button{
+flex:1;
+padding:14px;
+border:none;
+border-radius:15px;
+background:#2a2a2a;
+color:white;
 font-size:16px;
+font-weight:bold;
+}
+
+.active-time{
+background:linear-gradient(45deg,#ffd700,#ff9800)!important;
+color:black!important;
 }
 
 .timer-box{
-text-align:center;
-background:#1b1b1b;
-padding:15px;
+background:#242424;
+padding:18px;
 border-radius:18px;
-margin-top:15px;
+text-align:center;
+margin-top:18px;
 }
 
 #timer{
-font-size:55px;
+font-size:65px;
 color:#ffd700;
-margin:0;
 }
 
-#result{
-font-size:40px;
-color:#00ff90;
+.timer-box p{
+margin-top:10px;
+color:#aaa;
+font-size:16px;
 }
 
-/* NUMBER GRID */
+/* COLOR ROW */
 
-.numbers{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:8px;
-margin-top:15px;
-}
-
-.numbers button{
-height:58px;
-font-size:22px;
-background:linear-gradient(145deg,#2d2d2d,#1a1a1a);
-border:2px solid #333;
-}
-
-/* COLOR BUTTONS */
-
-.colors{
+.color-row{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:8px;
-margin-top:15px;
+gap:10px;
+margin-top:18px;
 }
 
-.green{
+.green-btn,
+.red-btn,
+.violet-btn{
+padding:16px;
+border:none;
+border-radius:16px;
+font-size:18px;
+font-weight:bold;
+color:white;
+}
+
+.green-btn{
 background:linear-gradient(45deg,#00c853,#64dd17);
 }
 
-.red{
+.red-btn{
 background:linear-gradient(45deg,#ff1744,#ff5252);
 }
 
-.violet{
+.violet-btn{
 background:linear-gradient(45deg,#aa00ff,#d500f9);
+}
+
+/* NUMBERS */
+
+.number-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+margin-top:18px;
+}
+
+.number-grid button{
+height:60px;
+border:none;
+border-radius:16px;
+font-size:24px;
+font-weight:bold;
+background:linear-gradient(145deg,#2c2c2c,#1d1d1d);
+color:white;
 }
 
 /* BIG SMALL */
 
-.bigsmall{
+.big-small{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:8px;
-margin-top:15px;
+gap:10px;
+margin-top:18px;
 }
 
-.big{
+.big-btn,
+.small-btn{
+padding:18px;
+border:none;
+border-radius:16px;
+font-size:22px;
+font-weight:bold;
+color:white;
+}
+
+.big-btn{
 background:linear-gradient(45deg,#00e676,#00c853);
 }
 
-.small{
-background:linear-gradient(45deg,#ff9100,#ff3d00);
+.small-btn{
+background:linear-gradient(45deg,#ff9100,#ff5722);
 }
 
 /* HISTORY */
 
-.history-box{
+.history-card{
 background:#1a1a1a;
-padding:12px;
-border-radius:14px;
-margin-top:10px;
-font-size:14px;
-line-height:24px;
-color:#ddd;
+padding:20px;
+border-radius:24px;
+margin-top:20px;
+overflow:auto;
+}
+
+.history-card table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+.history-card th{
+padding:14px;
+background:#222;
+}
+
+.history-card td{
+padding:14px;
+border-bottom:1px solid #333;
+text-align:center;
+}
+
+.green-text{
+color:#00ff99;
+font-weight:bold;
+}
+
+.red-text{
+color:#ff5252;
+font-weight:bold;
 }
 
 /* MOBILE */
 
 @media(max-width:600px){
 
-.topbar{
-font-size:22px;
-padding:15px;
+.logo-text{
+font-size:28px;
 }
 
-.wallet-balance{
-font-size:36px;
+.wallet-card h1{
+font-size:40px;
 }
 
-button{
-font-size:16px;
-padding:12px;
+#timer{
+font-size:55px;
 }
 
-.numbers button{
-height:52px;
+.number-grid button{
+height:55px;
 font-size:20px;
 }
 
