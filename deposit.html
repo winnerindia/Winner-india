@@ -1,77 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deposit</title>
-
-<style>
-
-body{
-margin:0;
-font-family:Arial;
-background:#111;
-color:white;
-}
-
-.header{
-background:gold;
-color:black;
-padding:15px;
-font-size:24px;
-font-weight:bold;
-text-align:center;
-}
-
-.container{
-padding:20px;
-}
-
-.card{
-background:#1f1f1f;
-padding:20px;
-border-radius:15px;
-margin-top:20px;
-}
-
-input{
-width:100%;
-padding:15px;
-border:none;
-border-radius:10px;
-margin-top:10px;
-font-size:18px;
-}
-
-button{
-width:100%;
-padding:15px;
-background:gold;
-border:none;
-border-radius:10px;
-font-size:20px;
-font-weight:bold;
-margin-top:20px;
-}
-
-</style>
-
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="header">
-Deposit
+<div class="topbar">
+<h1>Deposit</h1>
 </div>
 
 <div class="container">
 
-<div class="card">
+<div class="wallet-card">
+<h2>Select Payment Method</h2>
 
-<h2>Enter Deposit Amount</h2>
+<button class="deposit-btn">Paytm</button>
+<button class="deposit-btn">PhonePe</button>
+<button class="deposit-btn">Google Pay</button>
 
 <input type="number" placeholder="Enter Amount">
+<input type="text" placeholder="Enter UTR Number">
 
-<button>
-Deposit Now
-</button>
+<button class="deposit-btn">Submit Deposit</button>
 
 </div>
 
