@@ -2,19 +2,80 @@
 <html>
 <head>
 <title>Deposit</title>
+
 <style>
+
 body{
+margin:0;
+font-family:Arial;
 background:#111;
 color:white;
-font-family:Arial;
-text-align:center;
-padding-top:100px;
 }
+
+.header{
+background:gold;
+color:black;
+padding:15px;
+font-size:24px;
+font-weight:bold;
+text-align:center;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:#1f1f1f;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+font-size:18px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:gold;
+border:none;
+border-radius:10px;
+font-size:20px;
+font-weight:bold;
+margin-top:20px;
+}
+
 </style>
+
 </head>
 <body>
 
-<h1>Deposit Page</h1>
+<div class="header">
+Deposit
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Enter Deposit Amount</h2>
+
+<input type="number" placeholder="Enter Amount">
+
+<button>
+Deposit Now
+</button>
+
+</div>
+
+</div>
 
 </body>
 </html>
