@@ -8,27 +8,31 @@
 </head>
 <body>
 
-<div class="topbar">
+<div class="top">
 <h1>Deposit</h1>
 </div>
 
-<div class="container">
-
-<div class="wallet-card">
+<div class="card">
 <h2>Select Payment Method</h2>
 
-<button class="deposit-btn">Paytm</button>
-<button class="deposit-btn">PhonePe</button>
-<button class="deposit-btn">Google Pay</button>
+<div class="btn-row">
+<button class="green-btn">Paytm</button>
+<button class="blue-btn">PhonePe</button>
+</div>
+
+<button class="orange-btn full">Google Pay</button>
 
 <input type="number" placeholder="Enter Amount">
 <input type="text" placeholder="Enter UTR Number">
 
-<button class="deposit-btn">Submit Deposit</button>
-
+<button class="green-btn full" onclick="submitDeposit()">Submit Deposit</button>
 </div>
 
-</div>
+<script>
+function submitDeposit(){
+alert('Deposit Request Submitted');
+}
+</script>
 
 </body>
 </html>
