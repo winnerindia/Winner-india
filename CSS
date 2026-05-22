@@ -432,3 +432,16 @@ pointer-events:auto;
 cursor:pointer;
 pointer-events:auto;
 }
+.bet-box{
+margin:20px 0;
+text-align:center;
+}
+
+#betAmount{
+width:200px;
+padding:12px;
+font-size:20px;
+border:none;
+border-radius:10px;
+text-align:center;
+}
