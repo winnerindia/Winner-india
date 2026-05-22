@@ -1,74 +1,177 @@
-<div class="card">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winner India Home</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<div class="top">
+<div class="logo">WI</div>
+<div>
+<h1>Winner India</h1>
+<p>India's Gaming Platform</p>
+</div>
+</div>
+
+<div class="card">
+<h2>Wallet</h2>
+<h1 id="wallet">₹1000</h1>
+
+<div class="btn-row">
+<button class="green-btn" onclick="window.location.href='deposit.html'">Deposit</button>
+<button class="blue-btn" onclick="window.location.href='withdraw.html'">Withdraw</button>
+</div>
+
+<button class="red-btn full" onclick="logout()">Logout</button>
+</div>
+
+<div class="card">
 <h2>WinGo Game</h2>
 
-<h1 id="timer">30</h1>
+<div class="btn-row">
+<button class="dark-btn" onclick="setGame(30)">30 Sec</button>
+<button class="dark-btn" onclick="setGame(60)">1 Min</button>
+</div>
 
+<h1 id="timer">30</h1>
 <h2>Result: <span id="result">0</span></h2>
 
-<div class="numberGrid">
-
-<button onclick="playGame('0')" class="numberBtn violet">0</button>
-<button onclick="playGame('1')" class="numberBtn green">1</button>
-<button onclick="playGame('2')" class="numberBtn red">2</button>
-<button onclick="playGame('3')" class="numberBtn green">3</button>
-<button onclick="playGame('4')" class="numberBtn red">4</button>
-<button onclick="playGame('5')" class="numberBtn violet">5</button>
-<button onclick="playGame('6')" class="numberBtn red">6</button>
-<button onclick="playGame('7')" class="numberBtn green">7</button>
-<button onclick="playGame('8')" class="numberBtn red">8</button>
-<button onclick="playGame('9')" class="numberBtn green">9</button>
-
+<div class="number-grid">
+<button class="violet" onclick="playNumber(0)">0</button>
+<button class="green" onclick="playNumber(1)">1</button>
+<button class="red" onclick="playNumber(2)">2</button>
+<button class="green" onclick="playNumber(3)">3</button>
+<button class="red" onclick="playNumber(4)">4</button>
+<button class="violet" onclick="playNumber(5)">5</button>
+<button class="red" onclick="playNumber(6)">6</button>
+<button class="green" onclick="playNumber(7)">7</button>
+<button class="red" onclick="playNumber(8)">8</button>
+<button class="green" onclick="playNumber(9)">9</button>
 </div>
 
-<div class="colorGrid">
-
-<button onclick="playGame('Green')" class="greenBtn">Green</button>
-
-<button onclick="playGame('Violet')" class="violetBtn">Violet</button>
-
-<button onclick="playGame('Red')" class="redBtn">Red</button>
-
-<button onclick="playGame('Big')" class="bigBtn">Big</button>
-
-<button onclick="playGame('Small')" class="smallBtn">Small</button>
-
+<div class="btn-row">
+<button class="green-btn" onclick="playColor('green')">Green</button>
+<button class="violet-btn" onclick="playColor('violet')">Violet</button>
 </div>
+
+<div class="btn-row">
+<button class="red-btn" onclick="playColor('red')">Red</button>
+<button class="orange-btn" onclick="playBigSmall('big')">Big</button>
+</div>
+
+<button class="green-btn full" onclick="playBigSmall('small')">Small</button>
 
 </div>
 
 <script>
+let wallet=1000;
+let currentTime=30;
 
-function playGame(type){
+function updateWallet(){
+document.getElementById('wallet').innerText='₹'+wallet;
+}
 
-let amount = prompt("Enter Bet Amount");
+function logout(){
+window.location.href='index.html';
+}
 
-if(amount==null || amount==""){
+function setGame(sec){
+currentTime=sec;
+document.getElementById('timer').innerText=currentTime;
+}
+
+setInterval(()=>{
+currentTime--;
+if(currentTime<=0){
+currentTime=30;
+}
+document.getElementById('timer').innerText=currentTime;
+},1000);
+
+function randomResult(){
+return Math.floor(Math.random()*10);
+}
+
+function playNumber(num){
+if(wallet<10){
+alert('Low Balance');
 return;
 }
 
-alert("Bet Successful On " + type);
+wallet-=10;
+let result=randomResult();
+document.getElementById('result').innerText=result;
 
+if(result===num){
+wallet+=90;
+alert('Number Win ₹90');
+}else{
+alert('Lose');
 }
 
-let time = 30;
-
-setInterval(function(){
-
-document.getElementById("timer").innerHTML = time;
-
-time--;
-
-if(time < 0){
-
-time = 30;
-
-let result = Math.floor(Math.random()*10);
-
-document.getElementById("result").innerHTML = result;
-
+updateWallet();
 }
 
-},1000);
+function playColor(color){
+if(wallet<10){
+alert('Low Balance');
+return;
+}
 
+wallet-=10;
+
+let result=randomResult();
+document.getElementById('result').innerText=result;
+
+let finalColor='';
+
+if(result==1||result==3||result==7||result==9){
+finalColor='green';
+}else if(result==2||result==4||result==6||result==8){
+finalColor='red';
+}else{
+finalColor='violet';
+}
+
+if(finalColor===color){
+wallet+=20;
+alert('Color Win ₹20');
+}else{
+alert('Lose');
+}
+
+updateWallet();
+}
+
+function playBigSmall(type){
+if(wallet<10){
+alert('Low Balance');
+return;
+}
+
+wallet-=10;
+
+let result=randomResult();
+document.getElementById('result').innerText=result;
+
+if(type==='big' && result>=5){
+wallet+=20;
+alert('Big Win ₹20');
+}
+else if(type==='small' && result<5){
+wallet+=20;
+alert('Small Win ₹20');
+}
+else{
+alert('Lose');
+}
+
+updateWallet();
+}
 </script>
+
+</body>
+</html>
