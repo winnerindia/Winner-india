@@ -1,37 +1,254 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deposit</title>
-<link rel="stylesheet" href="style.css">
+<title>Deposit - Winner India</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+background:#000;
+font-family:Arial;
+color:white;
+}
+
+.header{
+background:#111;
+padding:20px;
+font-size:45px;
+font-weight:bold;
+color:gold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:#111;
+padding:25px;
+border-radius:25px;
+margin-bottom:20px;
+}
+
+.title{
+font-size:30px;
+margin-bottom:20px;
+}
+
+.payments{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.paybtn{
+flex:1;
+padding:18px;
+border:none;
+border-radius:15px;
+font-size:22px;
+font-weight:bold;
+color:white;
+}
+
+.paytm{
+background:#00b9ff;
+}
+
+.phonepe{
+background:#7b2cff;
+}
+
+.gpay{
+background:#00c853;
+}
+
+input{
+width:100%;
+padding:18px;
+border:none;
+border-radius:15px;
+background:#1d1d1d;
+color:white;
+font-size:24px;
+margin-top:18px;
+box-sizing:border-box;
+}
+
+.submit{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+font-size:28px;
+font-weight:bold;
+background:#00d95f;
+color:white;
+margin-top:20px;
+}
+
+.history{
+background:#1d1d1d;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+font-size:22px;
+}
+
+.qr{
+width:220px;
+height:220px;
+background:white;
+margin:auto;
+margin-top:20px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:black;
+font-size:24px;
+font-weight:bold;
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="top">
-<h1>Deposit</h1>
+<div class="header">
+Deposit
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">
+Select Payment Method
+</div>
+
+<div class="payments">
+
+<button class="paybtn paytm"
+onclick="selectMethod('Paytm')">
+Paytm
+</button>
+
+<button class="paybtn phonepe"
+onclick="selectMethod('PhonePe')">
+PhonePe
+</button>
+
+<button class="paybtn gpay"
+onclick="selectMethod('Google Pay')">
+Google Pay
+</button>
+
+</div>
+
+<div class="qr">
+QR CODE
+</div>
+
+<input type="number"
+id="amount"
+placeholder="Enter Amount">
+
+<input type="text"
+id="utr"
+placeholder="Enter UTR Number">
+
+<button class="submit"
+onclick="submitDeposit()">
+Submit Deposit
+</button>
+
 </div>
 
 <div class="card">
-<h2>Select Payment Method</h2>
 
-<div class="btn-row">
-<button class="green-btn">Paytm</button>
-<button class="blue-btn">PhonePe</button>
+<h2>Deposit History</h2>
+
+<div id="historyBox"></div>
+
 </div>
 
-<button class="orange-btn full">Google Pay</button>
-
-<input type="number" placeholder="Enter Amount">
-<input type="text" placeholder="Enter UTR Number">
-
-<button class="green-btn full" onclick="submitDeposit()">Submit Deposit</button>
 </div>
 
 <script>
-function submitDeposit(){
-alert('Deposit Request Submitted');
+
+let paymentMethod = "Paytm";
+
+function selectMethod(method){
+
+paymentMethod = method;
+
+alert(method + " Selected ✅");
+
 }
+
+function submitDeposit(){
+
+let amount =
+document.getElementById("amount").value;
+
+let utr =
+document.getElementById("utr").value;
+
+if(amount == "" || utr == ""){
+
+alert("Fill All Details");
+
+return;
+
+}
+
+let data =
+paymentMethod +
+" - ₹" + amount +
+" - UTR: " + utr;
+
+let old =
+localStorage.getItem("depositHistory");
+
+if(old == null){
+old = "";
+}
+
+localStorage.setItem(
+"depositHistory",
+data + "<br><br>" + old
+);
+
+alert("Deposit Submitted Successfully ✅");
+
+document.getElementById("amount").value = "";
+document.getElementById("utr").value = "";
+
+loadHistory();
+
+}
+
+function loadHistory(){
+
+let history =
+localStorage.getItem("depositHistory");
+
+if(history){
+
+document.getElementById("historyBox").innerHTML =
+history;
+
+}
+
+}
+
+loadHistory();
+
 </script>
 
 </body>
