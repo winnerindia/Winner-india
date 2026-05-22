@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Result History</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+background:#000;
+font-family:Arial;
+color:white;
+}
+
+.header{
+background:#111;
+padding:20px;
+font-size:42px;
+font-weight:bold;
+color:gold;
+}
+
+.container{
+padding:20px;
+}
+
+.box{
+background:#111;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.result{
+background:#1d1d1d;
+padding:18px;
+border-radius:15px;
+margin-top:15px;
+font-size:24px;
+}
+
+.green{
+color:#00ff66;
+font-weight:bold;
+}
+
+.red{
+color:#ff2d55;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+Live Result History
+</div>
+
+<div class="container">
+
+<div class="box">
+
+<h2>Latest Results</h2>
+
+<div id="resultBox"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function loadResults(){
+
+let results =
+localStorage.getItem("gameResults");
+
+if(results){
+
+document.getElementById("resultBox")
+.innerHTML = results;
+
+}else{
+
+document.getElementById("resultBox")
+.innerHTML =
+"<div class='result'>No Results Found</div>";
+
+}
+
+}
+
+loadResults();
+
+</script>
+
+</body>
+</html>
