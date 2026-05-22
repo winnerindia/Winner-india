@@ -174,7 +174,7 @@ VIP Level : VIP 1
 Account Status : Active
 </div>
 
-<button class="green">
+<button class="green" onclick="addBank()">
 Add Bank Account
 </button>
 
@@ -223,3 +223,26 @@ window.location.href="index.html";
 
 </body>
 </html>
+function addBank(){
+
+let bankName = prompt("Enter Bank Name");
+let accountNumber = prompt("Enter Account Number");
+let ifsc = prompt("Enter IFSC Code");
+let holder = prompt("Enter Account Holder Name");
+
+if(bankName && accountNumber && ifsc && holder){
+
+localStorage.setItem("bankName", bankName);
+localStorage.setItem("accountNumber", accountNumber);
+localStorage.setItem("ifsc", ifsc);
+localStorage.setItem("holder", holder);
+
+alert("Bank Account Added Successfully");
+
+}else{
+
+alert("Please Fill All Details");
+
+}
+
+}
