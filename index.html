@@ -391,8 +391,90 @@ alert("RED Bet Successfully");
 
 document.querySelector(".violet-btn").onclick = function(){
 alert("VIOLET Bet Successfully'')
+<script>
 
-      </script>
+let time = 30;
+let period = 20260522100050266;
 
-</body>
-</html>
+function updateTimer(){
+
+document.getElementById("timer").innerHTML = time;
+document.getElementById("period").innerHTML = period;
+
+time--;
+
+if(time < 0){
+
+time = 30;
+
+period++;
+
+let num = Math.floor(Math.random()*10);
+
+let result = "";
+
+if(num >= 5){
+result = "BIG";
+}else{
+result = "SMALL";
+}
+
+const table = document.querySelector(".history table");
+
+const row = `
+<tr>
+<td>${period}</td>
+<td style="color:${num%2==0?'red':'#00ff99'}">${num}</td>
+<td>${result}</td>
+</tr>
+`;
+
+table.innerHTML += row;
+
+}
+
+}
+
+setInterval(updateTimer,1000);
+
+document.querySelectorAll(".num").forEach(btn=>{
+
+btn.onclick = function(){
+
+alert("Number Bet: " + this.innerText);
+
+}
+
+});
+
+document.querySelector(".big-btn").onclick = function(){
+
+alert("BIG Bet Successfully");
+
+}
+
+document.querySelector(".small-btn").onclick = function(){
+
+alert("SMALL Bet Successfully");
+
+}
+
+document.querySelector(".green-btn").onclick = function(){
+
+alert("GREEN Bet Successfully");
+
+}
+
+document.querySelector(".red-btn").onclick = function(){
+
+alert("RED Bet Successfully");
+
+}
+
+document.querySelector(".violet-btn").onclick = function(){
+
+alert("VIOLET Bet Successfully");
+
+}
+
+</script>
