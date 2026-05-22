@@ -1,88 +1,117 @@
-/* style.css */
-
 body{
-margin:0;
-padding:0;
-background:#000;
+background:black;
 color:white;
 font-family:Arial;
+margin:0;
+padding:0;
 }
 
 .topbar{
 background:#111;
-padding:15px;
-font-size:25px;
-font-weight:bold;
+padding:20px;
 color:gold;
+font-size:20px;
+font-weight:bold;
 }
 
 .container{
 padding:15px;
 }
 
-.box{
+.card{
 background:#111;
 padding:20px;
-border-radius:15px;
+border-radius:20px;
 margin-bottom:20px;
 }
 
-input,button,select{
+input{
 width:100%;
-padding:14px;
+padding:15px;
 margin-top:10px;
 border:none;
 border-radius:10px;
-font-size:16px;
+font-size:18px;
+box-sizing:border-box;
 }
 
 button{
+width:100%;
+padding:15px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+font-size:20px;
+font-weight:bold;
 background:#00c853;
 color:white;
-font-weight:bold;
 }
 
-.red{
+.logout{
 background:red;
 }
 
-.green{
-background:green;
-}
-
-.violet{
-background:purple;
-}
-
-.bet-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
+.tabs{
+display:flex;
 gap:10px;
 }
 
-h1,h2,h3{
-margin:10px 0;
+.tabs button{
+background:#222;
 }
-.number-grid{
+
+#timer{
+font-size:70px;
+color:gold;
+text-align:center;
+}
+
+#result{
+color:#00ff99;
+}
+
+.numbers{
 display:grid;
 grid-template-columns:repeat(5,1fr);
 gap:10px;
 margin-top:20px;
 }
 
-.number-grid button{
+.numbers button{
 background:#222;
-color:white;
-font-size:20px;
-font-weight:bold;
+height:70px;
 }
 
-.time-btns{
-display:flex;
+.colors{
+display:grid;
+grid-template-columns:repeat(3,1fr);
 gap:10px;
-margin-bottom:20px;
+margin-top:20px;
 }
 
-.time-btns button{
-background:#222;
+.green{
+background:green;
+}
+
+.red{
+background:red;
+}
+
+.violet{
+background:purple;
+}
+
+.bigsmall{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:20px;
+}
+
+.big{
+background:#00c853;
+}
+
+.small{
+background:#ff9800;
 }
