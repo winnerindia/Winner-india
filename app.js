@@ -1,43 +1,90 @@
+// app.js
+
 let balance = 1000;
 let withdrawCount = 0;
 let time = 30;
-
-setInterval(()=>{
-
- time--;
- document.getElementById("timer").innerHTML = time;
-
- if(time <= 0){
- time = 30;
- }
-
-},1000);
+let currentUser = localStorage.getItem("user");
 
 function updateBalance(){
 
-document.getElementById("balance").innerHTML = "₹" + balance;
+const balanceBox = document.getElementById("balance");
+
+if(balanceBox){
+
+balanceBox.innerHTML = "₹" + balance;
+
+}
+
+}
+
+window.onload = function(){
+
+updateBalance();
+
+const loginBtn = document.querySelector(".login-btn");
+const logoutBtn = document.querySelector(".logout-btn");
+
+if(currentUser){
+
+if(loginBtn) loginBtn.style.display = "none";
+if(logoutBtn) logoutBtn.style.display = "inline-block";
+
+}else{
+
+if(loginBtn) loginBtn.style.display = "inline-block";
+if(logoutBtn) logoutBtn.style.display = "none";
+
+}
 
 }
 
 function login(){
+
+let email = prompt("Enter Email");
+
+if(email){
+
+localStorage.setItem("user", email);
+
 alert("Login Successful");
+
+window.location.reload();
+
+}
+
 }
 
 function logout(){
+
+localStorage.removeItem("user");
+
 alert("Logout Successful");
+
+window.location.reload();
+
 }
 
 function deposit(){
 
-let amount = prompt("Deposit Amount");
+let amount = prompt("Enter Deposit Amount");
 
 if(amount){
 
-alert("UPI ID: winnerindia@upi");
+alert(
+"UPI ID: winnerindia@upi\n\n" +
+"QR Scan करके payment करें"
+);
 
 let utr = prompt("Enter UTR Number");
 
-alert("Deposit Request Submitted");
+if(utr){
+
+alert(
+"Deposit Request Submitted\n\n" +
+"Status: Processing"
+);
+
+}
 
 }
 
@@ -46,42 +93,92 @@ alert("Deposit Request Submitted");
 function withdrawMoney(){
 
 if(withdrawCount >= 3){
-alert("Daily Withdrawal Limit Reached");
+
+alert("आज का Withdrawal Limit पूरा हो गया");
+
 return;
+
 }
 
-let amount = prompt("Withdraw Amount");
+let bank = prompt("Enter Bank Name");
+
+if(!bank) return;
+
+let account = prompt("Enter Account Number");
+
+if(!account) return;
+
+let ifsc = prompt("Enter IFSC Code");
+
+if(!ifsc) return;
+
+let amount = Number(prompt("Enter Withdrawal Amount"));
+
+if(amount > balance){
+
+alert("Insufficient Balance");
+
+return;
+
+}
 
 let tax = amount * 0.30;
+
 let finalAmount = amount - tax;
 
-alert(
-"Tax: ₹" + tax +
-"\nFinal Amount: ₹" + finalAmount
-);
+balance -= amount;
 
 withdrawCount++;
+
+updateBalance();
+
+alert(
+
+"Withdrawal Successful ✅\n\n" +
+
+"Bank: " + bank + "\n" +
+
+"Account: " + account + "\n" +
+
+"IFSC: " + ifsc + "\n\n" +
+
+"30% Government Tax: ₹" + tax + "\n\n" +
+
+"Final Amount: ₹" + finalAmount + "\n\n" +
+
+"Today's Withdrawal: " + withdrawCount + "/3"
+
+);
 
 }
 
 function placeBet(type){
 
-let amount = Number(document.getElementById("betAmount").value);
+let amount = Number(
+document.getElementById("betAmount").value
+);
 
 if(amount <= 0){
+
 alert("Enter Bet Amount");
+
 return;
+
 }
 
 if(amount > balance){
+
 alert("Insufficient Balance");
+
 return;
+
 }
 
 balance -= amount;
+
 updateBalance();
 
-let result = Math.floor(Math.random()*10);
+let result = Math.floor(Math.random() * 10);
 
 let win = Math.random() > 0.5;
 
@@ -93,26 +190,20 @@ balance += winAmount;
 
 updateBalance();
 
-alert("YOU WIN ₹" + winAmount + "\nResult: " + result);
+alert(
+"🎉 YOU WIN ₹" + winAmount +
+"\n\nResult Number: " + result
+);
 
 }else{
 
-alert("YOU LOSS ₹" + amount + "\nResult: " + result);
+alert(
+"❌ YOU LOSS ₹" + amount +
+"\n\nResult Number: " + result
+);
 
 }
 
-}
-
-function home(){
-window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function promotion(){
-alert("Invite Friends & Earn Bonus");
-}
-
-function wallet(){
-alert("Wallet Balance: ₹" + balance);
 }
 
 function support(){
@@ -120,9 +211,67 @@ function support(){
 let link = localStorage.getItem("telegramSupport");
 
 if(link){
+
 window.location.href = link;
+
 }else{
+
 alert("Support Not Available");
+
 }
 
 }
+
+function home(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+function promotion(){
+
+alert(
+"🎁 Invite Friends & Earn Bonus"
+);
+
+}
+
+function wallet(){
+
+alert(
+"💰 Wallet Balance: ₹" + balance
+);
+
+}
+
+function profile(){
+
+alert(
+"👤 Winner India Profile\n\n" +
+"Gaming लाइन में सरकार 30% टैक्स लेती है।"
+);
+
+}
+
+setInterval(() => {
+
+const timerBox = document.getElementById("timer");
+
+if(timerBox){
+
+time--;
+
+timerBox.innerHTML = time;
+
+if(time <= 0){
+
+time = 30;
+
+}
+
+}
+
+}, 1000);
