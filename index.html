@@ -1,58 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Winner India Lottery</title>
+<title>Winner India</title>
 
 <style>
 
-body{
+*{
 margin:0;
 padding:0;
-background:#000;
+box-sizing:border-box;
 font-family:Arial;
+}
+
+body{
+background:#000;
+color:white;
+padding-bottom:100px;
+}
+
+.topbar{
+background:#111;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#ffd700;
+}
+
+.auth button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+margin-left:5px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.login-btn{
+background:#2196f3;
 color:white;
 }
 
-.container{
-width:90%;
-max-width:450px;
-margin:auto;
+.logout-btn{
+background:red;
+color:white;
+}
+
+.wallet-box{
+background:#111;
+margin:20px;
 padding:20px;
+border-radius:20px;
+text-align:center;
+}
+
+.balance{
+font-size:38px;
+margin:20px 0;
+color:#00ff99;
+font-weight:bold;
+}
+
+.wallet-buttons{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.wallet-buttons button{
+padding:15px 25px;
+border:none;
+border-radius:15px;
+font-size:20px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+}
+
+.deposit-btn{
+background:#00c853;
+}
+
+.withdraw-btn{
+background:red;
+}
+
+.section-title{
+font-size:38px;
+padding:20px;
+font-weight:bold;
 }
 
 .game-box{
 background:#111;
+margin:20px;
 padding:20px;
 border-radius:20px;
-margin-top:20px;
 text-align:center;
 }
 
-h1{
-color:#ffd54f;
+.game-title{
 font-size:45px;
+color:#ffd54f;
+margin-bottom:20px;
 }
 
 .timer{
 font-size:90px;
 font-weight:bold;
 color:#00ff99;
-margin:20px 0;
 }
 
 #period{
-font-size:25px;
-margin-bottom:20px;
+font-size:22px;
+margin:15px 0;
 }
 
 .bet-box input{
-width:200px;
-padding:12px;
+width:220px;
+padding:15px;
+font-size:22px;
 border:none;
-border-radius:10px;
-font-size:20px;
+border-radius:12px;
 text-align:center;
 margin-bottom:20px;
 }
@@ -66,10 +146,10 @@ margin-bottom:20px;
 }
 
 .color-buttons button{
-padding:15px 25px;
+padding:15px 22px;
 border:none;
 border-radius:15px;
-font-size:25px;
+font-size:22px;
 font-weight:bold;
 color:white;
 cursor:pointer;
@@ -99,12 +179,12 @@ width:70px;
 height:70px;
 border-radius:50%;
 display:flex;
-align-items:center;
 justify-content:center;
-font-size:35px;
+align-items:center;
+font-size:32px;
 font-weight:bold;
-cursor:pointer;
 margin:auto;
+cursor:pointer;
 }
 
 .green{
@@ -120,18 +200,18 @@ background:#aa00ff;
 }
 
 .big-small{
-margin-top:25px;
 display:flex;
 justify-content:center;
 gap:15px;
+margin-top:25px;
 }
 
 .big-btn,
 .small-btn{
-padding:15px 40px;
+padding:15px 35px;
 border:none;
 border-radius:15px;
-font-size:30px;
+font-size:28px;
 font-weight:bold;
 color:white;
 cursor:pointer;
@@ -153,20 +233,52 @@ border-radius:15px;
 }
 
 .history h2{
-font-size:35px;
+font-size:32px;
+margin-bottom:15px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
-margin-top:10px;
 }
 
 th,td{
 padding:12px;
-font-size:20px;
 border-bottom:1px solid #333;
+font-size:18px;
 text-align:center;
+}
+
+.rules{
+background:#111;
+margin:20px;
+padding:20px;
+border-radius:20px;
+line-height:30px;
+font-size:18px;
+}
+
+.rules h2{
+color:#ffd700;
+margin-bottom:15px;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+width:100%;
+background:#111;
+display:flex;
+justify-content:space-around;
+padding:15px 0;
+}
+
+.bottom-nav button{
+background:none;
+border:none;
+color:white;
+font-size:18px;
+cursor:pointer;
 }
 
 </style>
@@ -174,11 +286,41 @@ text-align:center;
 
 <body>
 
-<div class="container">
+<div class="topbar">
+
+<div class="logo">Winner India</div>
+
+<div class="auth">
+
+<button class="login-btn" onclick="login()">Login</button>
+
+<button class="logout-btn" onclick="logout()">Logout</button>
+
+</div>
+
+</div>
+
+<div class="wallet-box">
+
+<h2>Wallet Balance</h2>
+
+<div class="balance" id="balance">₹1000</div>
+
+<div class="wallet-buttons">
+
+<button class="deposit-btn" onclick="deposit()">Deposit</button>
+
+<button class="withdraw-btn" onclick="withdrawMoney()">Withdraw</button>
+
+</div>
+
+</div>
+
+<div class="section-title">Lottery Game</div>
 
 <div class="game-box">
 
-<h1>WinGo 30sec</h1>
+<div class="game-title">WinGo 30sec</div>
 
 <p>Time Remaining</p>
 
@@ -188,7 +330,7 @@ text-align:center;
 
 <div class="bet-box">
 
-<input type="number" id="betAmount" placeholder="Enter Amount">
+<input type="number" id="betAmount" placeholder="Bet Amount">
 
 </div>
 
@@ -219,6 +361,7 @@ text-align:center;
 <div class="big-small">
 
 <button class="big-btn">Big</button>
+
 <button class="small-btn">Small</button>
 
 </div>
@@ -227,24 +370,12 @@ text-align:center;
 
 <h2>Game History</h2>
 
-<table>
+<table class="history-table">
 
 <tr>
 <th>Period</th>
 <th>Number</th>
 <th>Result</th>
-</tr>
-
-<tr>
-<td>50265</td>
-<td style="color:#00ff99;">7</td>
-<td>BIG</td>
-</tr>
-
-<tr>
-<td>50264</td>
-<td style="color:red;">2</td>
-<td>SMALL</td>
 </tr>
 
 </table>
@@ -253,9 +384,127 @@ text-align:center;
 
 </div>
 
+<div class="rules">
+
+<h2>महत्वपूर्ण नियम</h2>
+
+<p>1. Withdrawal दिन में केवल 3 बार किया जा सकता है।</p>
+
+<p>2. Deposit की कोई limit नहीं है।</p>
+
+<p>3. Gaming लाइन में सरकार 30% टैक्स लेती है।</p>
+
+<p>4. Tax Pay करने से अकाउंट सुरक्षित रहता है।</p>
+
+<p>5. गलत जानकारी देने पर Withdrawal रोका जा सकता है।</p>
+
+</div>
+
+<div class="bottom-nav">
+
+<button onclick="home()">🏠 Home</button>
+
+<button onclick="promotion()">🎁 Promotion</button>
+
+<button onclick="wallet()">💰 Wallet</button>
+
+<button onclick="profile()">👤 Profile</button>
+
 </div>
 
 <script>
+
+let balance = 1000;
+let withdrawCount = 0;
+
+function updateBalance(){
+document.getElementById("balance").innerHTML = "₹" + balance;
+}
+
+function login(){
+alert("Login Successfully");
+}
+
+function logout(){
+alert("Logout Successfully");
+}
+
+function deposit(){
+
+let amount = prompt("Deposit Amount Enter करें");
+
+if(amount){
+
+balance += Number(amount);
+
+updateBalance();
+
+alert("₹" + amount + " Deposit Successful");
+
+}
+
+}
+
+function withdrawMoney(){
+
+if(withdrawCount >= 3){
+
+alert("आप आज केवल 3 बार Withdrawal कर सकते हैं");
+
+return;
+
+}
+
+let amount = Number(prompt("Withdraw Amount Enter करें"));
+
+if(amount > balance){
+
+alert("Insufficient Balance");
+
+return;
+
+}
+
+let tax = amount * 0.30;
+
+let finalAmount = amount - tax;
+
+balance -= amount;
+
+withdrawCount++;
+
+updateBalance();
+
+alert(
+"30% Government Tax कटने के बाद\n\n" +
+"Tax: ₹" + tax + "\n\n" +
+"आपके अकाउंट में ₹" + finalAmount + " आएंगे\n\n" +
+"आज का Withdrawal Count: " + withdrawCount + "/3"
+);
+
+}
+
+function home(){
+alert("Home Open");
+}
+
+function promotion(){
+alert("Promotion Open");
+}
+
+function wallet(){
+alert("Wallet Open");
+}
+
+function profile(){
+
+alert(
+"सरकारी गेमिंग नियम:\n\n" +
+"Gaming लाइन में सरकार 30% टैक्स लेती है।\n" +
+"Tax Pay करने से अकाउंट सुरक्षित रहता है।"
+);
+
+}
 
 let time = 30;
 let period = 20260522100050266;
@@ -272,23 +521,99 @@ if(time <= 0){
 time = 30;
 period++;
 
-let num = Math.floor(Math.random()*10);
-
-let result = "";
-
-if(num >= 5){
-result = "BIG";
-}else{
-result = "SMALL";
 }
 
-const table = document.querySelector(".history table");
+},1000);
+
+function placeBet(type){
+
+let amount = Number(document.getElementById("betAmount").value);
+
+if(amount <= 0){
+
+alert("Bet Amount Enter करें");
+
+return;
+
+}
+
+if(amount > balance){
+
+alert("Insufficient Balance");
+
+return;
+
+}
+
+balance -= amount;
+
+updateBalance();
+
+let resultNumber = Math.floor(Math.random()*10);
+
+let resultType = resultNumber >= 5 ? "BIG" : "SMALL";
+
+let win = false;
+
+if(type == "BIG" && resultType == "BIG"){
+win = true;
+}
+
+if(type == "SMALL" && resultType == "SMALL"){
+win = true;
+}
+
+if(type == "GREEN" && [1,3,7,9].includes(resultNumber)){
+win = true;
+}
+
+if(type == "RED" && [2,4,6,8].includes(resultNumber)){
+win = true;
+}
+
+if(type == "VIOLET" && [0,5].includes(resultNumber)){
+win = true;
+}
+
+if(type.includes("Number")){
+
+let selected = Number(type.replace("Number ",""));
+
+if(selected == resultNumber){
+win = true;
+}
+
+}
+
+if(win){
+
+let winAmount = amount * 2;
+
+balance += winAmount;
+
+updateBalance();
+
+alert(
+"🎉 YOU WIN ₹" + winAmount +
+"\n\nResult Number: " + resultNumber
+);
+
+}else{
+
+alert(
+"❌ YOU LOSS ₹" + amount +
+"\n\nResult Number: " + resultNumber
+);
+
+}
+
+const table = document.querySelector(".history-table");
 
 const row = `
 <tr>
 <td>${period}</td>
-<td style="color:${num%2==0?'red':'#00ff99'}">${num}</td>
-<td>${result}</td>
+<td style="color:${resultNumber%2==0?'red':'#00ff99'}">${resultNumber}</td>
+<td>${resultType}</td>
 </tr>
 `;
 
@@ -296,59 +621,35 @@ table.innerHTML += row;
 
 }
 
-},1000);
+document.querySelector(".big-btn").onclick = function(){
+placeBet("BIG");
+}
+
+document.querySelector(".small-btn").onclick = function(){
+placeBet("SMALL");
+}
+
+document.querySelector(".green-btn").onclick = function(){
+placeBet("GREEN");
+}
+
+document.querySelector(".red-btn").onclick = function(){
+placeBet("RED");
+}
+
+document.querySelector(".violet-btn").onclick = function(){
+placeBet("VIOLET");
+}
 
 document.querySelectorAll(".num").forEach(btn=>{
 
 btn.onclick = function(){
 
-let amount = document.getElementById("betAmount").value;
-
-alert("Number " + this.innerText + " Bet ₹" + amount);
+placeBet("Number " + this.innerText);
 
 }
 
 });
-
-document.querySelector(".big-btn").onclick = function(){
-
-let amount = document.getElementById("betAmount").value;
-
-alert("BIG Bet ₹" + amount + " Successfully");
-
-}
-
-document.querySelector(".small-btn").onclick = function(){
-
-let amount = document.getElementById("betAmount").value;
-
-alert("SMALL Bet ₹" + amount + " Successfully");
-
-}
-
-document.querySelector(".green-btn").onclick = function(){
-
-let amount = document.getElementById("betAmount").value;
-
-alert("GREEN Bet ₹" + amount + " Successfully");
-
-}
-
-document.querySelector(".red-btn").onclick = function(){
-
-let amount = document.getElementById("betAmount").value;
-
-alert("RED Bet ₹" + amount + " Successfully");
-
-}
-
-document.querySelector(".violet-btn").onclick = function(){
-
-let amount = document.getElementById("betAmount").value;
-
-alert("VIOLET Bet ₹" + amount + " Successfully");
-
-}
 
 </script>
 
