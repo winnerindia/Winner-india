@@ -32,7 +32,7 @@ z-index:100;
 }
 
 .logo{
-font-size:28px;
+font-size:30px;
 font-weight:bold;
 color:#ffd700;
 }
@@ -65,10 +65,10 @@ text-align:center;
 }
 
 .balance{
-font-size:38px;
-margin:20px 0;
-color:#00ff99;
+font-size:40px;
 font-weight:bold;
+color:#00ff99;
+margin:20px 0;
 }
 
 .wallet-buttons{
@@ -84,8 +84,8 @@ border:none;
 border-radius:15px;
 font-size:20px;
 font-weight:bold;
-color:white;
 cursor:pointer;
+color:white;
 }
 
 .deposit-btn{
@@ -97,7 +97,7 @@ background:red;
 }
 
 .section-title{
-font-size:38px;
+font-size:40px;
 padding:20px;
 font-weight:bold;
 }
@@ -111,13 +111,13 @@ text-align:center;
 }
 
 .game-title{
-font-size:45px;
+font-size:50px;
 color:#ffd54f;
 margin-bottom:20px;
 }
 
 .timer{
-font-size:90px;
+font-size:100px;
 font-weight:bold;
 color:#00ff99;
 }
@@ -204,6 +204,7 @@ display:flex;
 justify-content:center;
 gap:15px;
 margin-top:25px;
+flex-wrap:wrap;
 }
 
 .big-btn,
@@ -271,6 +272,7 @@ background:#111;
 display:flex;
 justify-content:space-around;
 padding:15px 0;
+border-top:1px solid #333;
 }
 
 .bottom-nav button{
@@ -396,7 +398,7 @@ cursor:pointer;
 
 <p>4. Tax Pay करने से अकाउंट सुरक्षित रहता है।</p>
 
-<p>5. गलत जानकारी देने पर Withdrawal रोका जा सकता है।</p>
+<p>5. Withdrawal करते समय सही बैंक डिटेल भरें।</p>
 
 </div>
 
@@ -418,15 +420,21 @@ let balance = 1000;
 let withdrawCount = 0;
 
 function updateBalance(){
+
 document.getElementById("balance").innerHTML = "₹" + balance;
+
 }
 
 function login(){
+
 alert("Login Successfully");
+
 }
 
 function logout(){
+
 alert("Logout Successfully");
+
 }
 
 function deposit(){
@@ -455,6 +463,12 @@ return;
 
 }
 
+let bankName = prompt("Bank Name Enter करें");
+
+let accountNumber = prompt("Account Number Enter करें");
+
+let ifsc = prompt("IFSC Code Enter करें");
+
 let amount = Number(prompt("Withdraw Amount Enter करें"));
 
 if(amount > balance){
@@ -476,32 +490,54 @@ withdrawCount++;
 updateBalance();
 
 alert(
-"30% Government Tax कटने के बाद\n\n" +
-"Tax: ₹" + tax + "\n\n" +
+
+"Withdrawal Successful ✅\n\n" +
+
+"Bank: " + bankName + "\n" +
+
+"Account: " + accountNumber + "\n" +
+
+"IFSC: " + ifsc + "\n\n" +
+
+"30% Government Tax: ₹" + tax + "\n\n" +
+
 "आपके अकाउंट में ₹" + finalAmount + " आएंगे\n\n" +
-"आज का Withdrawal Count: " + withdrawCount + "/3"
+
+"Withdrawal Count: " + withdrawCount + "/3"
+
 );
 
 }
 
 function home(){
-alert("Home Open");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
 }
 
 function promotion(){
-alert("Promotion Open");
+
+alert(
+"🎁 Promotion Bonus\n\nInvite Friends and Earn Commission"
+);
+
 }
 
 function wallet(){
-alert("Wallet Open");
+
+alert(
+"💰 Wallet Balance: ₹" + balance
+);
+
 }
 
 function profile(){
 
 alert(
-"सरकारी गेमिंग नियम:\n\n" +
-"Gaming लाइन में सरकार 30% टैक्स लेती है।\n" +
-"Tax Pay करने से अकाउंट सुरक्षित रहता है।"
+"👤 Winner India Profile\n\nGaming लाइन में सरकार 30% टैक्स लेती है।"
 );
 
 }
@@ -519,6 +555,7 @@ document.getElementById("period").innerHTML = period;
 if(time <= 0){
 
 time = 30;
+
 period++;
 
 }
