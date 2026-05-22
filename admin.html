@@ -1,280 +1,67 @@
-<!-- admin.html -->
-
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Winner India Admin Panel</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
-body{
-background:#000;
-color:white;
-padding:20px;
-}
-
-.header{
-background:#111;
-padding:20px;
-border-radius:20px;
-text-align:center;
-font-size:35px;
-font-weight:bold;
-color:#ffd700;
-margin-bottom:20px;
-}
-
-.card{
-background:#111;
-padding:20px;
-border-radius:20px;
-margin-bottom:20px;
-}
-
-.card h2{
-margin-bottom:15px;
-color:#ffd700;
-}
-
-input,select{
-width:100%;
-padding:15px;
-margin-top:10px;
-border:none;
-border-radius:10px;
-font-size:18px;
-}
-
-button{
-width:100%;
-padding:15px;
-margin-top:15px;
-border:none;
-border-radius:12px;
-font-size:20px;
-font-weight:bold;
-cursor:pointer;
-color:white;
-}
-
-.green{
-background:green;
-}
-
-.red{
-background:red;
-}
-
-.blue{
-background:#2196f3;
-}
-
-.orange{
-background:orange;
-}
-
-.result-box{
-text-align:center;
-font-size:40px;
-font-weight:bold;
-margin-top:20px;
-color:#00ff99;
-}
-
-.history{
-background:#111;
-padding:20px;
-border-radius:20px;
-margin-top:20px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px;
-}
-
-th,td{
-border-bottom:1px solid #333;
-padding:12px;
-text-align:center;
-font-size:18px;
-}
-
-th{
-background:#222;
-}
-
-</style>
-
+<title>Admin Panel</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="header">
-Winner India Admin Panel
+<div class="topbar">
+<div class="logo">Admin Panel</div>
 </div>
 
-<div class="card">
-
+<div class="wallet-box">
 <h2>Admin Login</h2>
-
-<input type="password" id="adminPass" placeholder="Enter Admin Password">
-
-<button class="blue" onclick="loginAdmin()">
-Login
-</button>
-
+<input type="password" id="adminPassword" placeholder="Admin Password">
+<button onclick="adminLogin()">Login</button>
 </div>
 
-<div class="card">
-
-<h2>Set Prediction Result</h2>
-
-<select id="resultNumber">
-
-<option value="0">0</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-
-</select>
-
-<button class="green" onclick="setResult()">
-Set Result
-</button>
-
-<div class="result-box" id="currentResult">
-Current Result: 0
+<div class="wallet-box">
+<h2>Telegram Support</h2>
+<input type="text" id="telegramLink" placeholder="Telegram Link">
+<button onclick="saveTelegram()">Save Support</button>
 </div>
 
+<div class="wallet-box">
+<h2>Deposit Approval</h2>
+<button onclick="approveDeposit()">Approve Deposit</button>
 </div>
 
-<div class="card">
-
-<h2>User Balance Control</h2>
-
-<input type="text" placeholder="User ID">
-
-<input type="number" placeholder="Add Balance">
-
-<button class="orange">
-Add Balance
-</button>
-
-<button class="red">
-Remove Balance
-</button>
-
-</div>
-
-<div class="card">
-
-<h2>Withdraw Control</h2>
-
-<button class="green">
-Approve Withdraw
-</button>
-
-<button class="red">
-Reject Withdraw
-</button>
-
-</div>
-
-<div class="history">
-
-<h2>Result History</h2>
-
-<table>
-
-<tr>
-<th>Period</th>
-<th>Number</th>
-<th>Result</th>
-</tr>
-
-<tbody id="historyTable">
-
-</tbody>
-
-</table>
-
+<div class="wallet-box">
+<h2>Withdrawal Approval</h2>
+<button onclick="approveWithdraw()">Approve Withdraw</button>
 </div>
 
 <script>
 
-let adminLogged = false;
+function adminLogin(){
 
-let period = 20260522100050266;
-
-function loginAdmin(){
-
-let pass = document.getElementById("adminPass").value;
+let pass = document.getElementById("adminPassword").value;
 
 if(pass == "winner123"){
-
-adminLogged = true;
-
-alert("Admin Login Successful");
-
+alert("Admin Login Success");
 }else{
-
 alert("Wrong Password");
-
 }
 
 }
 
-function setResult(){
+function saveTelegram(){
 
-if(!adminLogged){
+let link = document.getElementById("telegramLink").value;
 
-alert("Admin Login First");
+localStorage.setItem("telegramSupport",link);
 
-return;
+alert("Telegram Support Saved");
 
 }
 
-let number =
-document.getElementById("resultNumber").value;
+function approveDeposit(){
+alert("Deposit Approved");
+}
 
-document.getElementById("currentResult").innerHTML =
-"Current Result: " + number;
-
-let resultType = number >= 5 ? "BIG" : "SMALL";
-
-const row = `
-<tr>
-<td>${period}</td>
-<td>${number}</td>
-<td>${resultType}</td>
-</tr>
-`;
-
-document.getElementById("historyTable").innerHTML += row;
-
-localStorage.setItem("wingoResult",number);
-
-period++;
-
-alert("Prediction Result Set Successfully");
-
+function approveWithdraw(){
+alert("Withdrawal Approved");
 }
 
 </script>
