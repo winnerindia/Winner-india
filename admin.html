@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Winner India Admin</title>
+<title>Winner India Admin Panel</title>
 
 <style>
 
@@ -37,10 +36,15 @@ font-weight:bold;
 color:black;
 }
 
-.header h1{
+.title h1{
 margin:0;
-font-size:40px;
+font-size:38px;
 color:gold;
+}
+
+.title p{
+margin:0;
+color:#aaa;
 }
 
 .container{
@@ -51,22 +55,25 @@ padding:20px;
 background:#111;
 padding:25px;
 border-radius:25px;
-margin-bottom:20px;
+margin-bottom:25px;
 box-shadow:0 0 15px rgba(255,215,0,0.15);
 }
 
 h2{
-font-size:30px;
-margin-bottom:20px;
+margin-top:0;
+font-size:32px;
 }
 
-.box{
-background:#1d1d1d;
+input{
+width:100%;
 padding:18px;
+border:none;
 border-radius:18px;
+background:#1d1d1d;
+color:white;
 font-size:22px;
 margin-top:15px;
-word-break:break-word;
+box-sizing:border-box;
 }
 
 button{
@@ -74,7 +81,7 @@ width:100%;
 padding:18px;
 border:none;
 border-radius:18px;
-font-size:25px;
+font-size:24px;
 font-weight:bold;
 margin-top:18px;
 color:white;
@@ -97,21 +104,18 @@ background:linear-gradient(45deg,#ff9800,#ffb74d);
 background:linear-gradient(45deg,#ff1744,#ff5252);
 }
 
-input{
-width:100%;
-padding:18px;
-border:none;
-border-radius:18px;
+.box{
 background:#1d1d1d;
-color:white;
-font-size:22px;
+padding:18px;
+border-radius:18px;
 margin-top:15px;
-box-sizing:border-box;
+font-size:22px;
+word-break:break-word;
 }
 
 </style>
-
 </head>
+
 <body>
 
 <div class="header">
@@ -120,7 +124,7 @@ box-sizing:border-box;
 WI
 </div>
 
-<div>
+<div class="title">
 <h1>Admin Panel</h1>
 <p>Winner India Dashboard</p>
 </div>
@@ -131,13 +135,28 @@ WI
 
 <div class="card">
 
+<h2>Set Game Result</h2>
+
+<input type="number"
+id="adminResult"
+placeholder="Enter Result Number 0-9">
+
+<button class="green"
+onclick="setResult()">
+Update Result
+</button>
+
+</div>
+
+<div class="card">
+
 <h2>Change UPI ID</h2>
 
 <input type="text"
 id="upiInput"
 placeholder="Enter New UPI ID">
 
-<button class="green"
+<button class="blue"
 onclick="saveUpi()">
 Save UPI ID
 </button>
@@ -188,12 +207,12 @@ No Bank Details
 
 <div class="card">
 
-<h2>Game Result History</h2>
+<h2>Game History</h2>
 
-<div id="resultBox">
+<div id="gameBox">
 
 <div class="box">
-No Game Result
+No Game History
 </div>
 
 </div>
@@ -214,6 +233,28 @@ Clear All Data
 
 <script>
 
+function setResult(){
+
+let number =
+document.getElementById("adminResult").value;
+
+if(number==""){
+
+alert("Enter Result Number");
+
+return;
+
+}
+
+localStorage.setItem(
+"adminResult",
+number
+);
+
+alert("Result Updated ✅");
+
+}
+
 function saveUpi(){
 
 let upi =
@@ -227,9 +268,12 @@ return;
 
 }
 
-localStorage.setItem("adminUpi",upi);
+localStorage.setItem(
+"adminUpi",
+upi
+);
 
-alert("UPI ID Updated ✅");
+alert("UPI Updated ✅");
 
 }
 
@@ -261,14 +305,16 @@ withdraws +
 
 }
 
-let results =
-localStorage.getItem("gameResults");
+let games =
+localStorage.getItem("gameHistory");
 
-if(results){
+if(games){
 
-document.getElementById("resultBox")
+document.getElementById("gameBox")
 .innerHTML =
-results;
+'<div class="box">'+
+games +
+'</div>';
 
 }
 
@@ -311,7 +357,7 @@ if(confirm("Clear All Data?")){
 
 localStorage.clear();
 
-alert("All Data Cleared");
+alert("All Data Cleared ✅");
 
 location.reload();
 
