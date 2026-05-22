@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Winner India Admin Panel</title>
 
 <style>
@@ -24,14 +25,14 @@ gap:15px;
 }
 
 .logo{
-width:80px;
-height:80px;
+width:85px;
+height:85px;
 border-radius:50%;
 background:gold;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:38px;
+font-size:40px;
 font-weight:bold;
 color:black;
 }
@@ -45,6 +46,7 @@ color:gold;
 .title p{
 margin:0;
 color:#aaa;
+font-size:18px;
 }
 
 .container{
@@ -56,12 +58,13 @@ background:#111;
 padding:25px;
 border-radius:25px;
 margin-bottom:25px;
-box-shadow:0 0 15px rgba(255,215,0,0.15);
+box-shadow:0 0 15px rgba(255,215,0,0.12);
 }
 
 h2{
 margin-top:0;
 font-size:32px;
+margin-bottom:20px;
 }
 
 input{
@@ -104,6 +107,10 @@ background:linear-gradient(45deg,#ff9800,#ffb74d);
 background:linear-gradient(45deg,#ff1744,#ff5252);
 }
 
+.purple{
+background:linear-gradient(45deg,#b100ff,#ea80fc);
+}
+
 .box{
 background:#1d1d1d;
 padding:18px;
@@ -113,7 +120,35 @@ font-size:22px;
 word-break:break-word;
 }
 
+.qrbox{
+width:220px;
+height:220px;
+background:white;
+border-radius:20px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+color:black;
+font-size:24px;
+font-weight:bold;
+overflow:hidden;
+}
+
+.qrbox img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
 </style>
+
 </head>
 
 <body>
@@ -150,16 +185,59 @@ Update Result
 
 <div class="card">
 
-<h2>Change UPI ID</h2>
+<h2>Payment Gateway Settings</h2>
 
 <input type="text"
 id="upiInput"
-placeholder="Enter New UPI ID">
+placeholder="Enter UPI ID">
+
+<input type="text"
+id="qrInput"
+placeholder="Paste QR Image Link">
+
+<div class="qrbox" id="qrBox">
+QR
+</div>
 
 <button class="blue"
-onclick="saveUpi()">
-Save UPI ID
+onclick="savePaymentSettings()">
+Save Payment Settings
 </button>
+
+</div>
+
+<div class="card">
+
+<h2>Bet Statistics</h2>
+
+<div class="stats">
+
+<div class="box">
+Green Bet : 
+<span id="greenCount">0</span>
+</div>
+
+<div class="box">
+Red Bet : 
+<span id="redCount">0</span>
+</div>
+
+<div class="box">
+Violet Bet : 
+<span id="violetCount">0</span>
+</div>
+
+<div class="box">
+Big Bet : 
+<span id="bigCount">0</span>
+</div>
+
+<div class="box">
+Small Bet : 
+<span id="smallCount">0</span>
+</div>
+
+</div>
 
 </div>
 
@@ -224,6 +302,11 @@ onclick="window.location.href='index.html'">
 Open User Panel
 </button>
 
+<button class="purple"
+onclick="refreshData()">
+Refresh Data
+</button>
+
 <button class="red"
 onclick="clearAll()">
 Clear All Data
@@ -240,7 +323,7 @@ document.getElementById("adminResult").value;
 
 if(number==""){
 
-alert("Enter Result Number");
+alert("Enter Result");
 
 return;
 
@@ -251,33 +334,82 @@ localStorage.setItem(
 number
 );
 
-alert("Result Updated ✅");
+alert("Game Result Updated ✅");
 
 }
 
-function saveUpi(){
+function savePaymentSettings(){
 
 let upi =
 document.getElementById("upiInput").value;
 
-if(upi==""){
+let qr =
+document.getElementById("qrInput").value;
 
-alert("Enter UPI ID");
-
-return;
-
-}
+if(upi!=""){
 
 localStorage.setItem(
 "adminUpi",
 upi
 );
 
-alert("UPI Updated ✅");
+}
+
+if(qr!=""){
+
+localStorage.setItem(
+"adminQr",
+qr
+);
+
+document.getElementById("qrBox")
+.innerHTML =
+'<img src="'+qr+'">';
+
+}
+
+alert("Payment Settings Saved ✅");
+
+}
+
+function refreshData(){
+
+location.reload();
 
 }
 
 function loadData(){
+
+let qr =
+localStorage.getItem("adminQr");
+
+if(qr){
+
+document.getElementById("qrBox")
+.innerHTML =
+'<img src="'+qr+'">';
+
+}
+
+document.getElementById("greenCount")
+.innerHTML =
+localStorage.getItem("Green") || 0;
+
+document.getElementById("redCount")
+.innerHTML =
+localStorage.getItem("Red") || 0;
+
+document.getElementById("violetCount")
+.innerHTML =
+localStorage.getItem("Violet") || 0;
+
+document.getElementById("bigCount")
+.innerHTML =
+localStorage.getItem("Big") || 0;
+
+document.getElementById("smallCount")
+.innerHTML =
+localStorage.getItem("Small") || 0;
 
 let deposits =
 localStorage.getItem("depositHistory");
