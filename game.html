@@ -1,248 +1,75 @@
-<!-- game.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Winner India Game</title>
-
-<style>
-body{
-    margin:0;
-    padding:0;
-    background:#0f0f0f;
-    font-family:Arial;
-    color:white;
-}
-
-.header{
-    background:#1c1c1c;
-    padding:15px;
-    text-align:center;
-    font-size:28px;
-    font-weight:bold;
-    color:#ffd700;
-}
-
-.balance{
-    margin:20px;
-    background:#1e1e1e;
-    padding:15px;
-    border-radius:15px;
-    text-align:center;
-    font-size:22px;
-}
-
-.timer-box{
-    text-align:center;
-    margin-top:20px;
-}
-
-.timer{
-    font-size:45px;
-    color:#00ff99;
-    font-weight:bold;
-}
-
-.result{
-    text-align:center;
-    margin-top:15px;
-    font-size:25px;
-    font-weight:bold;
-}
-
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:30px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    width:110px;
-    height:50px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    font-weight:bold;
-    color:white;
-}
-
-.green{
-    background:green;
-}
-
-.red{
-    background:red;
-}
-
-.violet{
-    background:purple;
-}
-
-.big{
-    background:orange;
-}
-
-.small{
-    background:#0099ff;
-}
-
-.history{
-    margin:20px;
-    background:#1c1c1c;
-    border-radius:15px;
-    padding:15px;
-}
-
-.history h2{
-    text-align:center;
-}
-
-.history-item{
-    display:flex;
-    justify-content:space-between;
-    background:#2a2a2a;
-    margin-top:10px;
-    padding:10px;
-    border-radius:10px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-Winner India
-</div>
-
-<div class="balance">
-Balance: ₹ <span id="balance">1000</span>
-</div>
-
-<div class="timer-box">
-<div>Next Result In</div>
-<div class="timer" id="timer">30</div>
-</div>
-
-<div class="result" id="result">
-Waiting...
-</div>
-
-<div class="buttons">
-
-<button class="btn green" onclick="bet('GREEN')">
-GREEN
-</button>
-
-<button class="btn red" onclick="bet('RED')">
-RED
-</button>
-
-<button class="btn violet" onclick="bet('VIOLET')">
-VIOLET
-</button>
-
-<button class="btn big" onclick="bet('BIG')">
-BIG
-</button>
-
-<button class="btn small" onclick="bet('SMALL')">
-SMALL
-</button>
-
-</div>
-
-<div class="history">
-<h2>History</h2>
-
-<div id="history-list"></div>
-
-</div>
-
 <script>
 
-let timer = 30;
-let currentBet = "";
-let balance = 1000;
-
-function updateTimer(){
-
-document.getElementById("timer").innerHTML = timer;
-
-timer--;
-
-if(timer < 0){
-
-generateResult();
-
-timer = 30;
+function logout(){
+window.location.href="index.html";
 }
 
+function openDeposit(){
+window.location.href="deposit.html";
 }
 
-setInterval(updateTimer,1000);
+function openWithdraw(){
+window.location.href="withdraw.html";
+}
 
-function bet(type){
+function playGame(type){
 
-currentBet = type;
+let amount = prompt("Enter Bet Amount");
 
-alert("Bet Placed On " + type);
+if(amount=="" || amount==null){
+return;
+}
+
+alert("Bet Placed On: " + type + " ₹" + amount);
 
 }
 
-function generateResult(){
+let time=30;
 
-const results = ["GREEN","RED","VIOLET","BIG","SMALL"];
+setInterval(()=>{
 
-const randomResult =
-results[Math.floor(Math.random()*results.length)];
+time--;
 
-document.getElementById("result").innerHTML =
-"Result : " + randomResult;
+document.getElementById("timer").innerHTML=time;
 
-if(currentBet == randomResult){
+if(time<=0){
 
-balance += 100;
+time=30;
 
-alert("You Win ₹100");
+let result=Math.floor(Math.random()*10);
 
-}else{
-
-balance -= 50;
-
-alert("You Lose ₹50");
+document.getElementById("result").innerHTML=result;
 
 }
 
-document.getElementById("balance").innerHTML = balance;
-
-addHistory(randomResult);
-
-}
-
-function addHistory(result){
-
-const history =
-document.getElementById("history-list");
-
-const item =
-document.createElement("div");
-
-item.className = "history-item";
-
-item.innerHTML = `
-<span>${result}</span>
-<span>${new Date().toLocaleTimeString()}</span>
-`;
-
-history.prepend(item);
-
-}
+},1000);
 
 </script>
+<button class="numberBtn violet" onclick="playGame('0')">0</button>
 
-</body>
-</html>
+<button class="numberBtn green" onclick="playGame('1')">1</button>
+
+<button class="numberBtn red" onclick="playGame('2')">2</button>
+
+<button class="numberBtn green" onclick="playGame('3')">3</button>
+
+<button class="numberBtn red" onclick="playGame('4')">4</button>
+
+<button class="numberBtn violet" onclick="playGame('5')">5</button>
+
+<button class="numberBtn red" onclick="playGame('6')">6</button>
+
+<button class="numberBtn green" onclick="playGame('7')">7</button>
+
+<button class="numberBtn red" onclick="playGame('8')">8</button>
+
+<button class="numberBtn green" onclick="playGame('9')">9</button>
+<button class="greenBtn" onclick="playGame('Green')">Green</button>
+
+<button class="violetBtn" onclick="playGame('Violet')">Violet</button>
+
+<button class="redBtn" onclick="playGame('Red')">Red</button>
+
+<button class="bigBtn" onclick="playGame('Big')">Big</button>
+
+<button class="smallBtn" onclick="playGame('Small')">Small</button>
